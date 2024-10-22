@@ -1,14 +1,17 @@
-// App.js
 import React from 'react';
-import SearchPage from './searchpage'; // 确保路径正确
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SearchPage from './SearchPage';
+import SelectionPage from './SelectionPage';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <SearchPage /> {/* 渲染 SearchPage 页面 */}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<SearchPage />} />
+        <Route path="/selection" element={<SelectionPage />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
-

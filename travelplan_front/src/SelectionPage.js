@@ -6,20 +6,16 @@ import {
   Typography,
   Tabs,
   Tab,
-  Card,
-  CardContent,
-  CardMedia,
-  Rating,
   Grid,
-  Chip,
   Alert,
   IconButton,
-  Button
+  Button,
 } from '@mui/material';
-import PlaceIcon from '@mui/icons-material/Place';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import HotelIcon from '@mui/icons-material/Hotel';
+import AttractionsIcon from '@mui/icons-material/Attractions';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import PlaceCard from './PlaceCard';
 
 function TabPanel({ children, value, index, ...other }) {
   return (
@@ -38,111 +34,12 @@ function TabPanel({ children, value, index, ...other }) {
   );
 }
 
-const PlaceCard = ({ place, type }) => {
-  const getIconByType = () => {
-    switch (type) {
-      case 'attraction': return <PlaceIcon />;
-      case 'restaurant': return <RestaurantIcon />;
-      case 'hotel': return <HotelIcon />;
-      default: return <PlaceIcon />;
-    }
-  };
-
-  return (
-    <Card sx={{ 
-      height: '100%', 
-      display: 'flex', 
-      flexDirection: 'column',
-      '&:hover': {
-        boxShadow: 6,
-        transform: 'scale(1.02)',
-        transition: 'all 0.2s ease-in-out'
-      }
-    }}>
-      <CardMedia
-        component="img"
-        height="200"
-        image={place.photo?.images?.original?.url || `/api/placeholder/400/200`}
-        alt={place.name}
-        sx={{ objectFit: 'cover' }}
-      />
-      <CardContent sx={{ flexGrow: 1 }}>
-        <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={1}>
-          <Typography variant="h6" component="div">
-            {place.name}
-          </Typography>
-          {getIconByType()}
-        </Box>
-
-        {place.rating && (
-          <Box display="flex" alignItems="center" gap={1} mb={1}>
-            <Rating 
-              value={Number(place.rating)} 
-              readOnly 
-              precision={0.5}
-              size="small"
-            />
-            <Typography variant="body2" color="text.secondary">
-              ({place.num_reviews || 0} reviews)
-            </Typography>
-          </Box>
-        )}
-
-        {place.price_level && (
-          <Typography variant="body2" color="text.secondary" mb={1}>
-            Price: {'£'.repeat(place.price_level)}
-          </Typography>
-        )}
-
-        {place.address && (
-          <Typography variant="body2" color="text.secondary" mb={1}>
-            {place.address}
-          </Typography>
-        )}
-
-        {place.cuisine && (
-          <Box display="flex" gap={0.5} flexWrap="wrap" mb={1}>
-            {place.cuisine.slice(0, 3).map((cuisine, index) => (
-              <Chip 
-                key={index} 
-                label={cuisine.name} 
-                size="small"
-                sx={{ fontSize: '0.7rem' }}
-              />
-            ))}
-          </Box>
-        )}
-
-        {place.description && (
-          <Typography variant="body2" color="text.secondary" mb={1}>
-            {place.description.slice(0, 150)}
-            {place.description.length > 150 ? '...' : ''}
-          </Typography>
-        )}
-
-        {place.website && (
-          <Button 
-            variant="contained" 
-            fullWidth 
-            size="small"
-            sx={{ mt: 'auto' }}
-            onClick={() => window.open(place.website, '_blank')}
-          >
-            Visit Website
-          </Button>
-        )}
-      </CardContent>
-    </Card>
-  );
-};
-
 const SelectionPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { cityName, placesData } = location.state || {};
   const [tabValue, setTabValue] = useState(0);
 
-  // 检查是否有有效数据
   if (!cityName || !placesData) {
     return (
       <Container>
@@ -166,7 +63,6 @@ const SelectionPage = () => {
     setTabValue(newValue);
   };
 
-  // 检查每个类别是否有数据
   const hasRestaurants = Array.isArray(placesData.restaurants) && placesData.restaurants.length > 0;
   const hasAttractions = Array.isArray(placesData.attractions) && placesData.attractions.length > 0;
   const hasHotels = Array.isArray(placesData.hotels) && placesData.hotels.length > 0;
@@ -204,7 +100,7 @@ const SelectionPage = () => {
               disabled={!hasRestaurants}
             />
             <Tab 
-              icon={<PlaceIcon />} 
+              icon={<AttractionsIcon />} 
               label={`Attractions (${placesData.attractions?.length || 0})`}
               disabled={!hasAttractions}
             />

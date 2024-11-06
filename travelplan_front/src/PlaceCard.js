@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { Card, CardContent, Box, Typography, Rating, Chip } from '@mui/material';
+import { 
+  Card, 
+  CardContent, 
+  Box, 
+  Typography, 
+  Rating, 
+  Chip,
+  IconButton,
+  Tooltip
+} from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import HotelIcon from '@mui/icons-material/Hotel';
 import AttractionsIcon from '@mui/icons-material/Attractions';
@@ -11,7 +22,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import ParkIcon from '@mui/icons-material/Park';
 import PlaceDetailDialog from './PlaceDetailDialog';
 
-const PlaceCard = ({ place, type }) => {
+const PlaceCard = ({ place, type, onSelect, isSelected }) => {
   const [detailOpen, setDetailOpen] = useState(false);
 
   const getIconProps = () => {
@@ -45,22 +56,51 @@ const PlaceCard = ({ place, type }) => {
 
   const { Icon, color, secondaryIcon: SecondaryIcon } = getIconProps();
 
+  const handleClick = (e) => {
+    e.stopPropagation(); // 防止触发卡片的点击事件
+    onSelect(place);
+  };
+
   return (
     <>
       <Card 
-        sx={{ 
-          height: '100%', 
-          display: 'flex', 
-          flexDirection: 'column',
-          cursor: 'pointer',
-          '&:hover': {
-            boxShadow: 6,
-            transform: 'scale(1.02)',
-            transition: 'all 0.2s ease-in-out'
-          }
-        }}
+      sx={{ 
+        height: '100%', 
+        display: 'flex', 
+        flexDirection: 'column',
+        cursor: 'pointer',
+        position: 'relative',
+        zIndex: 1, // 确保卡片的层级较低
+        '&:hover': {
+          boxShadow: 6,
+          transform: 'scale(1.02)',
+          transition: 'all 0.2s ease-in-out'
+        }
+      }}
         onClick={() => setDetailOpen(true)}
       >
+        {/* 添加选择按钮 */}
+        <IconButton
+          onClick={handleClick}
+          sx={{
+            position: 'absolute',
+            top: 8,
+            right: 8,
+            zIndex: 1,
+            backgroundColor: 'white',
+            '&:hover': {
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            }
+          }}
+        >
+          <Tooltip title={isSelected ? "Remove from itinerary" : "Add to itinerary"}>
+            {isSelected ? (
+              <CheckCircleIcon sx={{ color: 'success.main' }} />
+            ) : (
+              <AddCircleOutlineIcon sx={{ color: color }} />
+            )}
+          </Tooltip>
+        </IconButton>
         <Box
           sx={{
             height: 200,

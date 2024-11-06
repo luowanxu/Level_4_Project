@@ -53,7 +53,6 @@ def search_city(request):
 
 @csrf_exempt
 def get_city_places(request):
-    """使用 Google Maps Places API 获取城市地点信息"""
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
@@ -69,10 +68,13 @@ def get_city_places(request):
                 "X-RapidAPI-Host": GOOGLE_MAPS_HOST
             }
 
-            # 首先获取城市的地理编码
+            # 处理城市名称，替换空格为加号
+            formatted_city_name = city_name.replace(' ', '+')
+
+            # 获取城市的地理编码
             geocode_url = f"https://{GOOGLE_MAPS_HOST}/maps/api/geocode/json"
             geocode_params = {
-                "address": f"{city_name}, UK",
+                "address": f"{formatted_city_name},+UK",
                 "language": "en"
             }
             
@@ -90,11 +92,10 @@ def get_city_places(request):
             if not geocode_data.get('results'):
                 return JsonResponse({'error': 'City not found'}, status=404)
 
-            # 获取城市的位置坐标
             location = geocode_data['results'][0]['geometry']['location']
             lat, lng = location['lat'], location['lng']
             
-            logger.info(f"Found coordinates for {city_name}: {lat}, {lng}")
+            logger.info(f"Found coordinates: {lat}, {lng}")
 
             places_data = {
                 'restaurants': [],
@@ -102,73 +103,83 @@ def get_city_places(request):
                 'hotels': []
             }
 
-            # 使用 Places Nearby Search 获取各类地点
             nearby_url = f"https://{GOOGLE_MAPS_HOST}/maps/api/place/nearbysearch/json"
-            
-            # 获取餐厅
-            restaurant_params = {
-                "location": f"{lat},{lng}",
-                "radius": "5000",
-                "type": "restaurant",
-                "language": "en"
-            }
-            
+
+            # 搜索餐厅
             try:
+                restaurants_params = {
+                    "location": f"{lat},{lng}",
+                    "radius": "5000",
+                    "type": "restaurant",
+                    "keyword": "restaurant",
+                    "language": "en"
+                }
                 restaurants_response = requests.get(
                     nearby_url,
                     headers=headers,
-                    params=restaurant_params
+                    params=restaurants_params
                 )
                 if restaurants_response.status_code == 200:
-                    restaurants_data = restaurants_response.json()
-                    places_data['restaurants'] = restaurants_data.get('results', [])
-                    logger.info(f"Found {len(places_data['restaurants'])} restaurants")
+                    restaurants_data = restaurants_response.json().get('results', [])
+                    filtered_restaurants = [
+                        place for place in restaurants_data
+                        if ('restaurant' in place.get('types', []) and 
+                            not any(t in place.get('types', []) for t in ['lodging', 'hotel']))
+                    ]
+                    places_data['restaurants'] = filtered_restaurants
+                    logger.info(f"Found {len(filtered_restaurants)} restaurants after filtering")
                 else:
                     logger.error(f"Restaurant search failed: {restaurants_response.text}")
             except Exception as e:
                 logger.error(f"Error fetching restaurants: {str(e)}")
 
-            # 获取景点
-            attraction_params = {
-                "location": f"{lat},{lng}",
-                "radius": "5000",
-                "type": "tourist_attraction",
-                "language": "en"
-            }
-            
+            # 搜索景点
             try:
+                attractions_params = {
+                    "location": f"{lat},{lng}",
+                    "radius": "5000",
+                    "type": "tourist_attraction",
+                    "language": "en"
+                }
                 attractions_response = requests.get(
                     nearby_url,
                     headers=headers,
-                    params=attraction_params
+                    params=attractions_params
                 )
                 if attractions_response.status_code == 200:
-                    attractions_data = attractions_response.json()
-                    places_data['attractions'] = attractions_data.get('results', [])
-                    logger.info(f"Found {len(places_data['attractions'])} attractions")
+                    attractions_data = attractions_response.json().get('results', [])
+                    filtered_attractions = [
+                        place for place in attractions_data
+                        if not any(t in place.get('types', []) for t in ['lodging', 'restaurant'])
+                    ]
+                    places_data['attractions'] = filtered_attractions
+                    logger.info(f"Found {len(filtered_attractions)} attractions after filtering")
                 else:
                     logger.error(f"Attractions search failed: {attractions_response.text}")
             except Exception as e:
                 logger.error(f"Error fetching attractions: {str(e)}")
 
-            # 获取酒店
-            hotel_params = {
-                "location": f"{lat},{lng}",
-                "radius": "5000",
-                "type": "lodging",
-                "language": "en"
-            }
-            
+            # 搜索酒店
             try:
+                hotels_params = {
+                    "location": f"{lat},{lng}",
+                    "radius": "5000",
+                    "type": "lodging",
+                    "language": "en"
+                }
                 hotels_response = requests.get(
                     nearby_url,
                     headers=headers,
-                    params=hotel_params
+                    params=hotels_params
                 )
                 if hotels_response.status_code == 200:
-                    hotels_data = hotels_response.json()
-                    places_data['hotels'] = hotels_data.get('results', [])
-                    logger.info(f"Found {len(places_data['hotels'])} hotels")
+                    hotels_data = hotels_response.json().get('results', [])
+                    filtered_hotels = [
+                        place for place in hotels_data
+                        if 'lodging' in place.get('types', [])
+                    ]
+                    places_data['hotels'] = filtered_hotels
+                    logger.info(f"Found {len(filtered_hotels)} hotels after filtering")
                 else:
                     logger.error(f"Hotels search failed: {hotels_response.text}")
             except Exception as e:
@@ -181,8 +192,12 @@ def get_city_places(request):
                     'error': f'No places found for {city_name}'
                 }, status=404)
 
-            # 记录成功信息
-            logger.info(f"Successfully retrieved data for {city_name}")
+            # 记录每个类别的结果数量
+            for category, items in places_data.items():
+                logger.info(f"Category {category} has {len(items)} items")
+                if items:
+                    logger.info(f"Sample types in {category}: {items[0].get('types', [])}")
+
             return JsonResponse(places_data)
 
         except Exception as e:

@@ -64,19 +64,19 @@ const PlaceCard = ({ place, type, onSelect, isSelected }) => {
   return (
     <>
       <Card 
-      sx={{ 
-        height: '100%', 
-        display: 'flex', 
-        flexDirection: 'column',
-        cursor: 'pointer',
-        position: 'relative',
-        zIndex: 1, // 确保卡片的层级较低
-        '&:hover': {
-          boxShadow: 6,
-          transform: 'scale(1.02)',
-          transition: 'all 0.2s ease-in-out'
-        }
-      }}
+       sx={{ 
+         height: '100%', 
+         display: 'flex', 
+         flexDirection: 'column',
+         cursor: 'pointer',
+         position: 'relative',
+         zIndex: 1, // 确保卡片的层级较低
+         '&:hover': {
+           boxShadow: 6,
+           transform: 'scale(1.02)',
+           transition: 'all 0.2s ease-in-out'
+         }
+       }}
         onClick={() => setDetailOpen(true)}
       >
         {/* 添加选择按钮 */}

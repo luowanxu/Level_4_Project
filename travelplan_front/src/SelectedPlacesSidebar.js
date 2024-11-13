@@ -21,21 +21,15 @@ import { useNavigate } from 'react-router-dom';
 const DRAWER_WIDTH = 350;
 
 const SelectedPlacesSidebar = ({ 
-    open, 
-    onClose, 
-    selectedPlaces, 
-    onRemovePlace,
-    onClearAll,
-    zIndex  // 添加 zIndex 参数
-  }) => {
-    const theme = useTheme();
-    const navigate = useNavigate();
-
-  // 在组件内定义 handleProceed
-  const handleProceed = () => {
-    // 可以传递选中的地点到下一个页面
-    navigate('/plan', { state: { selectedPlaces } });
-  };
+  open, 
+  onClose, 
+  selectedPlaces, 
+  onRemovePlace,
+  onClearAll,
+  zIndex,
+  onProceed  // 添加这个参数
+}) => {
+  const theme = useTheme();
 
   return (
     <Drawer
@@ -54,6 +48,16 @@ const SelectedPlacesSidebar = ({
           zIndex: zIndex, // 使用传入的 zIndex
           boxShadow: theme.shadows[8], // 添加阴影效果
           bgcolor: 'background.paper', // 确保背景色不透明
+        },
+        // 确保所有子元素也保持在高层级
+        '& .MuiList-root, & .MuiListItem-root, & .MuiTypography-root': {
+          position: 'relative',
+          zIndex: zIndex + 1
+        },
+        // 确保按钮和其他交互元素也在高层级
+        '& .MuiButtonBase-root': {
+          position: 'relative',
+          zIndex: zIndex + 1
         },
         '& .MuiBackdrop-root': { // 如果有背景遮罩，也设置其z-index
           zIndex: zIndex - 1
@@ -127,8 +131,9 @@ const SelectedPlacesSidebar = ({
             <Button
               variant="contained"
               fullWidth
-              onClick={handleProceed}
+              onClick={onProceed}  // 使用传入的 onProceed
               sx={{ mb: 1 }}
+              disabled={selectedPlaces.length === 0}  // 如果没有选择任何地点则禁用
             >
               Proceed to Planning
             </Button>
@@ -137,6 +142,7 @@ const SelectedPlacesSidebar = ({
               fullWidth
               color="error"
               onClick={onClearAll}
+              disabled={selectedPlaces.length === 0}  // 如果没有选择任何地点则禁用
             >
               Clear All
             </Button>

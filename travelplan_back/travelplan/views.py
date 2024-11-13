@@ -15,7 +15,7 @@ GOOGLE_MAPS_HOST = "google-map-places.p.rapidapi.com"
 
 @csrf_exempt
 def search_city(request):
-    """使用 GeoDB API 进行城市搜索和联想"""
+    """使用 GeoDB API 进行全球地区搜索和联想"""
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
@@ -34,16 +34,24 @@ def search_city(request):
                 headers=headers,
                 params={
                     'namePrefix': search_text,
-                    'countryIds': 'GB',
-                    'limit': 5,
-                    'types': 'CITY'
+                    'limit': 10,  # 增加返回结果数量
+                    'types': 'CITY,ADM2'  # ADM2包括县、区等行政区域
+                    # 移除了 countryIds 参数来支持全球搜索
                 }
             )
             
             response.raise_for_status()
             cities_data = response.json()
             
-            logger.info(f"Found {len(cities_data.get('data', []))} cities matching '{search_text}'")
+            # 为返回的结果添加更多信息
+            if 'data' in cities_data:
+                for item in cities_data['data']:
+                    # 添加完整的地理信息
+                    item['fullName'] = f"{item.get('name', '')}, {item.get('region', '')}, {item.get('country', '')}"
+                    # 添加地点类型
+                    item['locationType'] = item.get('type', 'UNKNOWN')
+            
+            logger.info(f"Found {len(cities_data.get('data', []))} locations matching '{search_text}'")
             
             return JsonResponse(cities_data)
             
@@ -57,24 +65,28 @@ def get_city_places(request):
         try:
             data = json.loads(request.body)
             city_name = data.get('cityName', '')
+            region = data.get('region', '')
+            country = data.get('country', '')
             
-            logger.info(f"Searching places for city: {city_name}")
+            logger.info(f"Searching places for location: {city_name}, {region}, {country}")
             
             if not city_name:
-                return JsonResponse({'error': 'City name is required'}, status=400)
+                return JsonResponse({'error': 'Location name is required'}, status=400)
 
             headers = {
                 "X-RapidAPI-Key": settings.RAPIDAPI_KEY,
                 "X-RapidAPI-Host": GOOGLE_MAPS_HOST
             }
 
-            # 处理城市名称，替换空格为加号
-            formatted_city_name = city_name.replace(' ', '+')
+            # 构建完整的地址字符串
+            address_parts = [part for part in [city_name, region, country] if part]
+            full_address = ', '.join(address_parts)
+            formatted_address = full_address.replace(' ', '+')
 
-            # 获取城市的地理编码
+            # 获取地理编码
             geocode_url = f"https://{GOOGLE_MAPS_HOST}/maps/api/geocode/json"
             geocode_params = {
-                "address": f"{formatted_city_name},+UK",
+                "address": formatted_address,
                 "language": "en"
             }
             

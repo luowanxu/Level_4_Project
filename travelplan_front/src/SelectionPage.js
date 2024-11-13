@@ -28,6 +28,7 @@ import SortIcon from '@mui/icons-material/Sort';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import AddIcon from '@mui/icons-material/Add';
 import PlaceCard from './PlaceCard';
 import SelectedPlacesSidebar from './SelectedPlacesSidebar'; // 确保创建了这个文件
 import { useTheme } from '@mui/material'
@@ -35,9 +36,9 @@ import { useTheme } from '@mui/material'
 // 定义抽屉宽度常量
 const DRAWER_WIDTH = 350;
 const Z_INDEX = {
-  DRAWER: 1300,      // 列表抽屉
-  TOGGLE: 1301,      // 切换按钮
-  CONTENT: 1         // 主内容（卡片等）
+  DRAWER: 1300,      // 提高侧边栏的 z-index
+  TOGGLE: 1301,      // 切换按钮稍高于侧边栏
+  CONTENT: 1         // 主内容保持不变
 };
 
 // TabPanel 组件定义
@@ -61,7 +62,7 @@ function TabPanel({ children, value, index, ...other }) {
 const SelectionPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { cityName, placesData } = location.state || {};
+  const { cityName, region, country, placesData } = location.state || {};
   const theme = useTheme();
   
   
@@ -76,7 +77,7 @@ const SelectionPage = () => {
     openNow: false
   });
   const [selectedPlaces, setSelectedPlaces] = useState([]);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   
 
   // 添加处理选择的函数
@@ -123,6 +124,18 @@ const SelectionPage = () => {
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
     setSearchQuery('');
+  };
+
+  const handleProceed = () => {
+    navigate('/plan', { 
+      state: { 
+        cityName,
+        region,
+        country,
+        selectedPlaces,
+        // 如果计划页面需要其他数据也可以在这里传递
+      } 
+    });
   };
 
   // 2. 然后定义依赖这些函数的 useMemo
@@ -219,9 +232,10 @@ const SelectionPage = () => {
         selectedPlaces={selectedPlaces}
         onRemovePlace={handleRemovePlace}
         onClearAll={handleClearAll}
-        // 添加这两个属性
         cityName={cityName}
         placesData={placesData}
+        zIndex={Z_INDEX.DRAWER}
+        onProceed={handleProceed}  // 添加这个属性
       />
 
       {/* 添加侧边栏切换按钮 */}
@@ -243,7 +257,7 @@ const SelectionPage = () => {
       >
         {sidebarOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />}
       </IconButton>
-    <Box>
+    <Box sx={{ position: 'relative', zIndex: Z_INDEX.CONTENT }}>
     <Container maxWidth="lg">
       <Box sx={{ py: 4 }}>
         {/* 顶部标题和返回按钮 - 保持不变 */}
@@ -255,11 +269,24 @@ const SelectionPage = () => {
             <ArrowBackIcon />
           </IconButton>
           <Box>
-            <Typography variant="h4" component="h1">
-              Explore {cityName}
-            </Typography>
+          <Typography variant="h4" component="h1">
+            Explore {cityName}
+            {region && `, ${region}`}
+            {country && `, ${country}`}
+          </Typography>
             <Typography variant="subtitle1" color="text.secondary">
               Discover places to eat, visit, and stay
+            </Typography>
+            <Typography 
+              variant="subtitle1" 
+              color="text.secondary" 
+              sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: 0.5  /* 为图标和文字之间添加间距 */
+              }}
+            >
+              Click <AddIcon fontSize="small" /> to add interesting places to your list
             </Typography>
           </Box>
         </Box>

@@ -50,10 +50,10 @@ const SearchPage = () => {
         const cities = data.data.map(city => ({
           name: city.name,
           region: city.region || '',
-          label: city.region 
-            ? `${city.name}, ${city.region}`
-            : city.name,
-          wikiDataId: city.wikiDataId
+          country: city.country || '',  // 添加国家信息
+          label: `${city.name}${city.region ? `, ${city.region}` : ''}${city.country ? `, ${city.country}` : ''}`,
+          wikiDataId: city.wikiDataId,
+          type: city.type || 'CITY'  // 添加地点类型
         }));
         setOptions(cities);
         if (cities.length > 0) {
@@ -108,7 +108,8 @@ const handleSearch = async () => {
         },
         body: JSON.stringify({ 
           cityName: selectedOption.name,
-          locationId: selectedOption.locationId  // 添加 locationId
+          region: selectedOption.region,    // 添加地区信息
+          country: selectedOption.country,  // 添加国家信息
         })
       });
 
@@ -120,6 +121,8 @@ const handleSearch = async () => {
       navigate('/selection', { 
         state: { 
           cityName: selectedOption.name,
+          region: selectedOption.region,    // 添加地区信息
+          country: selectedOption.country,  // 添加国家信息
           placesData: data
         }
       });
@@ -130,7 +133,7 @@ const handleSearch = async () => {
       setLoading(false);
     }
   } else {
-    setError('Please select a city from the suggestions');
+    setError('Please select a location from the suggestions');
   }
 };
 
@@ -184,7 +187,7 @@ const handleSearch = async () => {
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Search UK Cities"
+                label="Search Places"
                 variant="outlined"
                 onKeyPress={handleKeyPress}
                 InputProps={{

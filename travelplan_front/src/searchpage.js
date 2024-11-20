@@ -47,13 +47,14 @@ const SearchPage = () => {
       const data = await response.json();
       
       if (data && data.data) {
+        // 在 fetchCitySuggestions 函数中修改 cities 映射部分
         const cities = data.data.map(city => ({
           name: city.name,
           region: city.region || '',
-          country: city.country || '',  // 添加国家信息
-          label: `${city.name}${city.region ? `, ${city.region}` : ''}${city.country ? `, ${city.country}` : ''}`,
+          country: city.country || '',
+          label: city.label || `${city.name}${city.region ? `, ${city.region}` : ''}${city.country ? `, ${city.country}` : ''} (${city.type})`,
           wikiDataId: city.wikiDataId,
-          type: city.type || 'CITY'  // 添加地点类型
+          type: city.type
         }));
         setOptions(cities);
         if (cities.length > 0) {

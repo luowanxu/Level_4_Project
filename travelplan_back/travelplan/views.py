@@ -15,7 +15,6 @@ GOOGLE_MAPS_HOST = "google-map-places.p.rapidapi.com"
 
 @csrf_exempt
 def search_city(request):
-    """使用 GeoDB API 进行全球地区搜索和联想"""
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
@@ -29,31 +28,58 @@ def search_city(request):
                 "X-RapidAPI-Host": GEODB_HOST
             }
 
+            # 查看API文档，我发现可以使用不同的端点来搜索地理位置
             response = requests.get(
-                f'https://{GEODB_HOST}/v1/geo/cities',
+                f'https://{GEODB_HOST}/v1/geo/places',  # 使用 places 端点而不是 cities
                 headers=headers,
                 params={
                     'namePrefix': search_text,
-                    'limit': 10,  # 增加返回结果数量
-                    'types': 'CITY,ADM2'  # ADM2包括县、区等行政区域
-                    # 移除了 countryIds 参数来支持全球搜索
+                    'limit': 10,
+                    'sort': '-population',
+                    # 注意：places 端点支持更广泛的地点类型，包括岛屿
                 }
             )
             
-            response.raise_for_status()
-            cities_data = response.json()
-            
-            # 为返回的结果添加更多信息
-            if 'data' in cities_data:
-                for item in cities_data['data']:
-                    # 添加完整的地理信息
-                    item['fullName'] = f"{item.get('name', '')}, {item.get('region', '')}, {item.get('country', '')}"
-                    # 添加地点类型
-                    item['locationType'] = item.get('type', 'UNKNOWN')
-            
-            logger.info(f"Found {len(cities_data.get('data', []))} locations matching '{search_text}'")
-            
-            return JsonResponse(cities_data)
+            if response.status_code == 200:
+                places_data = response.json()
+                if 'data' in places_data:
+                    for item in places_data['data']:
+                        location_type = item.get('type', 'UNKNOWN')
+                        # 扩展类型映射
+                        type_mapping = {
+                            'CITY': 'City',
+                            'ADM2': 'District',
+                            'ISL': 'Island',  # 注意：places API中岛屿的类型代码可能是 'ISL'
+                            'ISLS': 'Islands',
+                            'ADM1': 'Province/State',
+                            'CONT': 'Continent',
+                            'RGN': 'Region'
+                        }
+                        type_description = type_mapping.get(location_type, location_type)
+                        
+                        # 构建标签
+                        name = item.get('name', '')
+                        region = item.get('region', '')
+                        country = item.get('country', '')
+                        
+                        label_parts = [name]
+                        if type_description != 'City':  # 如果不是城市，添加类型说明
+                            label_parts.append(f"({type_description})")
+                        if region:
+                            label_parts.append(region)
+                        if country:
+                            label_parts.append(country)
+                        
+                        item['type'] = type_description
+                        item['label'] = ', '.join(filter(None, label_parts))
+                
+                return JsonResponse(places_data)
+            else:
+                logger.error(f"Search failed with status {response.status_code}: {response.text}")
+                return JsonResponse({
+                    'error': 'Search failed', 
+                    'details': response.text
+                }, status=response.status_code)
             
         except Exception as e:
             logger.error(f"Error in search_city: {str(e)}")

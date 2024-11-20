@@ -49,17 +49,17 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
 
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [events, setEvents] = useState([{
-        id: 1,
-        title: 'Example Place',
-        startTime: '9:00 AM',
-        endTime: '11:00 AM',
-        day: 0,
-        position: {
-          x: (9 - DAY_START_HOUR) * CELL_WIDTH,
-          y: HEADER_HEIGHT, // 从标题行下方开始
-        },
-        duration: 2,
-      }]);
+      id: 1,
+      title: 'Example Place',
+      startTime: '7:00 AM',
+      endTime: '9:00 AM',
+      day: 0,
+      position: {
+        x: 0,                // 从第一列开始
+        y: 0                 // 从第一行开始
+      },
+      duration: 2,
+    }]);
     
       const positionToTime = (x) => {
         const hourIndex = Math.floor(x / CELL_WIDTH);
@@ -88,29 +88,30 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
     
       // 修改拖动处理函数，考虑标题行高度
       const handleDragStop = (eventId) => (e, d) => {
-        const nearestX = Math.floor(d.x / CELL_WIDTH) * CELL_WIDTH;
-        // 减去标题行高度后再计算对齐位置
-        const nearestY = HEADER_HEIGHT + (Math.floor((d.y - HEADER_HEIGHT) / CELL_HEIGHT) * CELL_HEIGHT);
+        // 防止事件冒泡
+        e.stopPropagation();
         
-        // 确保 x 位置在有效范围内
+        const cellPosition = {
+          x: Math.round(d.x / CELL_WIDTH) * CELL_WIDTH,
+          y: Math.round(d.y / CELL_HEIGHT) * CELL_HEIGHT
+        };
+      
         const maxX = (timeSlots.length - events.find(e => e.id === eventId).duration) * CELL_WIDTH;
-        const boundedX = Math.max(0, Math.min(nearestX, maxX));
-        
-        // 确保 y 位置在有效范围内（考虑标题行高度）
-        const maxY = HEADER_HEIGHT + (days - 1) * CELL_HEIGHT;
-        const minY = HEADER_HEIGHT; // 最小值是标题行的底部
-        const boundedY = Math.max(minY, Math.min(nearestY, maxY));
-    
-        const { day, startTime, endTime } = calculateDayAndTime(boundedX, boundedY);
-    
+        const maxY = (days - 1) * CELL_HEIGHT;
+      
+        const boundedX = Math.max(0, Math.min(cellPosition.x, maxX));
+        const boundedY = Math.max(0, Math.min(cellPosition.y, maxY));
+      
+        const day = Math.floor(boundedY / CELL_HEIGHT);
+      
         setEvents(prevEvents => 
           prevEvents.map(event => 
             event.id === eventId 
               ? {
                   ...event,
                   day,
-                  startTime,
-                  endTime,
+                  startTime: positionToTime(boundedX),
+                  endTime: positionToTime(boundedX + (CELL_WIDTH * event.duration)),
                   position: {
                     x: boundedX,
                     y: boundedY
@@ -119,6 +120,12 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
               : event
           )
         );
+      };
+
+
+      const handleDrag = (e, d) => {
+        // 防止事件冒泡
+        e.stopPropagation();
       };
 
   return (
@@ -191,114 +198,143 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
 
       {/* 时间轴区域 - 调整为占满剩余空间 */}
       <Box sx={{ 
-        flex: 1,
-        overflow: 'auto',
-        position: 'relative' // 确保定位正确
-      }}>
-        {/* 时间刻度标题行 */}
-        <Box sx={{ 
-          display: 'flex',
-          height: HEADER_HEIGHT,
-          position: 'sticky',
-          top: 0,
-          backgroundColor: 'background.paper',
-          zIndex: 2,
-          borderBottom: 1,
-          borderColor: 'divider'
-        }}>
-          {timeSlots.map((time) => (
-            <Box
-              key={time}
-              sx={{
-                width: CELL_WIDTH,
-                minWidth: CELL_WIDTH,
-                height: HEADER_HEIGHT,
-                borderRight: 1,
-                borderColor: 'divider',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                bgcolor: 'background.paper',
-              }}
-            >
-              <Typography variant="body2" color="text.secondary">
-                {time}
-              </Typography>
-            </Box>
-          ))}
-        </Box>
-
-        {/* 时间格子 */}
-        <Box sx={{ 
+          flex: 1,
+          overflow: 'auto',
           position: 'relative',
-          minHeight: days * CELL_HEIGHT
+          display: 'flex',
+          flexDirection: 'column'
         }}>
-          {/* 时间格子背景 */}
-          {Array.from({ length: days }).map((_, dayIndex) => (
-            <Box
-              key={dayIndex}
-              sx={{
-                display: 'flex',
-                height: CELL_HEIGHT,
-                borderBottom: 1,
-                borderColor: 'divider'
-              }}
-            >
-              {timeSlots.map((_, timeIndex) => (
+          {/* 时间刻度标题行 */}
+          <Box sx={{ 
+            display: 'flex',
+            height: HEADER_HEIGHT,
+            position: 'sticky',
+            top: 0,
+            backgroundColor: 'background.paper',
+            zIndex: 2,
+            borderBottom: 1,
+            borderColor: 'divider'
+          }}>
+            {timeSlots.map((time) => (
+              <Box
+                key={time}
+                sx={{
+                  width: CELL_WIDTH,
+                  minWidth: CELL_WIDTH,
+                  height: HEADER_HEIGHT,
+                  borderRight: 1,
+                  borderColor: 'divider',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  bgcolor: 'background.paper',
+                }}
+              >
+                <Typography variant="body2" color="text.secondary">
+                  {time}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        
+          {/* 时间格子区域 */}
+          <Box sx={{ 
+              position: 'relative',
+              height: days * CELL_HEIGHT,
+              flexGrow: 1,
+              zIndex: 0  // 确保正确的层级关系
+            }}>
+              {/* 网格背景 */}
+              <Box sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                pointerEvents: 'none',  // 让背景网格不影响鼠标事件
+                zIndex: 1
+              }}>
+              {Array.from({ length: days }).map((_, dayIndex) => (
                 <Box
-                  key={timeIndex}
+                  key={dayIndex}
                   sx={{
-                    width: CELL_WIDTH,
-                    minWidth: CELL_WIDTH,
-                    borderRight: 1,
+                    position: 'absolute',
+                    top: dayIndex * CELL_HEIGHT,
+                    left: 0,
+                    right: 0,
+                    height: CELL_HEIGHT,
+                    display: 'flex',
+                    borderBottom: 1,
                     borderColor: 'divider'
                   }}
-                />
+                >
+                  {timeSlots.map((_, timeIndex) => (
+                    <Box
+                      key={timeIndex}
+                      sx={{
+                        width: CELL_WIDTH,
+                        minWidth: CELL_WIDTH,
+                        height: '100%',
+                        borderRight: 1,
+                        borderColor: 'divider'
+                      }}
+                    />
+                  ))}
+                </Box>
               ))}
             </Box>
-          ))}
-
-          {/* 事件块 */}
-          {events.map(event => (
-            <Rnd
-              key={event.id}
-              default={{
-                x: event.position.x,
-                y: event.position.y,
-                width: CELL_WIDTH * event.duration,
-                height: CELL_HEIGHT - 1,
-              }}
-              size={{
-                width: CELL_WIDTH * event.duration,
-                height: CELL_HEIGHT - 1,
-              }}
-              position={{
-                x: event.position.x,
-                y: event.position.y
-              }}
-              dragGrid={[CELL_WIDTH, CELL_HEIGHT]}
-              bounds="parent"
-              enableResizing={false}
-              onDragStop={handleDragStop(event.id)}
-              dragHandleClassName="drag-handle"
-            >
-          <Paper
-            elevation={3}
-            sx={{
-              width: '100%',
-              height: '100%',
-              bgcolor: 'primary.light',
-              color: 'white',
-              p: 1,
-              display: 'flex',
-              alignItems: 'center',
-              userSelect: 'none',
-              boxSizing: 'border-box',
-              '&:hover': {
-                bgcolor: 'primary.main',
-              },
-            }}
-          >
+        
+            {/* 事件块 */}
+            <Box sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 2
+            }}></Box>
+            {events.map(event => (
+              <Rnd
+                key={event.id}
+                default={{
+                  x: event.position.x,
+                  y: event.position.y,
+                  width: CELL_WIDTH * event.duration,
+                  height: CELL_HEIGHT
+                }}
+                size={{
+                  width: CELL_WIDTH * event.duration,
+                  height: CELL_HEIGHT
+                }}
+                position={event.position}
+                dragGrid={[CELL_WIDTH, CELL_HEIGHT]}
+                bounds="parent"
+                enableResizing={false}
+                onDragStop={handleDragStop(event.id)}
+                dragHandleClassName="drag-handle"
+                style={{
+                  cursor: 'move',
+                  zIndex: 3
+                }}
+              >
+              <Paper
+                  elevation={3}
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    bgcolor: 'primary.light',
+                    color: 'white',
+                    p: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    cursor: 'move',
+                    userSelect: 'none',
+                    boxSizing: 'border-box',
+                    '&:hover': {
+                      bgcolor: 'primary.main',
+                    },
+                  }}
+                >
               <Box 
                 className="drag-handle" 
                 sx={{ 
@@ -334,6 +370,8 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
                 <InfoIcon />
               </IconButton>
             </Paper>
+            onDrag={handleDrag}
+            dragHandleClassName="drag-handle"
           </Rnd>
         ))}
       </Box>

@@ -31,6 +31,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import AddIcon from '@mui/icons-material/Add';
 import PlaceCard from './PlaceCard';
 import SelectedPlacesSidebar from './SelectedPlacesSidebar'; // 确保创建了这个文件
+import PageTour from './PageTour'; // 如果在同一目录
 import { useTheme } from '@mui/material'
 
 // 定义抽屉宽度常量
@@ -224,8 +225,13 @@ const SelectionPage = () => {
   const hasHotels = Array.isArray(placesData?.hotels) && placesData.hotels.length > 0;
 
   return (
-
-    <Box sx={{ position: 'relative' }}>
+    <Box 
+      sx={{ 
+        display: 'flex',
+        minHeight: '100vh',
+        backgroundColor: theme.palette.background.default,
+      }}
+    >
       <SelectedPlacesSidebar
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
@@ -235,12 +241,13 @@ const SelectionPage = () => {
         cityName={cityName}
         placesData={placesData}
         zIndex={Z_INDEX.DRAWER}
-        onProceed={handleProceed}  // 添加这个属性
+        onProceed={handleProceed}
       />
 
-      {/* 添加侧边栏切换按钮 */}
+      {/* 侧边栏切换按钮 */}
       <IconButton
         onClick={() => setSidebarOpen(!sidebarOpen)}
+        className="sidebar-toggle"
         sx={{
           position: 'fixed',
           left: sidebarOpen ? DRAWER_WIDTH : 0,
@@ -253,52 +260,69 @@ const SelectionPage = () => {
           '&:hover': {
             backgroundColor: 'action.hover',
           },
+          transition: theme.transitions.create(['left'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.standard,
+          }),
         }}
       >
         {sidebarOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />}
       </IconButton>
-    <Box sx={{ position: 'relative', zIndex: Z_INDEX.CONTENT }}>
-    <Container maxWidth="lg">
-      <Box sx={{ py: 4 }}>
-        {/* 顶部标题和返回按钮 - 保持不变 */}
-        <Box display="flex" alignItems="center" mb={4}>
-          <IconButton 
-            onClick={() => navigate('/')}
-            sx={{ mr: 2 }}
-          >
-            <ArrowBackIcon />
-          </IconButton>
-          <Box>
-          <Typography variant="h4" component="h1">
-            Explore {cityName}
-            {region && `, ${region}`}
-            {country && `, ${country}`}
-          </Typography>
-            <Typography variant="subtitle1" color="text.secondary">
-              Discover places to eat, visit, and stay
-            </Typography>
-            <Typography 
-              variant="subtitle1" 
-              color="text.secondary" 
-              sx={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: 0.5  /* 为图标和文字之间添加间距 */
-              }}
+
+      {/* 主内容区域 */}
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.standard,
+          }),
+          marginLeft: sidebarOpen ? `${DRAWER_WIDTH}px` : 0,
+          width: '100%',
+          px: 3, // 添加适度的水平内边距
+        }}
+      >
+        {/* 顶部标题和返回按钮 */}
+        <Box sx={{ py: 4 }}>
+          <Box display="flex" alignItems="center" mb={4}>
+            <IconButton 
+              onClick={() => navigate('/')}
+              sx={{ mr: 2 }}
             >
-              Click <AddIcon fontSize="small" /> to add interesting places to your list
-            </Typography>
+              <ArrowBackIcon />
+            </IconButton>
+            <Box>
+              <Typography variant="h4" component="h1">
+                Explore {cityName}
+                {region && `, ${region}`}
+                {country && `, ${country}`}
+              </Typography>
+              <Typography variant="subtitle1" color="text.secondary">
+                Discover places to eat, visit, and stay
+              </Typography>
+              <Typography 
+                variant="subtitle1" 
+                color="text.secondary" 
+                sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 0.5
+                }}
+              >
+                Click <AddIcon fontSize="small" /> to add interesting places to your list
+              </Typography>
+            </Box>
           </Box>
-        </Box>
-  
-        {/* 标签栏 - 保持不变 */}
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs 
-            value={tabValue} 
-            onChange={handleTabChange} 
-            centered
-            variant="fullWidth"
-          >
+
+          {/* 标签栏 */}
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs 
+              value={tabValue} 
+              onChange={handleTabChange} 
+              centered
+              variant="fullWidth"
+            >
             <Tab 
               icon={<RestaurantIcon />} 
               label={`Restaurants (${placesData.restaurants?.length || 0})`}
@@ -321,8 +345,8 @@ const SelectionPage = () => {
         <Box sx={{ py: 3 }}>
           <Grid container spacing={2}>
             {/* 搜索框 - 样式更新但功能保持不变 */}
-            <Grid item xs={12}>
-              <TextField
+            <Grid item xs={12} className="search-filter">
+            <TextField
                 fullWidth
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -525,7 +549,7 @@ const SelectionPage = () => {
           filteredAndSortedPlaces.length > 0 ? (
             <Grid container spacing={3}>
               {filteredAndSortedPlaces.map((place, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
+                <Grid item xs={12} sm={6} md={4} key={index} className="place-card">
                   <PlaceCard 
                     place={place} 
                     type="restaurant"
@@ -553,7 +577,7 @@ const SelectionPage = () => {
           filteredAndSortedPlaces.length > 0 ? (
             <Grid container spacing={3}>
               {filteredAndSortedPlaces.map((place, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
+                <Grid item xs={12} sm={6} md={4} key={index} className="place-card">
                   <PlaceCard 
                     place={place} 
                     type="attraction"
@@ -581,7 +605,7 @@ const SelectionPage = () => {
           filteredAndSortedPlaces.length > 0 ? (
             <Grid container spacing={3}>
               {filteredAndSortedPlaces.map((place, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
+                <Grid item xs={12} sm={6} md={4} key={index} className="place-card">
                   <PlaceCard 
                     place={place} 
                     type="hotel"
@@ -603,8 +627,8 @@ const SelectionPage = () => {
         )}
       </TabPanel>
       </Box>
-    </Container>
     </Box>
+    <PageTour />
   </Box>
   );
 };

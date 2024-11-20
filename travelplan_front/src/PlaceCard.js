@@ -82,6 +82,7 @@ const PlaceCard = ({ place, type, onSelect, isSelected }) => {
         {/* 添加选择按钮 */}
         <IconButton
           onClick={handleClick}
+          className="add-button"
           sx={{
             position: 'absolute',
             top: 8,

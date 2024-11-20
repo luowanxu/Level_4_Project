@@ -22,32 +22,32 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 const tourSteps = [
   {
     target: '.place-card',
-    title: '浏览地点',
-    content: '这里展示了所有可选择的地点。您可以查看每个地点的详细信息、评分、价格和类型等。点击卡片可以查看更多详情。',
+    title: 'Browse Places',
+    content: 'Here you can view all available places. Check details like ratings, prices, and categories. Click on a card to see more information.',
     placement: 'bottom'
   },
   {
     target: '.add-button',
-    title: '添加到行程',
-    content: '点击右上角的"+"按钮将感兴趣的地点添加到您的行程中。选中的地点会显示绿色对勾。',
+    title: 'Add to Itinerary',
+    content: 'Click the "+" button in the top right corner to add places to your itinerary. Selected places will show a green checkmark.',
     placement: 'left'
   },
   {
     target: '.search-filter',
-    title: '搜索和筛选',
-    content: '使用搜索栏查找特定地点，或使用筛选器按评分、价格和类型等条件筛选。',
+    title: 'Search & Filter',
+    content: 'Use the search bar to find specific places, or use filters to sort by rating, price, and categories.',
     placement: 'bottom'
   },
   {
     target: '.sidebar-toggle',
-    title: '查看已选地点',
-    content: '点击左侧边栏按钮查看已添加到行程的地点。您可以在这里管理已选择的地点。',
+    title: 'View Selected Places',
+    content: 'Click the sidebar button to view places added to your itinerary. You can manage your selections here.',
     placement: 'right'
   },
   {
     target: '.proceed-button',
-    title: '继续规划',
-    content: '选择完心仪的地点后，点击"继续规划"进入下一步，开始安排您的行程。',
+    title: 'Continue Planning',
+    content: 'After selecting your desired places, click "Proceed to Planning" to move on and arrange your itinerary.',
     placement: 'bottom'
   }
 ];
@@ -98,7 +98,7 @@ const PageTour = () => {
     >
       <DialogTitle>
         <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography variant="h6">欢迎使用地点选择</Typography>
+          <Typography variant="h6">Welcome to Place Selection</Typography>
           <IconButton onClick={handleClose} size="small">
             <CloseIcon />
           </IconButton>
@@ -124,19 +124,19 @@ const PageTour = () => {
       </DialogContent>
       <DialogActions sx={{ p: 2, pt: 0 }}>
         <Button onClick={handleSkip} color="inherit">
-          不再显示
+          Don't show again
         </Button>
         <Box sx={{ flex: '1 1 auto' }} />
         <Button onClick={handleBack} disabled={activeStep === 0}>
-          上一步
+          Back
         </Button>
         {activeStep === tourSteps.length - 1 ? (
           <Button onClick={handleClose} variant="contained">
-            完成
+            Finish
           </Button>
         ) : (
           <Button onClick={handleNext} variant="contained">
-            下一步
+            Next
           </Button>
         )}
       </DialogActions>

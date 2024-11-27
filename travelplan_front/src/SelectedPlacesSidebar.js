@@ -11,7 +11,9 @@ import {
   Button,
   Divider,
   Rating,
-  useTheme
+  useTheme,
+  ListItemSecondary,
+  ListItemIcon,
 } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -41,7 +43,7 @@ const SelectedPlacesSidebar = ({
         '& .MuiDrawer-paper': {
           width: DRAWER_WIDTH,
           boxSizing: 'border-box',
-          position: 'fixed', // 改为 fixed 定位
+          position: 'fixed',
           height: '100vh',
           border: 'none',
           borderRight: `1px solid ${theme.palette.divider}`,
@@ -50,15 +52,14 @@ const SelectedPlacesSidebar = ({
             duration: theme.transitions.duration.standard,
           }),
           transform: open ? 'none' : `translateX(-${DRAWER_WIDTH}px)`,
-          overflowY: 'auto', // 确保侧边栏内容可以滚动
+          overflowY: 'auto',
         },
       }}
     >
-      {/* 侧边栏内容结构保持不变 */}
       <Box sx={{ 
         display: 'flex', 
         flexDirection: 'column',
-        height: '100%', // 确保内容填满高度
+        height: '100%',
       }}>
         <Box sx={{ 
           display: 'flex', 
@@ -77,11 +78,43 @@ const SelectedPlacesSidebar = ({
 
         <Box sx={{ 
           flexGrow: 1,
-          overflowY: 'auto', // 使列表区域可滚动
+          overflowY: 'auto',
         }}>
           {selectedPlaces.length > 0 ? (
             <List>
-              {/* 列表项保持不变 */}
+              {selectedPlaces.map((place, index) => (
+                <React.Fragment key={place.place_id}>
+                  {index > 0 && <Divider />}
+                  <ListItem
+                    secondaryAction={
+                      <IconButton 
+                        edge="end" 
+                        aria-label="delete"
+                        onClick={() => onRemovePlace(place)}
+                      >
+                        <DeleteOutlineIcon />
+                      </IconButton>
+                    }
+                  >
+                    <ListItemText
+                      primary={place.name}
+                      secondary={
+                        <Box sx={{ mt: 1 }}>
+                          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                            <Rating value={place.rating} readOnly size="small" />
+                            <Typography variant="body2" color="text.secondary">
+                              ({place.rating})
+                            </Typography>
+                          </Box>
+                          <Typography variant="body2" color="text.secondary">
+                            {place.vicinity}
+                          </Typography>
+                        </Box>
+                      }
+                    />
+                  </ListItem>
+                </React.Fragment>
+              ))}
             </List>
           ) : (
             <Box sx={{ 
@@ -104,7 +137,7 @@ const SelectedPlacesSidebar = ({
             p: 2, 
             borderTop: 1, 
             borderColor: 'divider',
-            backgroundColor: 'background.paper', // 确保底部按钮区域有背景色
+            backgroundColor: 'background.paper',
           }}>
             <Button
               variant="contained"
@@ -122,8 +155,8 @@ const SelectedPlacesSidebar = ({
               onClick={onClearAll}
             >
               Clear All
-          </Button>
-        </Box>
+            </Button>
+          </Box>
         )}
       </Box>
     </Drawer>

@@ -6,6 +6,9 @@ import requests
 import json
 import logging
 from django.conf import settings
+from sklearn.cluster import KMeans
+import numpy as np
+from datetime import datetime, timedelta
 
 logger = logging.getLogger(__name__)
 
@@ -244,4 +247,104 @@ def get_city_places(request):
                 'error': f'An unexpected error occurred: {str(e)}'
             }, status=500)
 
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
+
+
+
+@csrf_exempt
+def cluster_places(request):
+
+
+    def format_time(hour):
+        """格式化时间为12小时制"""
+        if hour == 0 or hour == 12:
+            return f"12:00 {'AM' if hour == 0 else 'PM'}"
+        elif hour > 12:
+            return f"{hour-12}:00 PM"
+        else:
+            return f"{hour}:00 AM"
+        
+
+
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            places = data.get('places', [])
+            start_date = data.get('startDate')
+            end_date = data.get('endDate')
+            
+            if not places:
+                return JsonResponse({'error': 'No places provided'}, status=400)
+                
+            if not start_date or not end_date:
+                return JsonResponse({'error': 'Date range is required'}, status=400)
+                
+            # 计算天数
+            start = datetime.strptime(start_date, '%Y-%m-%d')
+            end = datetime.strptime(end_date, '%Y-%m-%d')
+            num_days = (end - start).days + 1
+            
+            if len(places) < num_days:
+                return JsonResponse({
+                    'error': f'Cannot create {num_days} days itinerary with only {len(places)} places'
+                }, status=400)
+
+            # 提取坐标进行聚类
+            coordinates = np.array([[
+                place['geometry']['location']['lat'],
+                place['geometry']['location']['lng']
+            ] for place in places])
+            
+            # 执行聚类
+            kmeans = KMeans(n_clusters=num_days, random_state=42)
+            clusters = kmeans.fit_predict(coordinates)
+            
+            # 组织结果
+            clustered_places = [[] for _ in range(num_days)]
+            for place, cluster_id in zip(places, clusters):
+                clustered_places[cluster_id].append(place)
+            
+            # 生成时间安排
+            START_HOUR = 9  # 上午9点开始
+            VISIT_DURATION = 2  # 每个地点2小时
+            
+            timeline_events = []
+            for day_index, day_places in enumerate(clustered_places):
+                current_hour = START_HOUR
+                for place_index, place in enumerate(day_places):
+                    if current_hour >= 20:  # 晚上8点后不再安排
+                        continue
+                        
+                    event = {
+                        'id': f'{day_index}-{place_index}',
+                        'title': place['name'],
+                        'startTime': format_time(current_hour),
+                        'endTime': format_time(current_hour + VISIT_DURATION),
+                        'day': day_index,
+                        'position': {
+                            'x': (current_hour - START_HOUR) * 120,  # 120是CELL_WIDTH
+                            'y': day_index * 80  # 80是CELL_HEIGHT
+                        },
+                        'duration': VISIT_DURATION,
+                        'place': place
+                    }
+                    
+                    timeline_events.append(event)
+                    current_hour += VISIT_DURATION
+
+            return JsonResponse({
+                'success': True,
+                'events': timeline_events,
+                'clusters': clustered_places
+            })
+            
+        except Exception as e:
+            logger.error(f"Error in cluster_places: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            }, status=500)
+            
     return JsonResponse({'error': 'Invalid request method'}, status=405)

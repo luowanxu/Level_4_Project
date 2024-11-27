@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Rnd } from 'react-rnd';
 import {
   Box,
@@ -11,6 +11,7 @@ import {
   DialogContent,
   DialogActions,
   Button,
+  CircularProgress,
 } from '@mui/material';
 import {
   Add as AddIcon,
@@ -18,59 +19,87 @@ import {
   AccessTime as TimeIcon,
   InfoOutlined as InfoIcon,
 } from '@mui/icons-material';
+import axios from 'axios';
 
 const CELL_WIDTH = 120;   // 时间格子宽度
 const CELL_HEIGHT = 80;   // 时间格子高度
 const HEADER_HEIGHT = 40; // 标题高度
-const DAY_START_HOUR = 7; // 一天的开始时间（7:00 AM）
-const DAY_END_HOUR = 22;  // 一天的结束时间（10:00 PM）
+const DAY_START_HOUR = 9; // 一天的开始时间（9:00 AM）
+const DAY_END_HOUR = 21;  // 一天的结束时间（9:00 PM）
 
-const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
+const TimelineView = ({ startDate, endDate, selectedPlaces, onEventsUpdate }) => {
+    // TimelineView.js 中的 useMemo 部分
     const { days, timeSlots, start } = useMemo(() => {
-        const start = startDate instanceof Date ? startDate : new Date(startDate);
-        const end = endDate instanceof Date ? endDate : new Date(endDate);
-        const days = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1);
-        
-        // 生成时间刻度（7:00 AM - 10:00 PM）
-        const timeSlots = Array.from(
-          { length: DAY_END_HOUR - DAY_START_HOUR }, 
-          (_, i) => {
-            const hour = i + DAY_START_HOUR;
-            return hour < 12 
-              ? `${hour}:00 AM` 
-              : hour === 12 
-                ? `12:00 PM` 
-                : `${hour - 12}:00 PM`;
+      const start = startDate instanceof Date ? startDate : new Date(startDate);
+      const end = endDate instanceof Date ? endDate : new Date(endDate);
+      const days = Math.max(1, Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1);
+      
+      // 生成时间刻度（9:00 AM - 8:00 PM）
+      const timeSlots = Array.from(
+        { length: 12 }, // 从9点到20点，共12小时
+        (_, i) => {
+          const hour = i + DAY_START_HOUR;
+          if (hour === 12) {
+            return '12:00 PM';
+          } else if (hour > 12) {
+            return `${hour - 12}:00 PM`;
+          } else {
+            return `${hour}:00 AM`;
           }
-        );
+        }
+      );
     
-        return { days, timeSlots, start };
-      }, [startDate, endDate]);
+      return { days, timeSlots, start };
+    }, [startDate, endDate]);
 
     const [selectedEvent, setSelectedEvent] = useState(null);
-    const [events, setEvents] = useState([{
-      id: 1,
-      title: 'Example Place',
-      startTime: '7:00 AM',
-      endTime: '9:00 AM',
-      day: 0,
-      position: {
-        x: 0,                // 从第一列开始
-        y: 0                 // 从第一行开始
-      },
-      duration: 2,
-    }]);
+    const [events, setEvents] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     
-      const positionToTime = (x) => {
-        const hourIndex = Math.floor(x / CELL_WIDTH);
-        const hour = hourIndex + DAY_START_HOUR;
-        
-        return hour < 12 
-          ? `${hour}:00 AM` 
-          : hour === 12 
-            ? '12:00 PM' 
-            : `${hour - 12}:00 PM`;
+    // 添加这个 useEffect 在 events 状态定义后面
+    useEffect(() => {
+      const initializeTimeline = async () => {
+        if (!startDate || !endDate || !selectedPlaces.length) return;
+    
+        setLoading(true);
+        try {
+          const response = await axios.post('/api/cluster-places/', {
+            places: selectedPlaces,
+            startDate: startDate.toISOString().split('T')[0],
+            endDate: endDate.toISOString().split('T')[0]
+          });
+    
+          if (response.data.success) {
+            setEvents(response.data.events);
+            onEventsUpdate?.(response.data.events);  // 添加这一行
+            setError(null);
+          } else {
+            setError(response.data.error || 'Failed to create itinerary');
+          }
+        } catch (error) {
+          setError(error.response?.data?.error || 'Failed to connect to server');
+        } finally {
+          setLoading(false);
+        }
       };
+    
+      initializeTimeline();
+    }, [startDate, endDate, selectedPlaces, onEventsUpdate]);  // 添加 onEventsUpdate 到依赖数组
+    
+    const positionToTime = (x) => {
+      const hourIndex = Math.floor(x / CELL_WIDTH);
+      const hour = hourIndex + DAY_START_HOUR;
+      
+      // 转换为12小时制
+      if (hour === 0 || hour === 12) {
+        return `12:00 ${hour === 0 ? 'AM' : 'PM'}`;
+      } else if (hour > 12) {
+        return `${hour - 12}:00 PM`;
+      } else {
+        return `${hour}:00 AM`;
+      }
+    };
     
       // 工具函数：计算天数和时间
       const calculateDayAndTime = (x, y) => {
@@ -104,8 +133,8 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
       
         const day = Math.floor(boundedY / CELL_HEIGHT);
       
-        setEvents(prevEvents => 
-          prevEvents.map(event => 
+        setEvents(prevEvents => {
+          const updatedEvents = prevEvents.map(event => 
             event.id === eventId 
               ? {
                   ...event,
@@ -118,16 +147,83 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
                   }
                 }
               : event
-          )
-        );
+          );
+          // 通知父组件事件已更新
+          onEventsUpdate?.(updatedEvents);
+          return updatedEvents;
+        });
       };
 
 
-      const handleDrag = (e, d) => {
-        // 防止事件冒泡
-        e.stopPropagation();
-      };
+    const handleDrag = (e, d) => {
+      // 防止事件冒泡
+      e.stopPropagation();
+    };
 
+
+
+    const getTypeStyles = (place) => {
+      const type = place?.types?.includes('lodging') ? 'hotel' 
+                 : place?.types?.includes('tourist_attraction') ? 'attraction'
+                 : place?.types?.includes('restaurant') ? 'restaurant'
+                 : 'default';
+    
+      switch (type) {
+        case 'restaurant':
+          return {
+            backgroundColor: '#FF9800',
+            hoverColor: '#F57C00',
+            dialogColor: '#FFB74D'
+          };
+        case 'attraction':
+          return {
+            backgroundColor: '#4CAF50',
+            hoverColor: '#388E3C',
+            dialogColor: '#81C784'
+          };
+        case 'hotel':
+          return {
+            backgroundColor: '#2196F3',
+            hoverColor: '#1976D2',
+            dialogColor: '#64B5F6'
+          };
+        default:
+          return {
+            backgroundColor: '#9C27B0',
+            hoverColor: '#7B1FA2',
+            dialogColor: '#BA68C8'
+          };
+      }
+    };
+
+
+
+  if (loading) {
+    return (
+      <Box sx={{ 
+        p: 3, 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center' 
+      }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+  // 显示错误信息
+  if (error) {
+    return (
+      <Box sx={{ 
+        p: 3, 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        color: 'error.main'
+      }}>
+        <Typography>{error}</Typography>
+      </Box>
+    );
+  }
   return (
     <Box sx={{ 
         display: 'flex', 
@@ -295,46 +391,48 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
             }}></Box>
             {events.map(event => (
               <Rnd
-                key={event.id}
-                default={{
-                  x: event.position.x,
-                  y: event.position.y,
-                  width: CELL_WIDTH * event.duration,
-                  height: CELL_HEIGHT
-                }}
-                size={{
-                  width: CELL_WIDTH * event.duration,
-                  height: CELL_HEIGHT
-                }}
-                position={event.position}
-                dragGrid={[CELL_WIDTH, CELL_HEIGHT]}
-                bounds="parent"
-                enableResizing={false}
-                onDragStop={handleDragStop(event.id)}
-                dragHandleClassName="drag-handle"
-                style={{
+              key={event.id}
+              default={{
+                x: event.position.x,
+                y: event.position.y,
+                width: CELL_WIDTH * event.duration,
+                height: CELL_HEIGHT
+              }}
+              size={{
+                width: CELL_WIDTH * event.duration,
+                height: CELL_HEIGHT
+              }}
+              position={event.position}
+              dragGrid={[CELL_WIDTH, CELL_HEIGHT]}
+              bounds="parent"
+              enableResizing={false}
+              onDragStop={handleDragStop(event.id)}
+              onDrag={handleDrag}
+              dragHandleClassName="drag-handle"
+              style={{
+                cursor: 'move',
+                zIndex: 3
+              }}
+            >
+              <Paper
+                elevation={3}
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  bgcolor: getTypeStyles(event.place).dialogColor,  // 使用更淡的颜色
+                  color: 'text.primary',  // 改为深色文字以提高可读性
+                  p: 1,
+                  display: 'flex',
+                  alignItems: 'center',
                   cursor: 'move',
-                  zIndex: 3
+                  userSelect: 'none',
+                  boxSizing: 'border-box',
+                  '&:hover': {
+                    bgcolor: getTypeStyles(event.place).backgroundColor,  // hover 时使用深色
+                    color: 'white',  // hover 时文字改为白色
+                  },
                 }}
               >
-              <Paper
-                  elevation={3}
-                  sx={{
-                    width: '100%',
-                    height: '100%',
-                    bgcolor: 'primary.light',
-                    color: 'white',
-                    p: 1,
-                    display: 'flex',
-                    alignItems: 'center',
-                    cursor: 'move',
-                    userSelect: 'none',
-                    boxSizing: 'border-box',
-                    '&:hover': {
-                      bgcolor: 'primary.main',
-                    },
-                  }}
-                >
               <Box 
                 className="drag-handle" 
                 sx={{ 
@@ -370,8 +468,6 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
                 <InfoIcon />
               </IconButton>
             </Paper>
-            onDrag={handleDrag}
-            dragHandleClassName="drag-handle"
           </Rnd>
         ))}
       </Box>
@@ -384,13 +480,23 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle sx={{ bgcolor: 'primary.light', color: 'white' }}>
+        <DialogTitle 
+          sx={{ 
+            bgcolor: selectedEvent ? getTypeStyles(selectedEvent.place).dialogColor : 'primary.light',
+            color: 'text.primary'
+          }}
+        >
           {selectedEvent?.title}
         </DialogTitle>
         <DialogContent sx={{ mt: 2 }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <TimeIcon sx={{ mr: 1, color: 'primary.main' }} />
+              <TimeIcon 
+                sx={{ 
+                  mr: 1, 
+                  color: selectedEvent ? getTypeStyles(selectedEvent.place).backgroundColor : 'primary.main' 
+                }} 
+              />
               <Typography>
                 {selectedEvent?.startTime} - {selectedEvent?.endTime}
               </Typography>
@@ -401,8 +507,25 @@ const TimelineView = ({ startDate, endDate, selectedPlaces }) => {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setSelectedEvent(null)}>Close</Button>
-          <Button variant="contained">Edit</Button>
+          <Button 
+            onClick={() => setSelectedEvent(null)}
+            sx={{ 
+              color: selectedEvent ? getTypeStyles(selectedEvent.place).backgroundColor : 'primary.main' 
+            }}
+          >
+            Close
+          </Button>
+          <Button 
+            variant="contained"
+            sx={{
+              bgcolor: selectedEvent ? getTypeStyles(selectedEvent.place).backgroundColor : 'primary.main',
+              '&:hover': {
+                bgcolor: selectedEvent ? getTypeStyles(selectedEvent.place).hoverColor : 'primary.dark',
+              }
+            }}
+          >
+            Edit
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>

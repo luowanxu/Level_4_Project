@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Container,
@@ -16,8 +16,9 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  ToggleButtonGroup,
-  ToggleButton,
+  ToggleButtonGroup,  // 只需要导入一次
+  ToggleButton,       // 只需要导入一次
+  Fade
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import {
@@ -26,13 +27,19 @@ import {
   DirectionsWalk,
   DirectionsCar,
   DirectionsTransit,
+  EditCalendar as EditIcon,
+  Preview as PreviewIcon
 } from '@mui/icons-material';
 import TimelineView from './TimelineView';
+import TimelinePreview from './TimelinePreview';
 
 const TripPlanningPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { selectedPlaces, previousPageData } = location.state || { selectedPlaces: [] };
+    const [events, setEvents] = useState([]);
+    const [viewMode, setViewMode] = useState('edit');
+    
 
   // 状态管理
   const [tripName, setTripName] = useState('My Trip');
@@ -50,6 +57,11 @@ const TripPlanningPage = () => {
     endDate,
     transportMode,
   });
+
+
+  const handleEventsUpdate = useCallback((newEvents) => {
+    setEvents(newEvents);
+  }, []);
 
   // 处理对话框打开
   const handleEditClick = () => {
@@ -129,37 +141,67 @@ const TripPlanningPage = () => {
           </Box>
         </Box>
 
+        <Box sx={{ 
+          display: 'flex', 
+          justifyContent: 'center',
+          mb: 3 
+        }}>
+          <ToggleButtonGroup
+            value={viewMode}
+            exclusive
+            onChange={(e, newMode) => {
+              if (newMode !== null) {
+                setViewMode(newMode);
+              }
+            }}
+            aria-label="view mode"
+          >
+            <ToggleButton value="edit" aria-label="edit mode">
+              <EditIcon sx={{ mr: 1 }} />
+              Edit
+            </ToggleButton>
+            <ToggleButton value="preview" aria-label="preview mode">
+              <PreviewIcon sx={{ mr: 1 }} />
+              Preview
+            </ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
+
         {/* 主要内容区域 */}
-        <Box 
-        sx={{ 
-          minHeight: 'calc(100vh - 200px)',
-          bgcolor: 'background.paper',
-          borderRadius: 2,
-          p: 2, // 减小内边距
-          overflowX: 'auto'
-        }}
-      >
-        {startDate && endDate ? (
-          <TimelineView
-            startDate={startDate}
-            endDate={endDate}
-            selectedPlaces={selectedPlaces || []}
-          />
-        ) : (
-          <Box
-            sx={{
+        <Box sx={{ 
+        minHeight: 'calc(100vh - 200px)',
+        bgcolor: 'background.paper',
+        borderRadius: 2,
+        p: 2,
+        overflowX: 'auto'
+      }}>
+        {/* 使用独立的Box组件而不是Fade */}
+        <Box sx={{ display: viewMode === 'edit' ? 'block' : 'none' }}>
+          {startDate && endDate ? (
+            <TimelineView
+              startDate={startDate}
+              endDate={endDate}
+              selectedPlaces={selectedPlaces || []}
+              onEventsUpdate={handleEventsUpdate}
+            />
+          ) : (
+            <Box sx={{
               height: '100%',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-            }}
-          >
-            <Typography color="text.secondary">
-              Please set the date range to start planning
-            </Typography>
-          </Box>
-        )}
-      </Box>
+            }}>
+              <Typography color="text.secondary">
+                Please set the date range to start planning
+              </Typography>
+            </Box>
+          )}
+        </Box>
+
+        <Box sx={{ display: viewMode === 'preview' ? 'block' : 'none' }}>
+          <TimelinePreview events={events} />
+        </Box>
+        </Box>
       </Box>
 
       {/* 编辑对话框 */}

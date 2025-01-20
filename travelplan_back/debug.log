@@ -1,0 +1,865 @@
+INFO 2025-01-13 13:54:55,508 autoreload Watching for file changes with StatReloader
+DEBUG 2025-01-13 14:00:23,285 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:23,695 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:23,782 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=g%27la&limit=10&sort=-population HTTP/11" 429 None
+ERROR 2025-01-13 14:00:23,784 views Search failed with status 429: {"message":"Too many requests"}
+ERROR 2025-01-13 14:00:23,784 views Search failed with status 429: {"message":"Too many requests"}
+WARNING 2025-01-13 14:00:23,786 log Too Many Requests: /api/search-city/
+DEBUG 2025-01-13 14:00:24,263 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:24,355 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=g%27la%27s&limit=10&sort=-population HTTP/11" 429 None
+ERROR 2025-01-13 14:00:24,355 views Search failed with status 429: {"message":"You have exceeded the rate limit per second for your plan, BASIC, by the API provider"}
+ERROR 2025-01-13 14:00:24,355 views Search failed with status 429: {"message":"You have exceeded the rate limit per second for your plan, BASIC, by the API provider"}
+WARNING 2025-01-13 14:00:24,357 log Too Many Requests: /api/search-city/
+DEBUG 2025-01-13 14:00:24,394 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=g%27l&limit=10&sort=-population HTTP/11" 200 57
+DEBUG 2025-01-13 14:00:24,801 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:24,885 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=glas&limit=10&sort=-population HTTP/11" 429 None
+ERROR 2025-01-13 14:00:24,887 views Search failed with status 429: {"message":"You have exceeded the rate limit per second for your plan, BASIC, by the API provider"}
+ERROR 2025-01-13 14:00:24,887 views Search failed with status 429: {"message":"You have exceeded the rate limit per second for your plan, BASIC, by the API provider"}
+WARNING 2025-01-13 14:00:24,888 log Too Many Requests: /api/search-city/
+DEBUG 2025-01-13 14:00:26,817 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:27,089 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=glasg&limit=10&sort=-population HTTP/11" 200 750
+DEBUG 2025-01-13 14:00:27,271 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:27,372 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=glasgo&limit=10&sort=-population HTTP/11" 429 None
+ERROR 2025-01-13 14:00:27,373 views Search failed with status 429: {"message":"You have exceeded the rate limit per second for your plan, BASIC, by the API provider"}
+ERROR 2025-01-13 14:00:27,373 views Search failed with status 429: {"message":"You have exceeded the rate limit per second for your plan, BASIC, by the API provider"}
+WARNING 2025-01-13 14:00:27,373 log Too Many Requests: /api/search-city/
+DEBUG 2025-01-13 14:00:28,075 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:28,340 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=glasgow&limit=10&sort=-population HTTP/11" 200 750
+DEBUG 2025-01-13 14:00:30,578 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:30,870 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=Glasgow%2C+Scotland%2C+United+Kingdom&limit=10&sort=-population HTTP/11" 200 57
+INFO 2025-01-13 14:00:31,655 views Searching places for location: Glasgow, Scotland, United Kingdom
+INFO 2025-01-13 14:00:31,655 views Searching places for location: Glasgow, Scotland, United Kingdom
+DEBUG 2025-01-13 14:00:31,657 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:32,674 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/geocode/json?address=Glasgow%2C%2BScotland%2C%2BUnited%2BKingdom&language=en HTTP/11" 200 2600
+INFO 2025-01-13 14:00:32,675 views Found coordinates: 55.86167039999999, -4.2583345
+INFO 2025-01-13 14:00:32,675 views Found coordinates: 55.86167039999999, -4.2583345
+DEBUG 2025-01-13 14:00:32,678 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:33,205 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/place/nearbysearch/json?location=55.86167039999999%2C-4.2583345&radius=5000&type=restaurant&keyword=restaurant&language=en HTTP/11" 200 42717
+INFO 2025-01-13 14:00:33,244 views Found 20 restaurants after filtering
+INFO 2025-01-13 14:00:33,244 views Found 20 restaurants after filtering
+DEBUG 2025-01-13 14:00:33,245 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:33,579 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/place/nearbysearch/json?location=55.86167039999999%2C-4.2583345&radius=5000&type=tourist_attraction&language=en HTTP/11" 200 42972
+INFO 2025-01-13 14:00:33,598 views Found 16 attractions after filtering
+INFO 2025-01-13 14:00:33,598 views Found 16 attractions after filtering
+DEBUG 2025-01-13 14:00:33,599 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-13 14:00:34,014 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/place/nearbysearch/json?location=55.86167039999999%2C-4.2583345&radius=5000&type=lodging&language=en HTTP/11" 200 41716
+INFO 2025-01-13 14:00:34,015 views Found 20 hotels after filtering
+INFO 2025-01-13 14:00:34,015 views Found 20 hotels after filtering
+INFO 2025-01-13 14:00:34,016 views Category restaurants has 20 items
+INFO 2025-01-13 14:00:34,016 views Category restaurants has 20 items
+INFO 2025-01-13 14:00:34,016 views Sample types in restaurants: ['restaurant', 'food', 'point_of_interest', 'establishment']
+INFO 2025-01-13 14:00:34,016 views Sample types in restaurants: ['restaurant', 'food', 'point_of_interest', 'establishment']
+INFO 2025-01-13 14:00:34,016 views Category attractions has 16 items
+INFO 2025-01-13 14:00:34,016 views Category attractions has 16 items
+INFO 2025-01-13 14:00:34,017 views Sample types in attractions: ['tourist_attraction', 'art_gallery', 'travel_agency', 'point_of_interest', 'establishment']
+INFO 2025-01-13 14:00:34,017 views Sample types in attractions: ['tourist_attraction', 'art_gallery', 'travel_agency', 'point_of_interest', 'establishment']
+INFO 2025-01-13 14:00:34,017 views Category hotels has 20 items
+INFO 2025-01-13 14:00:34,017 views Category hotels has 20 items
+INFO 2025-01-13 14:00:34,018 views Sample types in hotels: ['lodging', 'point_of_interest', 'establishment']
+INFO 2025-01-13 14:00:34,018 views Sample types in hotels: ['lodging', 'point_of_interest', 'establishment']
+DEBUG 2025-01-13 14:01:39,738 proactor_events Using proactor: IocpProactor
+INFO 2025-01-13 14:01:39,740 schedule_service Processing 9 places
+INFO 2025-01-13 14:01:39,740 schedule_service Processing 9 places
+DEBUG 2025-01-13 14:01:39,741 schedule_service Sample input place: {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}
+DEBUG 2025-01-13 14:01:39,741 schedule_service Sample input place: {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}
+INFO 2025-01-13 14:01:39,742 schedule_service Processed 9 places
+INFO 2025-01-13 14:01:39,742 schedule_service Processed 9 places
+DEBUG 2025-01-13 14:01:39,742 schedule_service Sample processed place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 69, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+DEBUG 2025-01-13 14:01:39,742 schedule_service Sample processed place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 69, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+INFO 2025-01-13 14:01:39,781 schedule_service Planning for 4 days
+INFO 2025-01-13 14:01:39,781 schedule_service Planning for 4 days
+INFO 2025-01-13 14:01:39,783 schedule_service Distance matrix shape: (9, 9)
+INFO 2025-01-13 14:01:39,783 schedule_service Distance matrix shape: (9, 9)
+INFO 2025-01-13 14:01:39,783 schedule_service Starting clustering
+INFO 2025-01-13 14:01:39,783 schedule_service Starting clustering
+INFO 2025-01-13 14:01:39,791 schedule_service Created 4 clusters
+INFO 2025-01-13 14:01:39,791 schedule_service Created 4 clusters
+INFO 2025-01-13 14:01:39,791 schedule_service Cluster 0 has 5 places
+INFO 2025-01-13 14:01:39,791 schedule_service Cluster 0 has 5 places
+DEBUG 2025-01-13 14:01:39,792 schedule_service Cluster 0 first place: {'place_id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'name': 'Table Twenty Eight', 'location': {'lat': 55.8586058, 'lng': -4.2449018}, 'type': 'restaurant', 'visit_duration': 69, 'rating': 4.7, 'user_ratings_total': 118, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8586058, 'lng': -4.2449018}, 'viewport': {'northeast': {'lat': 55.86000862989272, 'lng': -4.243858920107278}, 'southwest': {'lat': 55.85730897010728, 'lng': -4.246558579892722}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Table Twenty Eight', 'opening_hours': {'open_now': True}, 'photos': [{'height': 6000, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/104360784924350245289">A Google User</a>'], 'photo_reference': 'AWYs27xXVLZCmmr8m9bQP8VkqAYpJg_eSnPeIw8d4aZlClyFxYfjJsrAsKPjbWqIjxLr5hFuUWuiQScSWA9cvv1h3oXpmrsIVzQ-oeQSkuDHooHBg31t70kWDoE_Eo3a_k09cJw8GusVNxhGBK8K4ZP-QbuDdKI0hbWMpSBrdZpGZAxPaYFq', 'width': 6000}], 'place_id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'plus_code': {'compound_code': 'VQ54+C2 Glasgow', 'global_code': '9C7QVQ54+C2'}, 'rating': 4.7, 'reference': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'scope': 'GOOGLE', 'types': ['restaurant', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 118, 'vicinity': 'Unit 4/5, Merchants Square, 71 Albion St, Glasgow'}}
+DEBUG 2025-01-13 14:01:39,792 schedule_service Cluster 0 first place: {'place_id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'name': 'Table Twenty Eight', 'location': {'lat': 55.8586058, 'lng': -4.2449018}, 'type': 'restaurant', 'visit_duration': 69, 'rating': 4.7, 'user_ratings_total': 118, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8586058, 'lng': -4.2449018}, 'viewport': {'northeast': {'lat': 55.86000862989272, 'lng': -4.243858920107278}, 'southwest': {'lat': 55.85730897010728, 'lng': -4.246558579892722}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Table Twenty Eight', 'opening_hours': {'open_now': True}, 'photos': [{'height': 6000, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/104360784924350245289">A Google User</a>'], 'photo_reference': 'AWYs27xXVLZCmmr8m9bQP8VkqAYpJg_eSnPeIw8d4aZlClyFxYfjJsrAsKPjbWqIjxLr5hFuUWuiQScSWA9cvv1h3oXpmrsIVzQ-oeQSkuDHooHBg31t70kWDoE_Eo3a_k09cJw8GusVNxhGBK8K4ZP-QbuDdKI0hbWMpSBrdZpGZAxPaYFq', 'width': 6000}], 'place_id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'plus_code': {'compound_code': 'VQ54+C2 Glasgow', 'global_code': '9C7QVQ54+C2'}, 'rating': 4.7, 'reference': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'scope': 'GOOGLE', 'types': ['restaurant', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 118, 'vicinity': 'Unit 4/5, Merchants Square, 71 Albion St, Glasgow'}}
+INFO 2025-01-13 14:01:39,793 schedule_service Cluster 1 has 2 places
+INFO 2025-01-13 14:01:39,793 schedule_service Cluster 1 has 2 places
+DEBUG 2025-01-13 14:01:39,793 schedule_service Cluster 1 first place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 69, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+DEBUG 2025-01-13 14:01:39,793 schedule_service Cluster 1 first place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 69, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+INFO 2025-01-13 14:01:39,794 schedule_service Cluster 2 has 2 places
+INFO 2025-01-13 14:01:39,794 schedule_service Cluster 2 has 2 places
+DEBUG 2025-01-13 14:01:39,794 schedule_service Cluster 2 first place: {'place_id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'name': 'Glasgow Botanic Gardens', 'location': {'lat': 55.8797045, 'lng': -4.2911777}, 'type': 'park', 'visit_duration': 96, 'rating': 4.7, 'user_ratings_total': 13531, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8797045, 'lng': -4.2911777}, 'viewport': {'northeast': {'lat': 55.8837151, 'lng': -4.284419450000001}, 'southwest': {'lat': 55.87603349999998, 'lng': -4.29686645}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png', 'icon_background_color': '#4DB546', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet', 'name': 'Glasgow Botanic Gardens', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112078754863540275584">Raja Vijaya Saradhi Ch</a>'], 'photo_reference': 'AWYs27wot3xiYIJjwpE85B5nf6cc7VR3Mc6drAtmh82c0JIWx9b1_XvSVp_-wm_asg-PXfDCOMHs1wyGNjHUCTC5DOOsXxIfW7A2rSmjNOwLueyBqzrqB3m93IX27QmmhoFTSAhPJdJpy3FVsVtMVJEOSWfAsHmUHexRnHly2EypMkol1VMG', 'width': 4032}], 'place_id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'plus_code': {'compound_code': 'VPH5+VG Glasgow, UK', 'global_code': '9C7QVPH5+VG'}, 'rating': 4.7, 'reference': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'park', 'point_of_interest', 'establishment'], 'user_ratings_total': 13531, 'vicinity': '730 Great Western Road, Glasgow'}}
+DEBUG 2025-01-13 14:01:39,794 schedule_service Cluster 2 first place: {'place_id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'name': 'Glasgow Botanic Gardens', 'location': {'lat': 55.8797045, 'lng': -4.2911777}, 'type': 'park', 'visit_duration': 96, 'rating': 4.7, 'user_ratings_total': 13531, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8797045, 'lng': -4.2911777}, 'viewport': {'northeast': {'lat': 55.8837151, 'lng': -4.284419450000001}, 'southwest': {'lat': 55.87603349999998, 'lng': -4.29686645}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png', 'icon_background_color': '#4DB546', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet', 'name': 'Glasgow Botanic Gardens', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112078754863540275584">Raja Vijaya Saradhi Ch</a>'], 'photo_reference': 'AWYs27wot3xiYIJjwpE85B5nf6cc7VR3Mc6drAtmh82c0JIWx9b1_XvSVp_-wm_asg-PXfDCOMHs1wyGNjHUCTC5DOOsXxIfW7A2rSmjNOwLueyBqzrqB3m93IX27QmmhoFTSAhPJdJpy3FVsVtMVJEOSWfAsHmUHexRnHly2EypMkol1VMG', 'width': 4032}], 'place_id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'plus_code': {'compound_code': 'VPH5+VG Glasgow, UK', 'global_code': '9C7QVPH5+VG'}, 'rating': 4.7, 'reference': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'park', 'point_of_interest', 'establishment'], 'user_ratings_total': 13531, 'vicinity': '730 Great Western Road, Glasgow'}}
+INFO 2025-01-13 14:01:39,794 schedule_service Cluster 3 has 2 places
+INFO 2025-01-13 14:01:39,794 schedule_service Cluster 3 has 2 places
+DEBUG 2025-01-13 14:01:39,794 schedule_service Cluster 3 first place: {'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'name': 'The Burrell Collection', 'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'type': 'museum', 'visit_duration': 229, 'rating': 4.7, 'user_ratings_total': 2311, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'viewport': {'northeast': {'lat': 55.83173768029149, 'lng': -4.306611819708498}, 'southwest': {'lat': 55.8290397197085, 'lng': -4.309309780291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png', 'icon_background_color': '#13B5C7', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet', 'name': 'The Burrell Collection', 'opening_hours': {'open_now': True}, 'photos': [{'height': 4032, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112100337761091720559">Ben You</a>'], 'photo_reference': 'AWYs27wSC1xLCMTVsTs8OnHePB6Ud-t1-yXWAQ9Ua0xyl5M_9_WKMjcVGHa06KY4IZwNZCnEWVin4C-TUSYPW8TMq9j46OLbZXRae_G1DfNMh-eUr-t6nXrQxOZYIOz81qjx3X7_T0iAfBWKwl3Z669jxj-kiEiaeBCnMpClGtGw1riTVumN', 'width': 3024}], 'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'plus_code': {'compound_code': 'RMJR+9W Glasgow, UK', 'global_code': '9C7QRMJR+9W'}, 'rating': 4.7, 'reference': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'museum', 'point_of_interest', 'establishment'], 'user_ratings_total': 2311, 'vicinity': 'Pollok Country Park, 2060 Pollokshaws Road, Glasgow'}}
+DEBUG 2025-01-13 14:01:39,794 schedule_service Cluster 3 first place: {'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'name': 'The Burrell Collection', 'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'type': 'museum', 'visit_duration': 229, 'rating': 4.7, 'user_ratings_total': 2311, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'viewport': {'northeast': {'lat': 55.83173768029149, 'lng': -4.306611819708498}, 'southwest': {'lat': 55.8290397197085, 'lng': -4.309309780291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png', 'icon_background_color': '#13B5C7', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet', 'name': 'The Burrell Collection', 'opening_hours': {'open_now': True}, 'photos': [{'height': 4032, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112100337761091720559">Ben You</a>'], 'photo_reference': 'AWYs27wSC1xLCMTVsTs8OnHePB6Ud-t1-yXWAQ9Ua0xyl5M_9_WKMjcVGHa06KY4IZwNZCnEWVin4C-TUSYPW8TMq9j46OLbZXRae_G1DfNMh-eUr-t6nXrQxOZYIOz81qjx3X7_T0iAfBWKwl3Z669jxj-kiEiaeBCnMpClGtGw1riTVumN', 'width': 3024}], 'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'plus_code': {'compound_code': 'RMJR+9W Glasgow, UK', 'global_code': '9C7QRMJR+9W'}, 'rating': 4.7, 'reference': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'museum', 'point_of_interest', 'establishment'], 'user_ratings_total': 2311, 'vicinity': 'Pollok Country Park, 2060 Pollokshaws Road, Glasgow'}}
+INFO 2025-01-13 14:01:39,795 schedule_service Processing day 0
+INFO 2025-01-13 14:01:39,795 schedule_service Processing day 0
+DEBUG 2025-01-13 14:01:39,795 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-13 14:01:39,795 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-13 14:01:39,796 schedule_service Day 0 distance matrix shape: (5, 5)
+INFO 2025-01-13 14:01:39,796 schedule_service Day 0 distance matrix shape: (5, 5)
+INFO 2025-01-13 14:01:39,797 schedule_service Optimizing route for day 0
+INFO 2025-01-13 14:01:39,797 schedule_service Optimizing route for day 0
+DEBUG 2025-01-13 14:01:39,798 routing Starting route optimization with 5 places
+DEBUG 2025-01-13 14:01:39,798 routing Starting route optimization with 5 places
+DEBUG 2025-01-13 14:01:39,798 routing Created place indices for 5 places
+DEBUG 2025-01-13 14:01:39,798 routing Created place indices for 5 places
+DEBUG 2025-01-13 14:01:39,798 routing Found 2 restaurants and 3 other places
+DEBUG 2025-01-13 14:01:39,798 routing Found 2 restaurants and 3 other places
+DEBUG 2025-01-13 14:01:39,798 routing Created cluster center
+DEBUG 2025-01-13 14:01:39,798 routing Created cluster center
+DEBUG 2025-01-13 14:01:39,798 routing Created 0 empty restaurants
+DEBUG 2025-01-13 14:01:39,798 routing Created 0 empty restaurants
+DEBUG 2025-01-13 14:01:39,799 routing Starting main loop with 3 places and 2 restaurants
+DEBUG 2025-01-13 14:01:39,799 routing Starting main loop with 3 places and 2 restaurants
+DEBUG 2025-01-13 14:01:39,799 routing Iteration 1: Current time: 09:00:00, Remaining places: 3, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,799 routing Iteration 1: Current time: 09:00:00, Remaining places: 3, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,799 routing Iteration 2: Current time: 11:07:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,799 routing Iteration 2: Current time: 11:07:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,799 routing Current time 11:07:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:01:39,799 routing Current time 11:07:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:01:39,800 routing Available restaurants: ['Table Twenty Eight', 'La Lanterna']
+DEBUG 2025-01-13 14:01:39,800 routing Available restaurants: ['Table Twenty Eight', 'La Lanterna']
+DEBUG 2025-01-13 14:01:39,800 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:01:39,800 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:01:39,800 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:01:39,800 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:01:39,800 routing Arranging restaurant: La Lanterna
+DEBUG 2025-01-13 14:01:39,800 routing Arranging restaurant: La Lanterna
+DEBUG 2025-01-13 14:01:39,801 routing Setting as lunch
+DEBUG 2025-01-13 14:01:39,801 routing Setting as lunch
+DEBUG 2025-01-13 14:01:39,801 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 14:01:39,801 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 14:01:39,801 routing Iteration 3: Current time: 12:25:09.481377, Remaining places: 2, Available restaurants: 1
+DEBUG 2025-01-13 14:01:39,801 routing Iteration 3: Current time: 12:25:09.481377, Remaining places: 2, Available restaurants: 1
+DEBUG 2025-01-13 14:01:39,801 routing Iteration 4: Current time: 15:44:56.742696, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-13 14:01:39,801 routing Iteration 4: Current time: 15:44:56.742696, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-13 14:01:39,802 routing Iteration 5: Current time: 17:31:47.700190, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:01:39,802 routing Iteration 5: Current time: 17:31:47.700190, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:01:39,802 routing Current time 17:31:47.700190, Lunch arranged: True, Dinner arranged: False
+DEBUG 2025-01-13 14:01:39,802 routing Current time 17:31:47.700190, Lunch arranged: True, Dinner arranged: False
+DEBUG 2025-01-13 14:01:39,802 routing Available restaurants: ['Table Twenty Eight']
+DEBUG 2025-01-13 14:01:39,802 routing Available restaurants: ['Table Twenty Eight']
+DEBUG 2025-01-13 14:01:39,802 routing Arranging restaurant: Table Twenty Eight
+DEBUG 2025-01-13 14:01:39,802 routing Arranging restaurant: Table Twenty Eight
+DEBUG 2025-01-13 14:01:39,803 routing Setting as dinner
+DEBUG 2025-01-13 14:01:39,803 routing Setting as dinner
+DEBUG 2025-01-13 14:01:39,803 routing Removed restaurant from available list. Count changed from 1 to 0
+DEBUG 2025-01-13 14:01:39,803 routing Removed restaurant from available list. Count changed from 1 to 0
+INFO 2025-01-13 14:01:39,803 schedule_service Day 0 route optimized with score 570.0592176787262
+INFO 2025-01-13 14:01:39,803 schedule_service Day 0 route optimized with score 570.0592176787262
+DEBUG 2025-01-13 14:01:39,804 schedule_service Added restaurant La Lanterna to used list
+DEBUG 2025-01-13 14:01:39,804 schedule_service Added restaurant La Lanterna to used list
+DEBUG 2025-01-13 14:01:39,804 schedule_service Added restaurant Table Twenty Eight to used list
+DEBUG 2025-01-13 14:01:39,804 schedule_service Added restaurant Table Twenty Eight to used list
+INFO 2025-01-13 14:01:39,805 schedule_service Generated schedule for day 0 with 9 events
+INFO 2025-01-13 14:01:39,805 schedule_service Generated schedule for day 0 with 9 events
+INFO 2025-01-13 14:01:39,806 schedule_service Processing day 1
+INFO 2025-01-13 14:01:39,806 schedule_service Processing day 1
+DEBUG 2025-01-13 14:01:39,806 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-13 14:01:39,806 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-13 14:01:39,806 schedule_service Day 1 distance matrix shape: (2, 2)
+INFO 2025-01-13 14:01:39,806 schedule_service Day 1 distance matrix shape: (2, 2)
+INFO 2025-01-13 14:01:39,807 schedule_service Optimizing route for day 1
+INFO 2025-01-13 14:01:39,807 schedule_service Optimizing route for day 1
+DEBUG 2025-01-13 14:01:39,807 routing Starting route optimization with 2 places
+DEBUG 2025-01-13 14:01:39,807 routing Starting route optimization with 2 places
+DEBUG 2025-01-13 14:01:39,807 routing Created place indices for 2 places
+DEBUG 2025-01-13 14:01:39,807 routing Created place indices for 2 places
+DEBUG 2025-01-13 14:01:39,807 routing Found 1 restaurants and 1 other places
+DEBUG 2025-01-13 14:01:39,807 routing Found 1 restaurants and 1 other places
+DEBUG 2025-01-13 14:01:39,808 routing Created cluster center
+DEBUG 2025-01-13 14:01:39,808 routing Created cluster center
+DEBUG 2025-01-13 14:01:39,808 routing Created 1 empty restaurants
+DEBUG 2025-01-13 14:01:39,808 routing Created 1 empty restaurants
+DEBUG 2025-01-13 14:01:39,808 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:01:39,808 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:01:39,808 routing New matrix size will be 3x3
+DEBUG 2025-01-13 14:01:39,808 routing New matrix size will be 3x3
+DEBUG 2025-01-13 14:01:39,809 routing Copied original matrix
+DEBUG 2025-01-13 14:01:39,809 routing Copied original matrix
+DEBUG 2025-01-13 14:01:39,809 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 14:01:39,809 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 14:01:39,809 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,809 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,810 routing Iteration 2: Current time: 11:20:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,810 routing Iteration 2: Current time: 11:20:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,810 routing Current time 11:20:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:01:39,810 routing Current time 11:20:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:01:39,811 routing Available restaurants: ['Kitchen Glasgow', 'Dinner Break']
+DEBUG 2025-01-13 14:01:39,811 routing Available restaurants: ['Kitchen Glasgow', 'Dinner Break']
+DEBUG 2025-01-13 14:01:39,811 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:01:39,811 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:01:39,811 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:01:39,811 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:01:39,812 routing Arranging restaurant: Kitchen Glasgow
+DEBUG 2025-01-13 14:01:39,812 routing Arranging restaurant: Kitchen Glasgow
+DEBUG 2025-01-13 14:01:39,812 routing Setting as lunch
+DEBUG 2025-01-13 14:01:39,812 routing Setting as lunch
+DEBUG 2025-01-13 14:01:39,813 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 14:01:39,813 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 14:01:39,813 routing Iteration 3: Current time: 12:44:48.879720, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:01:39,813 routing Iteration 3: Current time: 12:44:48.879720, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:01:39,814 routing Iteration 4: Current time: 12:44:48.879720, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:01:39,814 routing Iteration 4: Current time: 12:44:48.879720, Remaining places: 0, Available restaurants: 1
+WARNING 2025-01-13 14:01:39,814 routing Reached maximum iterations (4), breaking loop
+WARNING 2025-01-13 14:01:39,814 routing Reached maximum iterations (4), breaking loop
+INFO 2025-01-13 14:01:39,814 schedule_service Day 1 route optimized with score 213.5972304084242
+INFO 2025-01-13 14:01:39,814 schedule_service Day 1 route optimized with score 213.5972304084242
+DEBUG 2025-01-13 14:01:39,814 schedule_service Added restaurant Kitchen Glasgow to used list
+DEBUG 2025-01-13 14:01:39,814 schedule_service Added restaurant Kitchen Glasgow to used list
+INFO 2025-01-13 14:01:39,815 schedule_service Generated schedule for day 1 with 3 events
+INFO 2025-01-13 14:01:39,815 schedule_service Generated schedule for day 1 with 3 events
+INFO 2025-01-13 14:01:39,816 schedule_service Processing day 2
+INFO 2025-01-13 14:01:39,816 schedule_service Processing day 2
+DEBUG 2025-01-13 14:01:39,816 schedule_service Filtered out 1 used restaurants
+DEBUG 2025-01-13 14:01:39,816 schedule_service Filtered out 1 used restaurants
+INFO 2025-01-13 14:01:39,816 schedule_service Day 2 distance matrix shape: (1, 1)
+INFO 2025-01-13 14:01:39,816 schedule_service Day 2 distance matrix shape: (1, 1)
+INFO 2025-01-13 14:01:39,816 schedule_service Optimizing route for day 2
+INFO 2025-01-13 14:01:39,816 schedule_service Optimizing route for day 2
+DEBUG 2025-01-13 14:01:39,817 routing Starting route optimization with 1 places
+DEBUG 2025-01-13 14:01:39,817 routing Starting route optimization with 1 places
+DEBUG 2025-01-13 14:01:39,817 routing Created place indices for 1 places
+DEBUG 2025-01-13 14:01:39,817 routing Created place indices for 1 places
+DEBUG 2025-01-13 14:01:39,817 routing Found 0 restaurants and 1 other places
+DEBUG 2025-01-13 14:01:39,817 routing Found 0 restaurants and 1 other places
+DEBUG 2025-01-13 14:01:39,817 routing Created cluster center
+DEBUG 2025-01-13 14:01:39,817 routing Created cluster center
+DEBUG 2025-01-13 14:01:39,817 routing Created 2 empty restaurants
+DEBUG 2025-01-13 14:01:39,817 routing Created 2 empty restaurants
+DEBUG 2025-01-13 14:01:39,817 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:01:39,817 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:01:39,818 routing New matrix size will be 3x3
+DEBUG 2025-01-13 14:01:39,818 routing New matrix size will be 3x3
+DEBUG 2025-01-13 14:01:39,818 routing Copied original matrix
+DEBUG 2025-01-13 14:01:39,818 routing Copied original matrix
+DEBUG 2025-01-13 14:01:39,818 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 14:01:39,818 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 14:01:39,818 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,818 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,818 routing Iteration 2: Current time: 10:36:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,818 routing Iteration 2: Current time: 10:36:00, Remaining places: 0, Available restaurants: 2
+WARNING 2025-01-13 14:01:39,819 routing Reached maximum iterations (2), breaking loop
+WARNING 2025-01-13 14:01:39,819 routing Reached maximum iterations (2), breaking loop
+INFO 2025-01-13 14:01:39,819 schedule_service Day 2 route optimized with score 47.0
+INFO 2025-01-13 14:01:39,819 schedule_service Day 2 route optimized with score 47.0
+INFO 2025-01-13 14:01:39,819 schedule_service Generated schedule for day 2 with 1 events
+INFO 2025-01-13 14:01:39,819 schedule_service Generated schedule for day 2 with 1 events
+INFO 2025-01-13 14:01:39,819 schedule_service Processing day 3
+INFO 2025-01-13 14:01:39,819 schedule_service Processing day 3
+DEBUG 2025-01-13 14:01:39,819 schedule_service Filtered out 1 used restaurants
+DEBUG 2025-01-13 14:01:39,819 schedule_service Filtered out 1 used restaurants
+INFO 2025-01-13 14:01:39,819 schedule_service Day 3 distance matrix shape: (1, 1)
+INFO 2025-01-13 14:01:39,819 schedule_service Day 3 distance matrix shape: (1, 1)
+INFO 2025-01-13 14:01:39,820 schedule_service Optimizing route for day 3
+INFO 2025-01-13 14:01:39,820 schedule_service Optimizing route for day 3
+DEBUG 2025-01-13 14:01:39,820 routing Starting route optimization with 1 places
+DEBUG 2025-01-13 14:01:39,820 routing Starting route optimization with 1 places
+DEBUG 2025-01-13 14:01:39,820 routing Created place indices for 1 places
+DEBUG 2025-01-13 14:01:39,820 routing Created place indices for 1 places
+DEBUG 2025-01-13 14:01:39,820 routing Found 0 restaurants and 1 other places
+DEBUG 2025-01-13 14:01:39,820 routing Found 0 restaurants and 1 other places
+DEBUG 2025-01-13 14:01:39,821 routing Created cluster center
+DEBUG 2025-01-13 14:01:39,821 routing Created cluster center
+DEBUG 2025-01-13 14:01:39,821 routing Created 2 empty restaurants
+DEBUG 2025-01-13 14:01:39,821 routing Created 2 empty restaurants
+DEBUG 2025-01-13 14:01:39,821 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:01:39,821 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:01:39,821 routing New matrix size will be 3x3
+DEBUG 2025-01-13 14:01:39,821 routing New matrix size will be 3x3
+DEBUG 2025-01-13 14:01:39,822 routing Copied original matrix
+DEBUG 2025-01-13 14:01:39,822 routing Copied original matrix
+DEBUG 2025-01-13 14:01:39,822 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 14:01:39,822 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 14:01:39,822 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,822 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,823 routing Iteration 2: Current time: 12:49:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,823 routing Iteration 2: Current time: 12:49:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 14:01:39,823 routing Current time 12:49:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:01:39,823 routing Current time 12:49:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:01:39,823 routing Available restaurants: ['Lunch Break', 'Dinner Break']
+DEBUG 2025-01-13 14:01:39,823 routing Available restaurants: ['Lunch Break', 'Dinner Break']
+DEBUG 2025-01-13 14:01:39,823 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:01:39,823 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:01:39,824 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:01:39,824 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:01:39,824 routing Arranging restaurant: Lunch Break
+DEBUG 2025-01-13 14:01:39,824 routing Arranging restaurant: Lunch Break
+DEBUG 2025-01-13 14:01:39,824 routing Setting as lunch
+DEBUG 2025-01-13 14:01:39,824 routing Setting as lunch
+WARNING 2025-01-13 14:01:39,824 routing Reached maximum iterations (2), breaking loop
+WARNING 2025-01-13 14:01:39,824 routing Reached maximum iterations (2), breaking loop
+INFO 2025-01-13 14:01:39,825 schedule_service Day 3 route optimized with score 183.66666666666669
+INFO 2025-01-13 14:01:39,825 schedule_service Day 3 route optimized with score 183.66666666666669
+INFO 2025-01-13 14:01:39,825 schedule_service Generated schedule for day 3 with 3 events
+INFO 2025-01-13 14:01:39,825 schedule_service Generated schedule for day 3 with 3 events
+INFO 2025-01-13 14:01:39,825 schedule_service Combined schedule has 16 total events
+INFO 2025-01-13 14:01:39,825 schedule_service Combined schedule has 16 total events
+INFO 2025-01-13 14:01:39,826 schedule_service Schedule metrics calculated
+INFO 2025-01-13 14:01:39,826 schedule_service Schedule metrics calculated
+DEBUG 2025-01-13 14:44:53,123 proactor_events Using proactor: IocpProactor
+INFO 2025-01-13 14:44:53,127 schedule_service Processing 9 places
+INFO 2025-01-13 14:44:53,127 schedule_service Processing 9 places
+DEBUG 2025-01-13 14:44:53,127 schedule_service Sample input place: {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}
+DEBUG 2025-01-13 14:44:53,127 schedule_service Sample input place: {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}
+INFO 2025-01-13 14:44:53,127 schedule_service Processed 9 places
+INFO 2025-01-13 14:44:53,127 schedule_service Processed 9 places
+DEBUG 2025-01-13 14:44:53,127 schedule_service Sample processed place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 79, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+DEBUG 2025-01-13 14:44:53,127 schedule_service Sample processed place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 79, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+INFO 2025-01-13 14:44:53,127 schedule_service Planning for 4 days
+INFO 2025-01-13 14:44:53,127 schedule_service Planning for 4 days
+INFO 2025-01-13 14:44:53,127 schedule_service Distance matrix shape: (9, 9)
+INFO 2025-01-13 14:44:53,127 schedule_service Distance matrix shape: (9, 9)
+INFO 2025-01-13 14:44:53,127 schedule_service Starting clustering
+INFO 2025-01-13 14:44:53,127 schedule_service Starting clustering
+INFO 2025-01-13 14:44:53,127 schedule_service Created 4 clusters
+INFO 2025-01-13 14:44:53,127 schedule_service Created 4 clusters
+INFO 2025-01-13 14:44:53,127 schedule_service Cluster 0 has 4 places
+INFO 2025-01-13 14:44:53,127 schedule_service Cluster 0 has 4 places
+DEBUG 2025-01-13 14:44:53,127 schedule_service Cluster 0 first place: {'place_id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'name': 'Table Twenty Eight', 'location': {'lat': 55.8586058, 'lng': -4.2449018}, 'type': 'restaurant', 'visit_duration': 83, 'rating': 4.7, 'user_ratings_total': 118, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8586058, 'lng': -4.2449018}, 'viewport': {'northeast': {'lat': 55.86000862989272, 'lng': -4.243858920107278}, 'southwest': {'lat': 55.85730897010728, 'lng': -4.246558579892722}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Table Twenty Eight', 'opening_hours': {'open_now': True}, 'photos': [{'height': 6000, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/104360784924350245289">A Google User</a>'], 'photo_reference': 'AWYs27xXVLZCmmr8m9bQP8VkqAYpJg_eSnPeIw8d4aZlClyFxYfjJsrAsKPjbWqIjxLr5hFuUWuiQScSWA9cvv1h3oXpmrsIVzQ-oeQSkuDHooHBg31t70kWDoE_Eo3a_k09cJw8GusVNxhGBK8K4ZP-QbuDdKI0hbWMpSBrdZpGZAxPaYFq', 'width': 6000}], 'place_id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'plus_code': {'compound_code': 'VQ54+C2 Glasgow', 'global_code': '9C7QVQ54+C2'}, 'rating': 4.7, 'reference': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'scope': 'GOOGLE', 'types': ['restaurant', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 118, 'vicinity': 'Unit 4/5, Merchants Square, 71 Albion St, Glasgow'}}
+DEBUG 2025-01-13 14:44:53,127 schedule_service Cluster 0 first place: {'place_id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'name': 'Table Twenty Eight', 'location': {'lat': 55.8586058, 'lng': -4.2449018}, 'type': 'restaurant', 'visit_duration': 83, 'rating': 4.7, 'user_ratings_total': 118, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8586058, 'lng': -4.2449018}, 'viewport': {'northeast': {'lat': 55.86000862989272, 'lng': -4.243858920107278}, 'southwest': {'lat': 55.85730897010728, 'lng': -4.246558579892722}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Table Twenty Eight', 'opening_hours': {'open_now': True}, 'photos': [{'height': 6000, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/104360784924350245289">A Google User</a>'], 'photo_reference': 'AWYs27xXVLZCmmr8m9bQP8VkqAYpJg_eSnPeIw8d4aZlClyFxYfjJsrAsKPjbWqIjxLr5hFuUWuiQScSWA9cvv1h3oXpmrsIVzQ-oeQSkuDHooHBg31t70kWDoE_Eo3a_k09cJw8GusVNxhGBK8K4ZP-QbuDdKI0hbWMpSBrdZpGZAxPaYFq', 'width': 6000}], 'place_id': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'plus_code': {'compound_code': 'VQ54+C2 Glasgow', 'global_code': '9C7QVQ54+C2'}, 'rating': 4.7, 'reference': 'ChIJYe0sNPlHiEgR3BfBJ0Hz1bU', 'scope': 'GOOGLE', 'types': ['restaurant', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 118, 'vicinity': 'Unit 4/5, Merchants Square, 71 Albion St, Glasgow'}}
+INFO 2025-01-13 14:44:53,127 schedule_service Cluster 1 has 3 places
+INFO 2025-01-13 14:44:53,127 schedule_service Cluster 1 has 3 places
+DEBUG 2025-01-13 14:44:53,127 schedule_service Cluster 1 first place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 79, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+DEBUG 2025-01-13 14:44:53,127 schedule_service Cluster 1 first place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 79, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27ydtShsy6z7EPi1YbIj1IJUEoVI-A5TqtSNaAKxy3M61VtDR5VOLP_LVzHdi-3fce-E6keFmdl1PSkdRpGNQtYXDGbGpU-71X8ittsl_0KpJM20EB_7UWk5pSDhxFlPLyhMPW1GG7_XAN6BjFwB7mKvL4sn9ujIxcBUEyKz0h2pM5mE', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'cafe', 'bakery', 'food', 'store', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+INFO 2025-01-13 14:44:53,134 schedule_service Cluster 2 has 2 places
+INFO 2025-01-13 14:44:53,134 schedule_service Cluster 2 has 2 places
+DEBUG 2025-01-13 14:44:53,134 schedule_service Cluster 2 first place: {'place_id': 'ChIJu9GtoYhGiEgR970dnTDZemM', 'id': 'ChIJu9GtoYhGiEgR970dnTDZemM', 'name': 'Scotland Street School Museum', 'location': {'lat': 55.8497069, 'lng': -4.2736803}, 'type': 'museum', 'visit_duration': 211, 'rating': 4.5, 'user_ratings_total': 434, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'CLOSED_TEMPORARILY', 'geometry': {'location': {'lat': 55.8497069, 'lng': -4.2736803}, 'viewport': {'northeast': {'lat': 55.85112248029149, 'lng': -4.272342869708497}, 'southwest': {'lat': 55.84842451970849, 'lng': -4.275040830291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png', 'icon_background_color': '#13B5C7', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet', 'name': 'Scotland Street School Museum', 'permanently_closed': True, 'photos': [{'height': 660, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/108472710991336780688">Scotland Street School Museum</a>'], 'photo_reference': 'AWYs27w6OVAFQkEvFI8GP_grfSjus7eqMK5QQW5XTer9WEkWcsuE3H0sy2kUuZcjxxhAbLdgzHc6zWRALWAeV5iaozkjTXHy_bL2_uRzQBTCRs-W4AfsNT5GXy8LmUTMeaAzIsS_HYkA5kX2UJKLsD4NR64l7T0LSc_k2GQrN3zK1d1iotDv', 'width': 800}], 'place_id': 'ChIJu9GtoYhGiEgR970dnTDZemM', 'plus_code': {'compound_code': 'RPXG+VG Glasgow, UK', 'global_code': '9C7QRPXG+VG'}, 'rating': 4.5, 'reference': 'ChIJu9GtoYhGiEgR970dnTDZemM', 'scope': 'GOOGLE', 'types': ['museum', 'tourist_attraction', 'point_of_interest', 'establishment'], 'user_ratings_total': 434, 'vicinity': '225 Scotland Street, Glasgow'}}
+DEBUG 2025-01-13 14:44:53,134 schedule_service Cluster 2 first place: {'place_id': 'ChIJu9GtoYhGiEgR970dnTDZemM', 'id': 'ChIJu9GtoYhGiEgR970dnTDZemM', 'name': 'Scotland Street School Museum', 'location': {'lat': 55.8497069, 'lng': -4.2736803}, 'type': 'museum', 'visit_duration': 211, 'rating': 4.5, 'user_ratings_total': 434, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'CLOSED_TEMPORARILY', 'geometry': {'location': {'lat': 55.8497069, 'lng': -4.2736803}, 'viewport': {'northeast': {'lat': 55.85112248029149, 'lng': -4.272342869708497}, 'southwest': {'lat': 55.84842451970849, 'lng': -4.275040830291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png', 'icon_background_color': '#13B5C7', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet', 'name': 'Scotland Street School Museum', 'permanently_closed': True, 'photos': [{'height': 660, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/108472710991336780688">Scotland Street School Museum</a>'], 'photo_reference': 'AWYs27w6OVAFQkEvFI8GP_grfSjus7eqMK5QQW5XTer9WEkWcsuE3H0sy2kUuZcjxxhAbLdgzHc6zWRALWAeV5iaozkjTXHy_bL2_uRzQBTCRs-W4AfsNT5GXy8LmUTMeaAzIsS_HYkA5kX2UJKLsD4NR64l7T0LSc_k2GQrN3zK1d1iotDv', 'width': 800}], 'place_id': 'ChIJu9GtoYhGiEgR970dnTDZemM', 'plus_code': {'compound_code': 'RPXG+VG Glasgow, UK', 'global_code': '9C7QRPXG+VG'}, 'rating': 4.5, 'reference': 'ChIJu9GtoYhGiEgR970dnTDZemM', 'scope': 'GOOGLE', 'types': ['museum', 'tourist_attraction', 'point_of_interest', 'establishment'], 'user_ratings_total': 434, 'vicinity': '225 Scotland Street, Glasgow'}}
+INFO 2025-01-13 14:44:53,135 schedule_service Cluster 3 has 2 places
+INFO 2025-01-13 14:44:53,135 schedule_service Cluster 3 has 2 places
+DEBUG 2025-01-13 14:44:53,135 schedule_service Cluster 3 first place: {'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'name': 'The Burrell Collection', 'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'type': 'museum', 'visit_duration': 129, 'rating': 4.7, 'user_ratings_total': 2311, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'viewport': {'northeast': {'lat': 55.83173768029149, 'lng': -4.306611819708498}, 'southwest': {'lat': 55.8290397197085, 'lng': -4.309309780291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png', 'icon_background_color': '#13B5C7', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet', 'name': 'The Burrell Collection', 'opening_hours': {'open_now': True}, 'photos': [{'height': 4032, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112100337761091720559">Ben You</a>'], 'photo_reference': 'AWYs27wSC1xLCMTVsTs8OnHePB6Ud-t1-yXWAQ9Ua0xyl5M_9_WKMjcVGHa06KY4IZwNZCnEWVin4C-TUSYPW8TMq9j46OLbZXRae_G1DfNMh-eUr-t6nXrQxOZYIOz81qjx3X7_T0iAfBWKwl3Z669jxj-kiEiaeBCnMpClGtGw1riTVumN', 'width': 3024}], 'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'plus_code': {'compound_code': 'RMJR+9W Glasgow, UK', 'global_code': '9C7QRMJR+9W'}, 'rating': 4.7, 'reference': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'museum', 'point_of_interest', 'establishment'], 'user_ratings_total': 2311, 'vicinity': 'Pollok Country Park, 2060 Pollokshaws Road, Glasgow'}}
+DEBUG 2025-01-13 14:44:53,135 schedule_service Cluster 3 first place: {'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'name': 'The Burrell Collection', 'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'type': 'museum', 'visit_duration': 129, 'rating': 4.7, 'user_ratings_total': 2311, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'viewport': {'northeast': {'lat': 55.83173768029149, 'lng': -4.306611819708498}, 'southwest': {'lat': 55.8290397197085, 'lng': -4.309309780291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png', 'icon_background_color': '#13B5C7', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet', 'name': 'The Burrell Collection', 'opening_hours': {'open_now': True}, 'photos': [{'height': 4032, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112100337761091720559">Ben You</a>'], 'photo_reference': 'AWYs27wSC1xLCMTVsTs8OnHePB6Ud-t1-yXWAQ9Ua0xyl5M_9_WKMjcVGHa06KY4IZwNZCnEWVin4C-TUSYPW8TMq9j46OLbZXRae_G1DfNMh-eUr-t6nXrQxOZYIOz81qjx3X7_T0iAfBWKwl3Z669jxj-kiEiaeBCnMpClGtGw1riTVumN', 'width': 3024}], 'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'plus_code': {'compound_code': 'RMJR+9W Glasgow, UK', 'global_code': '9C7QRMJR+9W'}, 'rating': 4.7, 'reference': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'museum', 'point_of_interest', 'establishment'], 'user_ratings_total': 2311, 'vicinity': 'Pollok Country Park, 2060 Pollokshaws Road, Glasgow'}}
+INFO 2025-01-13 14:44:53,135 schedule_service Processing day 0
+INFO 2025-01-13 14:44:53,135 schedule_service Processing day 0
+DEBUG 2025-01-13 14:44:53,135 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-13 14:44:53,135 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-13 14:44:53,135 schedule_service Day 0 distance matrix shape: (4, 4)
+INFO 2025-01-13 14:44:53,135 schedule_service Day 0 distance matrix shape: (4, 4)
+INFO 2025-01-13 14:44:53,135 schedule_service Optimizing route for day 0
+INFO 2025-01-13 14:44:53,135 schedule_service Optimizing route for day 0
+DEBUG 2025-01-13 14:44:53,135 routing Starting route optimization with 4 places
+DEBUG 2025-01-13 14:44:53,135 routing Starting route optimization with 4 places
+DEBUG 2025-01-13 14:44:53,135 routing Created place indices for 4 places
+DEBUG 2025-01-13 14:44:53,135 routing Created place indices for 4 places
+DEBUG 2025-01-13 14:44:53,135 routing Found 2 restaurants and 2 other places
+DEBUG 2025-01-13 14:44:53,135 routing Found 2 restaurants and 2 other places
+DEBUG 2025-01-13 14:44:53,135 routing Created cluster center
+DEBUG 2025-01-13 14:44:53,135 routing Created cluster center
+DEBUG 2025-01-13 14:44:53,135 routing Created 0 empty restaurants
+DEBUG 2025-01-13 14:44:53,135 routing Created 0 empty restaurants
+DEBUG 2025-01-13 14:44:53,135 routing Starting main loop with 2 places and 2 restaurants
+DEBUG 2025-01-13 14:44:53,135 routing Starting main loop with 2 places and 2 restaurants
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 1: Current time: 09:00:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 1: Current time: 09:00:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 2: Current time: 11:22:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 2: Current time: 11:22:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,135 routing Current time 11:22:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:44:53,135 routing Current time 11:22:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:44:53,135 routing Available restaurants: ['Table Twenty Eight', 'La Lanterna']
+DEBUG 2025-01-13 14:44:53,135 routing Available restaurants: ['Table Twenty Eight', 'La Lanterna']
+DEBUG 2025-01-13 14:44:53,135 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:44:53,135 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:44:53,135 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:44:53,135 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:44:53,135 routing Arranging restaurant: La Lanterna
+DEBUG 2025-01-13 14:44:53,135 routing Arranging restaurant: La Lanterna
+DEBUG 2025-01-13 14:44:53,135 routing Setting as lunch
+DEBUG 2025-01-13 14:44:53,135 routing Setting as lunch
+DEBUG 2025-01-13 14:44:53,135 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 14:44:53,135 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 3: Current time: 12:39:09.481377, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 3: Current time: 12:39:09.481377, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 4: Current time: 15:10:17.881463, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 4: Current time: 15:10:17.881463, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 5: Current time: 15:10:17.881463, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 5: Current time: 15:10:17.881463, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 6: Current time: 15:10:17.881463, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 6: Current time: 15:10:17.881463, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 7: Current time: 15:10:17.881463, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 7: Current time: 15:10:17.881463, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 8: Current time: 15:10:17.881463, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,135 routing Iteration 8: Current time: 15:10:17.881463, Remaining places: 0, Available restaurants: 1
+WARNING 2025-01-13 14:44:53,135 routing Reached maximum iterations (8), breaking loop
+WARNING 2025-01-13 14:44:53,135 routing Reached maximum iterations (8), breaking loop
+INFO 2025-01-13 14:44:53,135 schedule_service Day 0 route optimized with score 307.86498678903155
+INFO 2025-01-13 14:44:53,135 schedule_service Day 0 route optimized with score 307.86498678903155
+DEBUG 2025-01-13 14:44:53,143 schedule_service Added restaurant La Lanterna to used list
+DEBUG 2025-01-13 14:44:53,143 schedule_service Added restaurant La Lanterna to used list
+INFO 2025-01-13 14:44:53,176 schedule_service Generated schedule for day 0 with 5 events
+INFO 2025-01-13 14:44:53,176 schedule_service Generated schedule for day 0 with 5 events
+INFO 2025-01-13 14:44:53,176 schedule_service Processing day 1
+INFO 2025-01-13 14:44:53,176 schedule_service Processing day 1
+DEBUG 2025-01-13 14:44:53,176 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-13 14:44:53,176 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-13 14:44:53,176 schedule_service Day 1 distance matrix shape: (3, 3)
+INFO 2025-01-13 14:44:53,176 schedule_service Day 1 distance matrix shape: (3, 3)
+INFO 2025-01-13 14:44:53,176 schedule_service Optimizing route for day 1
+INFO 2025-01-13 14:44:53,176 schedule_service Optimizing route for day 1
+DEBUG 2025-01-13 14:44:53,176 routing Starting route optimization with 3 places
+DEBUG 2025-01-13 14:44:53,176 routing Starting route optimization with 3 places
+DEBUG 2025-01-13 14:44:53,176 routing Created place indices for 3 places
+DEBUG 2025-01-13 14:44:53,176 routing Created place indices for 3 places
+DEBUG 2025-01-13 14:44:53,183 routing Found 1 restaurants and 2 other places
+DEBUG 2025-01-13 14:44:53,183 routing Found 1 restaurants and 2 other places
+DEBUG 2025-01-13 14:44:53,183 routing Created cluster center
+DEBUG 2025-01-13 14:44:53,183 routing Created cluster center
+DEBUG 2025-01-13 14:44:53,183 routing Created 1 empty restaurants
+DEBUG 2025-01-13 14:44:53,183 routing Created 1 empty restaurants
+DEBUG 2025-01-13 14:44:53,183 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:44:53,183 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:44:53,183 routing New matrix size will be 4x4
+DEBUG 2025-01-13 14:44:53,183 routing New matrix size will be 4x4
+DEBUG 2025-01-13 14:44:53,183 routing Copied original matrix
+DEBUG 2025-01-13 14:44:53,183 routing Copied original matrix
+DEBUG 2025-01-13 14:44:53,183 routing Starting main loop with 2 places and 2 restaurants
+DEBUG 2025-01-13 14:44:53,183 routing Starting main loop with 2 places and 2 restaurants
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 1: Current time: 09:00:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 1: Current time: 09:00:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 2: Current time: 11:10:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 2: Current time: 11:10:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,183 routing Current time 11:10:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:44:53,183 routing Current time 11:10:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:44:53,183 routing Available restaurants: ['Kitchen Glasgow', 'Dinner Break']
+DEBUG 2025-01-13 14:44:53,183 routing Available restaurants: ['Kitchen Glasgow', 'Dinner Break']
+DEBUG 2025-01-13 14:44:53,183 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:44:53,183 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:44:53,183 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:44:53,183 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:44:53,183 routing Arranging restaurant: Kitchen Glasgow
+DEBUG 2025-01-13 14:44:53,183 routing Arranging restaurant: Kitchen Glasgow
+DEBUG 2025-01-13 14:44:53,183 routing Setting as lunch
+DEBUG 2025-01-13 14:44:53,183 routing Setting as lunch
+DEBUG 2025-01-13 14:44:53,183 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 14:44:53,183 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 3: Current time: 13:05:57.705040, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 3: Current time: 13:05:57.705040, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 4: Current time: 15:33:46.584760, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 4: Current time: 15:33:46.584760, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 5: Current time: 15:33:46.584760, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 5: Current time: 15:33:46.584760, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 6: Current time: 15:33:46.584760, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 6: Current time: 15:33:46.584760, Remaining places: 0, Available restaurants: 1
+WARNING 2025-01-13 14:44:53,183 routing Reached maximum iterations (6), breaking loop
+WARNING 2025-01-13 14:44:53,183 routing Reached maximum iterations (6), breaking loop
+INFO 2025-01-13 14:44:53,183 schedule_service Day 1 route optimized with score 314.72824773382575
+INFO 2025-01-13 14:44:53,183 schedule_service Day 1 route optimized with score 314.72824773382575
+DEBUG 2025-01-13 14:44:53,183 schedule_service Added restaurant Kitchen Glasgow to used list
+DEBUG 2025-01-13 14:44:53,183 schedule_service Added restaurant Kitchen Glasgow to used list
+INFO 2025-01-13 14:44:53,183 schedule_service Generated schedule for day 1 with 5 events
+INFO 2025-01-13 14:44:53,183 schedule_service Generated schedule for day 1 with 5 events
+INFO 2025-01-13 14:44:53,183 schedule_service Processing day 2
+INFO 2025-01-13 14:44:53,183 schedule_service Processing day 2
+DEBUG 2025-01-13 14:44:53,183 schedule_service Filtered out 1 used restaurants
+DEBUG 2025-01-13 14:44:53,183 schedule_service Filtered out 1 used restaurants
+INFO 2025-01-13 14:44:53,183 schedule_service Day 2 distance matrix shape: (1, 1)
+INFO 2025-01-13 14:44:53,183 schedule_service Day 2 distance matrix shape: (1, 1)
+INFO 2025-01-13 14:44:53,183 schedule_service Optimizing route for day 2
+INFO 2025-01-13 14:44:53,183 schedule_service Optimizing route for day 2
+DEBUG 2025-01-13 14:44:53,183 routing Starting route optimization with 1 places
+DEBUG 2025-01-13 14:44:53,183 routing Starting route optimization with 1 places
+DEBUG 2025-01-13 14:44:53,183 routing Created place indices for 1 places
+DEBUG 2025-01-13 14:44:53,183 routing Created place indices for 1 places
+DEBUG 2025-01-13 14:44:53,183 routing Found 0 restaurants and 1 other places
+DEBUG 2025-01-13 14:44:53,183 routing Found 0 restaurants and 1 other places
+DEBUG 2025-01-13 14:44:53,183 routing Created cluster center
+DEBUG 2025-01-13 14:44:53,183 routing Created cluster center
+DEBUG 2025-01-13 14:44:53,183 routing Created 2 empty restaurants
+DEBUG 2025-01-13 14:44:53,183 routing Created 2 empty restaurants
+DEBUG 2025-01-13 14:44:53,183 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:44:53,183 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:44:53,183 routing New matrix size will be 3x3
+DEBUG 2025-01-13 14:44:53,183 routing New matrix size will be 3x3
+DEBUG 2025-01-13 14:44:53,183 routing Copied original matrix
+DEBUG 2025-01-13 14:44:53,183 routing Copied original matrix
+DEBUG 2025-01-13 14:44:53,183 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 14:44:53,183 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 2: Current time: 12:31:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,183 routing Iteration 2: Current time: 12:31:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,183 routing Current time 12:31:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:44:53,183 routing Current time 12:31:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:44:53,183 routing Available restaurants: ['Lunch Break', 'Dinner Break']
+DEBUG 2025-01-13 14:44:53,183 routing Available restaurants: ['Lunch Break', 'Dinner Break']
+DEBUG 2025-01-13 14:44:53,183 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:44:53,183 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:44:53,183 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:44:53,183 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:44:53,191 routing Arranging restaurant: Lunch Break
+DEBUG 2025-01-13 14:44:53,191 routing Arranging restaurant: Lunch Break
+DEBUG 2025-01-13 14:44:53,191 routing Setting as lunch
+DEBUG 2025-01-13 14:44:53,191 routing Setting as lunch
+WARNING 2025-01-13 14:44:53,192 routing Reached maximum iterations (2), breaking loop
+WARNING 2025-01-13 14:44:53,192 routing Reached maximum iterations (2), breaking loop
+INFO 2025-01-13 14:44:53,192 schedule_service Day 2 route optimized with score 191.66666666666669
+INFO 2025-01-13 14:44:53,192 schedule_service Day 2 route optimized with score 191.66666666666669
+INFO 2025-01-13 14:44:53,192 schedule_service Generated schedule for day 2 with 3 events
+INFO 2025-01-13 14:44:53,192 schedule_service Generated schedule for day 2 with 3 events
+INFO 2025-01-13 14:44:53,192 schedule_service Processing day 3
+INFO 2025-01-13 14:44:53,192 schedule_service Processing day 3
+DEBUG 2025-01-13 14:44:53,192 schedule_service Filtered out 1 used restaurants
+DEBUG 2025-01-13 14:44:53,192 schedule_service Filtered out 1 used restaurants
+INFO 2025-01-13 14:44:53,194 schedule_service Day 3 distance matrix shape: (1, 1)
+INFO 2025-01-13 14:44:53,194 schedule_service Day 3 distance matrix shape: (1, 1)
+INFO 2025-01-13 14:44:53,194 schedule_service Optimizing route for day 3
+INFO 2025-01-13 14:44:53,194 schedule_service Optimizing route for day 3
+DEBUG 2025-01-13 14:44:53,195 routing Starting route optimization with 1 places
+DEBUG 2025-01-13 14:44:53,195 routing Starting route optimization with 1 places
+DEBUG 2025-01-13 14:44:53,195 routing Created place indices for 1 places
+DEBUG 2025-01-13 14:44:53,195 routing Created place indices for 1 places
+DEBUG 2025-01-13 14:44:53,195 routing Found 0 restaurants and 1 other places
+DEBUG 2025-01-13 14:44:53,195 routing Found 0 restaurants and 1 other places
+DEBUG 2025-01-13 14:44:53,195 routing Created cluster center
+DEBUG 2025-01-13 14:44:53,195 routing Created cluster center
+DEBUG 2025-01-13 14:44:53,195 routing Created 2 empty restaurants
+DEBUG 2025-01-13 14:44:53,195 routing Created 2 empty restaurants
+DEBUG 2025-01-13 14:44:53,195 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:44:53,195 routing Starting distance matrix expansion
+DEBUG 2025-01-13 14:44:53,195 routing New matrix size will be 3x3
+DEBUG 2025-01-13 14:44:53,195 routing New matrix size will be 3x3
+DEBUG 2025-01-13 14:44:53,195 routing Copied original matrix
+DEBUG 2025-01-13 14:44:53,195 routing Copied original matrix
+DEBUG 2025-01-13 14:44:53,195 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 14:44:53,195 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 14:44:53,195 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,195 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,195 routing Iteration 2: Current time: 11:09:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,195 routing Iteration 2: Current time: 11:09:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 14:44:53,195 routing Current time 11:09:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:44:53,195 routing Current time 11:09:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 14:44:53,195 routing Available restaurants: ['Lunch Break', 'Dinner Break']
+DEBUG 2025-01-13 14:44:53,195 routing Available restaurants: ['Lunch Break', 'Dinner Break']
+DEBUG 2025-01-13 14:44:53,195 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:44:53,195 routing Attempting to arrange lunch
+DEBUG 2025-01-13 14:44:53,195 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:44:53,195 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 14:44:53,195 routing Arranging restaurant: Lunch Break
+DEBUG 2025-01-13 14:44:53,195 routing Arranging restaurant: Lunch Break
+DEBUG 2025-01-13 14:44:53,195 routing Setting as lunch
+DEBUG 2025-01-13 14:44:53,195 routing Setting as lunch
+WARNING 2025-01-13 14:44:53,195 routing Reached maximum iterations (2), breaking loop
+WARNING 2025-01-13 14:44:53,195 routing Reached maximum iterations (2), breaking loop
+INFO 2025-01-13 14:44:53,195 schedule_service Day 3 route optimized with score 154.77777777777777
+INFO 2025-01-13 14:44:53,195 schedule_service Day 3 route optimized with score 154.77777777777777
+INFO 2025-01-13 14:44:53,195 schedule_service Generated schedule for day 3 with 3 events
+INFO 2025-01-13 14:44:53,195 schedule_service Generated schedule for day 3 with 3 events
+INFO 2025-01-13 14:44:53,195 schedule_service Combined schedule has 16 total events
+INFO 2025-01-13 14:44:53,195 schedule_service Combined schedule has 16 total events
+INFO 2025-01-13 14:44:53,195 schedule_service Schedule metrics calculated
+INFO 2025-01-13 14:44:53,195 schedule_service Schedule metrics calculated
+DEBUG 2025-01-13 16:31:37,770 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 16:31:38,247 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 16:31:38,289 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=g%27l&limit=10&sort=-population HTTP/11" 200 57
+DEBUG 2025-01-13 16:31:38,393 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=g%27la&limit=10&sort=-population HTTP/11" 429 None
+ERROR 2025-01-13 16:31:38,401 views Search failed with status 429: {"message":"You have exceeded the rate limit per second for your plan, BASIC, by the API provider"}
+ERROR 2025-01-13 16:31:38,401 views Search failed with status 429: {"message":"You have exceeded the rate limit per second for your plan, BASIC, by the API provider"}
+WARNING 2025-01-13 16:31:38,402 log Too Many Requests: /api/search-city/
+DEBUG 2025-01-13 16:31:39,459 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 16:31:39,739 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=gla&limit=10&sort=-population HTTP/11" 200 833
+DEBUG 2025-01-13 16:31:40,339 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 16:31:40,489 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=glas&limit=10&sort=-population HTTP/11" 429 None
+ERROR 2025-01-13 16:31:40,491 views Search failed with status 429: {"message":"You have exceeded the rate limit per second for your plan, BASIC, by the API provider"}
+ERROR 2025-01-13 16:31:40,491 views Search failed with status 429: {"message":"You have exceeded the rate limit per second for your plan, BASIC, by the API provider"}
+WARNING 2025-01-13 16:31:40,493 log Too Many Requests: /api/search-city/
+DEBUG 2025-01-13 16:31:42,173 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 16:31:42,532 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=glasg&limit=10&sort=-population HTTP/11" 200 750
+DEBUG 2025-01-13 16:31:44,989 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-13 16:31:45,388 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=Glasgow%2C+Scotland%2C+United+Kingdom&limit=10&sort=-population HTTP/11" 200 57
+INFO 2025-01-13 16:31:45,902 views Searching places for location: Glasgow, Scotland, United Kingdom
+INFO 2025-01-13 16:31:45,902 views Searching places for location: Glasgow, Scotland, United Kingdom
+DEBUG 2025-01-13 16:31:45,908 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-13 16:31:46,185 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/geocode/json?address=Glasgow%2C%2BScotland%2C%2BUnited%2BKingdom&language=en HTTP/11" 200 2600
+INFO 2025-01-13 16:31:46,188 views Found coordinates: 55.86167039999999, -4.2583345
+INFO 2025-01-13 16:31:46,188 views Found coordinates: 55.86167039999999, -4.2583345
+DEBUG 2025-01-13 16:31:46,190 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-13 16:31:47,036 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/place/nearbysearch/json?location=55.86167039999999%2C-4.2583345&radius=5000&type=restaurant&keyword=restaurant&language=en HTTP/11" 200 42695
+INFO 2025-01-13 16:31:47,098 views Found 20 restaurants after filtering
+INFO 2025-01-13 16:31:47,098 views Found 20 restaurants after filtering
+DEBUG 2025-01-13 16:31:47,104 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-13 16:31:47,687 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/place/nearbysearch/json?location=55.86167039999999%2C-4.2583345&radius=5000&type=tourist_attraction&language=en HTTP/11" 200 42975
+INFO 2025-01-13 16:31:47,736 views Found 16 attractions after filtering
+INFO 2025-01-13 16:31:47,736 views Found 16 attractions after filtering
+DEBUG 2025-01-13 16:31:47,741 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-13 16:31:48,310 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/place/nearbysearch/json?location=55.86167039999999%2C-4.2583345&radius=5000&type=lodging&language=en HTTP/11" 200 41716
+INFO 2025-01-13 16:31:48,388 views Found 20 hotels after filtering
+INFO 2025-01-13 16:31:48,388 views Found 20 hotels after filtering
+INFO 2025-01-13 16:31:48,388 views Category restaurants has 20 items
+INFO 2025-01-13 16:31:48,388 views Category restaurants has 20 items
+INFO 2025-01-13 16:31:48,388 views Sample types in restaurants: ['restaurant', 'bakery', 'cafe', 'store', 'food', 'point_of_interest', 'establishment']
+INFO 2025-01-13 16:31:48,388 views Sample types in restaurants: ['restaurant', 'bakery', 'cafe', 'store', 'food', 'point_of_interest', 'establishment']
+INFO 2025-01-13 16:31:48,395 views Category attractions has 16 items
+INFO 2025-01-13 16:31:48,395 views Category attractions has 16 items
+INFO 2025-01-13 16:31:48,396 views Sample types in attractions: ['art_gallery', 'tourist_attraction', 'travel_agency', 'point_of_interest', 'establishment']
+INFO 2025-01-13 16:31:48,396 views Sample types in attractions: ['art_gallery', 'tourist_attraction', 'travel_agency', 'point_of_interest', 'establishment']
+INFO 2025-01-13 16:31:48,396 views Category hotels has 20 items
+INFO 2025-01-13 16:31:48,396 views Category hotels has 20 items
+INFO 2025-01-13 16:31:48,396 views Sample types in hotels: ['lodging', 'point_of_interest', 'establishment']
+INFO 2025-01-13 16:31:48,396 views Sample types in hotels: ['lodging', 'point_of_interest', 'establishment']
+DEBUG 2025-01-13 16:32:24,184 proactor_events Using proactor: IocpProactor
+INFO 2025-01-13 16:32:24,189 schedule_service Processing 9 places
+INFO 2025-01-13 16:32:24,189 schedule_service Processing 9 places
+DEBUG 2025-01-13 16:32:24,189 schedule_service Sample input place: {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27zGrV2328kqzvBd6QLwDGKhqVO0CH2VzH7nRlP6uWPzyt1Kl7fwletFALliNl2K47nh66Wc_PtTn_J35HnfZ9OeLUjiqgOjF3aMZZ3pqqfnbNVvqhmd7Hqq7_BAK0t1tOkJyxmzEqptZiHWcC5z-5JvVinkE3cN1HGDxrVV43XoaKkR', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'bakery', 'cafe', 'store', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}
+DEBUG 2025-01-13 16:32:24,189 schedule_service Sample input place: {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27zGrV2328kqzvBd6QLwDGKhqVO0CH2VzH7nRlP6uWPzyt1Kl7fwletFALliNl2K47nh66Wc_PtTn_J35HnfZ9OeLUjiqgOjF3aMZZ3pqqfnbNVvqhmd7Hqq7_BAK0t1tOkJyxmzEqptZiHWcC5z-5JvVinkE3cN1HGDxrVV43XoaKkR', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'bakery', 'cafe', 'store', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}
+INFO 2025-01-13 16:32:24,189 schedule_service Processed 9 places
+INFO 2025-01-13 16:32:24,189 schedule_service Processed 9 places
+DEBUG 2025-01-13 16:32:24,189 schedule_service Sample processed place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 63, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27zGrV2328kqzvBd6QLwDGKhqVO0CH2VzH7nRlP6uWPzyt1Kl7fwletFALliNl2K47nh66Wc_PtTn_J35HnfZ9OeLUjiqgOjF3aMZZ3pqqfnbNVvqhmd7Hqq7_BAK0t1tOkJyxmzEqptZiHWcC5z-5JvVinkE3cN1HGDxrVV43XoaKkR', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'bakery', 'cafe', 'store', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+DEBUG 2025-01-13 16:32:24,189 schedule_service Sample processed place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 63, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27zGrV2328kqzvBd6QLwDGKhqVO0CH2VzH7nRlP6uWPzyt1Kl7fwletFALliNl2K47nh66Wc_PtTn_J35HnfZ9OeLUjiqgOjF3aMZZ3pqqfnbNVvqhmd7Hqq7_BAK0t1tOkJyxmzEqptZiHWcC5z-5JvVinkE3cN1HGDxrVV43XoaKkR', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'bakery', 'cafe', 'store', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+INFO 2025-01-13 16:32:24,189 schedule_service Planning for 4 days
+INFO 2025-01-13 16:32:24,189 schedule_service Planning for 4 days
+INFO 2025-01-13 16:32:24,194 schedule_service Distance matrix shape: (9, 9)
+INFO 2025-01-13 16:32:24,194 schedule_service Distance matrix shape: (9, 9)
+INFO 2025-01-13 16:32:24,194 schedule_service Starting clustering
+INFO 2025-01-13 16:32:24,194 schedule_service Starting clustering
+INFO 2025-01-13 16:32:24,202 schedule_service Created 4 clusters
+INFO 2025-01-13 16:32:24,202 schedule_service Created 4 clusters
+INFO 2025-01-13 16:32:24,203 schedule_service Cluster 0 has 4 places
+INFO 2025-01-13 16:32:24,203 schedule_service Cluster 0 has 4 places
+DEBUG 2025-01-13 16:32:24,204 schedule_service Cluster 0 first place: {'place_id': 'ChIJPYaLmplHiEgRThHTpfgonig', 'id': 'ChIJPYaLmplHiEgRThHTpfgonig', 'name': 'NARANJ Restaurant', 'location': {'lat': 55.8546894, 'lng': -4.2589782}, 'type': 'restaurant', 'visit_duration': 87, 'rating': 4.8, 'user_ratings_total': 161, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8546894, 'lng': -4.2589782}, 'viewport': {'northeast': {'lat': 55.85609202989272, 'lng': -4.257629820107277}, 'southwest': {'lat': 55.85339237010728, 'lng': -4.260329479892722}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'NARANJ Restaurant', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3072, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/108794984336102103337">LL Cheung</a>'], 'photo_reference': 'AWYs27yDBaaZ1DvPms5aNo8qP-grNUxI8o1zhVO3u5Sc8P3YgDksVqd7dJ2nXhPcBIkX_Uat9Bv7Ha1BjJ4ccVqhQ0IAfV96Y1Efe_qCEfGiuHToH2ZzS2e1USpM5AoxG_0frA8t22hdvyY1Mbq9W0T7B8BNejJmDw_p6c073c7Qr7j6yKEG', 'width': 4096}], 'place_id': 'ChIJPYaLmplHiEgRThHTpfgonig', 'plus_code': {'compound_code': 'VP3R+VC Glasgow', 'global_code': '9C7QVP3R+VC'}, 'rating': 4.8, 'reference': 'ChIJPYaLmplHiEgRThHTpfgonig', 'scope': 'GOOGLE', 'types': ['restaurant', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 161, 'vicinity': '7/9 Clyde Pl, Glasgow'}}
+DEBUG 2025-01-13 16:32:24,204 schedule_service Cluster 0 first place: {'place_id': 'ChIJPYaLmplHiEgRThHTpfgonig', 'id': 'ChIJPYaLmplHiEgRThHTpfgonig', 'name': 'NARANJ Restaurant', 'location': {'lat': 55.8546894, 'lng': -4.2589782}, 'type': 'restaurant', 'visit_duration': 87, 'rating': 4.8, 'user_ratings_total': 161, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8546894, 'lng': -4.2589782}, 'viewport': {'northeast': {'lat': 55.85609202989272, 'lng': -4.257629820107277}, 'southwest': {'lat': 55.85339237010728, 'lng': -4.260329479892722}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'NARANJ Restaurant', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3072, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/108794984336102103337">LL Cheung</a>'], 'photo_reference': 'AWYs27yDBaaZ1DvPms5aNo8qP-grNUxI8o1zhVO3u5Sc8P3YgDksVqd7dJ2nXhPcBIkX_Uat9Bv7Ha1BjJ4ccVqhQ0IAfV96Y1Efe_qCEfGiuHToH2ZzS2e1USpM5AoxG_0frA8t22hdvyY1Mbq9W0T7B8BNejJmDw_p6c073c7Qr7j6yKEG', 'width': 4096}], 'place_id': 'ChIJPYaLmplHiEgRThHTpfgonig', 'plus_code': {'compound_code': 'VP3R+VC Glasgow', 'global_code': '9C7QVP3R+VC'}, 'rating': 4.8, 'reference': 'ChIJPYaLmplHiEgRThHTpfgonig', 'scope': 'GOOGLE', 'types': ['restaurant', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 161, 'vicinity': '7/9 Clyde Pl, Glasgow'}}
+INFO 2025-01-13 16:32:24,205 schedule_service Cluster 1 has 2 places
+INFO 2025-01-13 16:32:24,205 schedule_service Cluster 1 has 2 places
+DEBUG 2025-01-13 16:32:24,206 schedule_service Cluster 1 first place: {'place_id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'name': 'The Glasgow Necropolis', 'location': {'lat': 55.86268669999999, 'lng': -4.2311217}, 'type': 'tourist_attraction', 'visit_duration': 169, 'rating': 4.7, 'user_ratings_total': 1025, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.86268669999999, 'lng': -4.2311217}, 'viewport': {'northeast': {'lat': 55.86416973029149, 'lng': -4.22989765}, 'southwest': {'lat': 55.86147176970849, 'lng': -4.234535849999999}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/cemetery_grave-71.png', 'icon_background_color': '#7B9EB0', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/cemetery_pinlet', 'name': 'The Glasgow Necropolis', 'opening_hours': {'open_now': False}, 'photos': [{'height': 4000, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/104445643094395628989">Glasgow Necropolis</a>'], 'photo_reference': 'AWYs27yTNJgvjmXb_w1Emu0K8GKlmwakbMcWWul9RWDXft5vL1ksurI8GLWt7T05KhFkqVOmRBVD3X2h1rLux3p1Z6_cf0AMiPALVlJkbG9cSd6ULl6BwXPOaUtEqdBr3DYtFpYy4VQUm4wvDMTSoNuxYz5FJjJ7l_GBv0BNWkP4-MHE1btD', 'width': 6000}], 'place_id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'plus_code': {'compound_code': 'VQ79+3H Glasgow, UK', 'global_code': '9C7QVQ79+3H'}, 'rating': 4.7, 'reference': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'scope': 'GOOGLE', 'types': ['cemetery', 'tourist_attraction', 'point_of_interest', 'establishment'], 'user_ratings_total': 1025, 'vicinity': 'Castle Street, Glasgow'}}
+DEBUG 2025-01-13 16:32:24,206 schedule_service Cluster 1 first place: {'place_id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'name': 'The Glasgow Necropolis', 'location': {'lat': 55.86268669999999, 'lng': -4.2311217}, 'type': 'tourist_attraction', 'visit_duration': 169, 'rating': 4.7, 'user_ratings_total': 1025, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.86268669999999, 'lng': -4.2311217}, 'viewport': {'northeast': {'lat': 55.86416973029149, 'lng': -4.22989765}, 'southwest': {'lat': 55.86147176970849, 'lng': -4.234535849999999}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/cemetery_grave-71.png', 'icon_background_color': '#7B9EB0', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/cemetery_pinlet', 'name': 'The Glasgow Necropolis', 'opening_hours': {'open_now': False}, 'photos': [{'height': 4000, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/104445643094395628989">Glasgow Necropolis</a>'], 'photo_reference': 'AWYs27yTNJgvjmXb_w1Emu0K8GKlmwakbMcWWul9RWDXft5vL1ksurI8GLWt7T05KhFkqVOmRBVD3X2h1rLux3p1Z6_cf0AMiPALVlJkbG9cSd6ULl6BwXPOaUtEqdBr3DYtFpYy4VQUm4wvDMTSoNuxYz5FJjJ7l_GBv0BNWkP4-MHE1btD', 'width': 6000}], 'place_id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'plus_code': {'compound_code': 'VQ79+3H Glasgow, UK', 'global_code': '9C7QVQ79+3H'}, 'rating': 4.7, 'reference': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'scope': 'GOOGLE', 'types': ['cemetery', 'tourist_attraction', 'point_of_interest', 'establishment'], 'user_ratings_total': 1025, 'vicinity': 'Castle Street, Glasgow'}}
+INFO 2025-01-13 16:32:24,207 schedule_service Cluster 2 has 3 places
+INFO 2025-01-13 16:32:24,207 schedule_service Cluster 2 has 3 places
+DEBUG 2025-01-13 16:32:24,208 schedule_service Cluster 2 first place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 63, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27zGrV2328kqzvBd6QLwDGKhqVO0CH2VzH7nRlP6uWPzyt1Kl7fwletFALliNl2K47nh66Wc_PtTn_J35HnfZ9OeLUjiqgOjF3aMZZ3pqqfnbNVvqhmd7Hqq7_BAK0t1tOkJyxmzEqptZiHWcC5z-5JvVinkE3cN1HGDxrVV43XoaKkR', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'bakery', 'cafe', 'store', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+DEBUG 2025-01-13 16:32:24,208 schedule_service Cluster 2 first place: {'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'name': 'Kitchen Glasgow', 'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'type': 'restaurant', 'visit_duration': 63, 'rating': 4.9, 'user_ratings_total': 315, 'price_level': 2, 'is_restaurant': True, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.851194, 'lng': -4.297392299999999}, 'viewport': {'northeast': {'lat': 55.85254227989271, 'lng': -4.296130770107277}, 'southwest': {'lat': 55.84984262010727, 'lng': -4.298830429892721}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 'icon_background_color': '#FF9E67', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet', 'name': 'Kitchen Glasgow', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/114605451827352749122">Gary robertson</a>'], 'photo_reference': 'AWYs27zGrV2328kqzvBd6QLwDGKhqVO0CH2VzH7nRlP6uWPzyt1Kl7fwletFALliNl2K47nh66Wc_PtTn_J35HnfZ9OeLUjiqgOjF3aMZZ3pqqfnbNVvqhmd7Hqq7_BAK0t1tOkJyxmzEqptZiHWcC5z-5JvVinkE3cN1HGDxrVV43XoaKkR', 'width': 4032}], 'place_id': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'plus_code': {'compound_code': 'VP23+F2 Glasgow', 'global_code': '9C7QVP23+F2'}, 'rating': 4.9, 'reference': 'ChIJGzLUjA5HiEgRo7v07zwUch4', 'scope': 'GOOGLE', 'types': ['restaurant', 'bakery', 'cafe', 'store', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 315, 'vicinity': '11 N Gower St, Glasgow'}}
+INFO 2025-01-13 16:32:24,211 schedule_service Cluster 3 has 2 places
+INFO 2025-01-13 16:32:24,211 schedule_service Cluster 3 has 2 places
+DEBUG 2025-01-13 16:32:24,212 schedule_service Cluster 3 first place: {'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'name': 'The Burrell Collection', 'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'type': 'museum', 'visit_duration': 216, 'rating': 4.7, 'user_ratings_total': 2311, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'viewport': {'northeast': {'lat': 55.83173768029149, 'lng': -4.306611819708498}, 'southwest': {'lat': 55.8290397197085, 'lng': -4.309309780291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png', 'icon_background_color': '#13B5C7', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet', 'name': 'The Burrell Collection', 'opening_hours': {'open_now': True}, 'photos': [{'height': 4032, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112100337761091720559">Ben You</a>'], 'photo_reference': 'AWYs27xJvM7lNie9ucjOpMjDXsK_q1wUnFKvkhaA9miDRtSmmUTFjiUVwrieTSV8zvLPYFXZ63ps6_YD36NoPyb5gepXfc_DV45iCw5E091gLPiZlfmHYoLkNfOUWUF5xqLmjIcPKanLWh3TXFKa9YlbjKiq7eCUIgX0NYJDwYUQbqPBuATw', 'width': 3024}], 'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'plus_code': {'compound_code': 'RMJR+9W Glasgow, UK', 'global_code': '9C7QRMJR+9W'}, 'rating': 4.7, 'reference': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'museum', 'point_of_interest', 'establishment'], 'user_ratings_total': 2311, 'vicinity': 'Pollok Country Park, 2060 Pollokshaws Road, Glasgow'}}
+DEBUG 2025-01-13 16:32:24,212 schedule_service Cluster 3 first place: {'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'name': 'The Burrell Collection', 'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'type': 'museum', 'visit_duration': 216, 'rating': 4.7, 'user_ratings_total': 2311, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'viewport': {'northeast': {'lat': 55.83173768029149, 'lng': -4.306611819708498}, 'southwest': {'lat': 55.8290397197085, 'lng': -4.309309780291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png', 'icon_background_color': '#13B5C7', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet', 'name': 'The Burrell Collection', 'opening_hours': {'open_now': True}, 'photos': [{'height': 4032, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112100337761091720559">Ben You</a>'], 'photo_reference': 'AWYs27xJvM7lNie9ucjOpMjDXsK_q1wUnFKvkhaA9miDRtSmmUTFjiUVwrieTSV8zvLPYFXZ63ps6_YD36NoPyb5gepXfc_DV45iCw5E091gLPiZlfmHYoLkNfOUWUF5xqLmjIcPKanLWh3TXFKa9YlbjKiq7eCUIgX0NYJDwYUQbqPBuATw', 'width': 3024}], 'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'plus_code': {'compound_code': 'RMJR+9W Glasgow, UK', 'global_code': '9C7QRMJR+9W'}, 'rating': 4.7, 'reference': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'museum', 'point_of_interest', 'establishment'], 'user_ratings_total': 2311, 'vicinity': 'Pollok Country Park, 2060 Pollokshaws Road, Glasgow'}}
+INFO 2025-01-13 16:32:24,213 schedule_service Processing day 0
+INFO 2025-01-13 16:32:24,213 schedule_service Processing day 0
+DEBUG 2025-01-13 16:32:24,214 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-13 16:32:24,214 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-13 16:32:24,215 schedule_service Day 0 distance matrix shape: (4, 4)
+INFO 2025-01-13 16:32:24,215 schedule_service Day 0 distance matrix shape: (4, 4)
+INFO 2025-01-13 16:32:24,216 schedule_service Optimizing route for day 0
+INFO 2025-01-13 16:32:24,216 schedule_service Optimizing route for day 0
+DEBUG 2025-01-13 16:32:24,216 routing Starting route optimization with 4 places
+DEBUG 2025-01-13 16:32:24,216 routing Starting route optimization with 4 places
+DEBUG 2025-01-13 16:32:24,216 routing Created place indices for 4 places
+DEBUG 2025-01-13 16:32:24,216 routing Created place indices for 4 places
+DEBUG 2025-01-13 16:32:24,219 routing Found 2 restaurants and 2 other places
+DEBUG 2025-01-13 16:32:24,219 routing Found 2 restaurants and 2 other places
+DEBUG 2025-01-13 16:32:24,220 routing Created cluster center
+DEBUG 2025-01-13 16:32:24,220 routing Created cluster center
+DEBUG 2025-01-13 16:32:24,220 routing Created 0 empty restaurants
+DEBUG 2025-01-13 16:32:24,220 routing Created 0 empty restaurants
+DEBUG 2025-01-13 16:32:24,220 routing Starting main loop with 2 places and 2 restaurants
+DEBUG 2025-01-13 16:32:24,220 routing Starting main loop with 2 places and 2 restaurants
+DEBUG 2025-01-13 16:32:24,220 routing Iteration 1: Current time: 09:00:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,220 routing Iteration 1: Current time: 09:00:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,220 routing Iteration 2: Current time: 10:37:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,220 routing Iteration 2: Current time: 10:37:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,220 routing Iteration 3: Current time: 12:17:17.084880, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,220 routing Iteration 3: Current time: 12:17:17.084880, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,220 routing Current time 12:17:17.084880, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 16:32:24,220 routing Current time 12:17:17.084880, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 16:32:24,220 routing Available restaurants: ['NARANJ Restaurant', 'Afrikana Restaurant Glasgow - Sauchiehall St']
+DEBUG 2025-01-13 16:32:24,220 routing Available restaurants: ['NARANJ Restaurant', 'Afrikana Restaurant Glasgow - Sauchiehall St']
+DEBUG 2025-01-13 16:32:24,220 routing Attempting to arrange lunch
+DEBUG 2025-01-13 16:32:24,220 routing Attempting to arrange lunch
+DEBUG 2025-01-13 16:32:24,227 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 16:32:24,227 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 16:32:24,228 routing Arranging restaurant: Afrikana Restaurant Glasgow - Sauchiehall St
+DEBUG 2025-01-13 16:32:24,228 routing Arranging restaurant: Afrikana Restaurant Glasgow - Sauchiehall St
+DEBUG 2025-01-13 16:32:24,228 routing Setting as lunch
+DEBUG 2025-01-13 16:32:24,228 routing Setting as lunch
+DEBUG 2025-01-13 16:32:24,228 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 16:32:24,228 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 16:32:24,228 routing Iteration 4: Current time: 13:28:53.876444, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,228 routing Iteration 4: Current time: 13:28:53.876444, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,228 routing Iteration 5: Current time: 13:28:53.876444, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,228 routing Iteration 5: Current time: 13:28:53.876444, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,228 routing Iteration 6: Current time: 13:28:53.876444, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,228 routing Iteration 6: Current time: 13:28:53.876444, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,228 routing Iteration 7: Current time: 13:28:53.876444, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,228 routing Iteration 7: Current time: 13:28:53.876444, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,228 routing Iteration 8: Current time: 13:28:53.876444, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,228 routing Iteration 8: Current time: 13:28:53.876444, Remaining places: 0, Available restaurants: 1
+WARNING 2025-01-13 16:32:24,228 routing Reached maximum iterations (8), breaking loop
+WARNING 2025-01-13 16:32:24,228 routing Reached maximum iterations (8), breaking loop
+INFO 2025-01-13 16:32:24,235 schedule_service Day 0 route optimized with score 334.73959444499025
+INFO 2025-01-13 16:32:24,235 schedule_service Day 0 route optimized with score 334.73959444499025
+DEBUG 2025-01-13 16:32:24,235 schedule_service Added restaurant Afrikana Restaurant Glasgow - Sauchiehall St to used list
+DEBUG 2025-01-13 16:32:24,235 schedule_service Added restaurant Afrikana Restaurant Glasgow - Sauchiehall St to used list
+INFO 2025-01-13 16:32:24,237 schedule_service Generated schedule for day 0 with 5 events
+INFO 2025-01-13 16:32:24,237 schedule_service Generated schedule for day 0 with 5 events
+INFO 2025-01-13 16:32:24,238 schedule_service Processing day 1
+INFO 2025-01-13 16:32:24,238 schedule_service Processing day 1
+DEBUG 2025-01-13 16:32:24,238 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-13 16:32:24,238 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-13 16:32:24,238 schedule_service Day 1 distance matrix shape: (2, 2)
+INFO 2025-01-13 16:32:24,238 schedule_service Day 1 distance matrix shape: (2, 2)
+INFO 2025-01-13 16:32:24,240 schedule_service Optimizing route for day 1
+INFO 2025-01-13 16:32:24,240 schedule_service Optimizing route for day 1
+DEBUG 2025-01-13 16:32:24,240 routing Starting route optimization with 2 places
+DEBUG 2025-01-13 16:32:24,240 routing Starting route optimization with 2 places
+DEBUG 2025-01-13 16:32:24,242 routing Created place indices for 2 places
+DEBUG 2025-01-13 16:32:24,242 routing Created place indices for 2 places
+DEBUG 2025-01-13 16:32:24,242 routing Found 1 restaurants and 1 other places
+DEBUG 2025-01-13 16:32:24,242 routing Found 1 restaurants and 1 other places
+DEBUG 2025-01-13 16:32:24,244 routing Created cluster center
+DEBUG 2025-01-13 16:32:24,244 routing Created cluster center
+DEBUG 2025-01-13 16:32:24,244 routing Created 1 empty restaurants
+DEBUG 2025-01-13 16:32:24,244 routing Created 1 empty restaurants
+DEBUG 2025-01-13 16:32:24,245 routing Starting distance matrix expansion
+DEBUG 2025-01-13 16:32:24,245 routing Starting distance matrix expansion
+DEBUG 2025-01-13 16:32:24,246 routing New matrix size will be 3x3
+DEBUG 2025-01-13 16:32:24,246 routing New matrix size will be 3x3
+DEBUG 2025-01-13 16:32:24,246 routing Copied original matrix
+DEBUG 2025-01-13 16:32:24,246 routing Copied original matrix
+DEBUG 2025-01-13 16:32:24,246 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 16:32:24,246 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 16:32:24,246 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,246 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,246 routing Iteration 2: Current time: 11:49:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,246 routing Iteration 2: Current time: 11:49:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,246 routing Current time 11:49:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 16:32:24,246 routing Current time 11:49:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 16:32:24,252 routing Available restaurants: ['NARANJ Restaurant', 'Dinner Break']
+DEBUG 2025-01-13 16:32:24,252 routing Available restaurants: ['NARANJ Restaurant', 'Dinner Break']
+DEBUG 2025-01-13 16:32:24,252 routing Attempting to arrange lunch
+DEBUG 2025-01-13 16:32:24,252 routing Attempting to arrange lunch
+DEBUG 2025-01-13 16:32:24,252 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 16:32:24,252 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 16:32:24,252 routing Arranging restaurant: NARANJ Restaurant
+DEBUG 2025-01-13 16:32:24,252 routing Arranging restaurant: NARANJ Restaurant
+DEBUG 2025-01-13 16:32:24,252 routing Setting as lunch
+DEBUG 2025-01-13 16:32:24,252 routing Setting as lunch
+DEBUG 2025-01-13 16:32:24,252 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 16:32:24,252 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 16:32:24,255 routing Iteration 3: Current time: 13:52:26.989606, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,255 routing Iteration 3: Current time: 13:52:26.989606, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,255 routing Iteration 4: Current time: 13:52:26.989606, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,255 routing Iteration 4: Current time: 13:52:26.989606, Remaining places: 0, Available restaurants: 1
+WARNING 2025-01-13 16:32:24,255 routing Reached maximum iterations (4), breaking loop
+WARNING 2025-01-13 16:32:24,255 routing Reached maximum iterations (4), breaking loop
+INFO 2025-01-13 16:32:24,257 schedule_service Day 1 route optimized with score 240.26955293156738
+INFO 2025-01-13 16:32:24,257 schedule_service Day 1 route optimized with score 240.26955293156738
+DEBUG 2025-01-13 16:32:24,257 schedule_service Added restaurant NARANJ Restaurant to used list
+DEBUG 2025-01-13 16:32:24,257 schedule_service Added restaurant NARANJ Restaurant to used list
+INFO 2025-01-13 16:32:24,257 schedule_service Generated schedule for day 1 with 3 events
+INFO 2025-01-13 16:32:24,257 schedule_service Generated schedule for day 1 with 3 events
+INFO 2025-01-13 16:32:24,260 schedule_service Processing day 2
+INFO 2025-01-13 16:32:24,260 schedule_service Processing day 2
+DEBUG 2025-01-13 16:32:24,260 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-13 16:32:24,260 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-13 16:32:24,260 schedule_service Day 2 distance matrix shape: (3, 3)
+INFO 2025-01-13 16:32:24,260 schedule_service Day 2 distance matrix shape: (3, 3)
+INFO 2025-01-13 16:32:24,260 schedule_service Optimizing route for day 2
+INFO 2025-01-13 16:32:24,260 schedule_service Optimizing route for day 2
+DEBUG 2025-01-13 16:32:24,260 routing Starting route optimization with 3 places
+DEBUG 2025-01-13 16:32:24,260 routing Starting route optimization with 3 places
+DEBUG 2025-01-13 16:32:24,260 routing Created place indices for 3 places
+DEBUG 2025-01-13 16:32:24,260 routing Created place indices for 3 places
+DEBUG 2025-01-13 16:32:24,260 routing Found 1 restaurants and 2 other places
+DEBUG 2025-01-13 16:32:24,260 routing Found 1 restaurants and 2 other places
+DEBUG 2025-01-13 16:32:24,260 routing Created cluster center
+DEBUG 2025-01-13 16:32:24,260 routing Created cluster center
+DEBUG 2025-01-13 16:32:24,268 routing Created 1 empty restaurants
+DEBUG 2025-01-13 16:32:24,268 routing Created 1 empty restaurants
+DEBUG 2025-01-13 16:32:24,268 routing Starting distance matrix expansion
+DEBUG 2025-01-13 16:32:24,268 routing Starting distance matrix expansion
+DEBUG 2025-01-13 16:32:24,268 routing New matrix size will be 4x4
+DEBUG 2025-01-13 16:32:24,268 routing New matrix size will be 4x4
+DEBUG 2025-01-13 16:32:24,268 routing Copied original matrix
+DEBUG 2025-01-13 16:32:24,268 routing Copied original matrix
+DEBUG 2025-01-13 16:32:24,271 routing Starting main loop with 2 places and 2 restaurants
+DEBUG 2025-01-13 16:32:24,271 routing Starting main loop with 2 places and 2 restaurants
+DEBUG 2025-01-13 16:32:24,271 routing Iteration 1: Current time: 09:00:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,271 routing Iteration 1: Current time: 09:00:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,271 routing Iteration 2: Current time: 12:50:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,271 routing Iteration 2: Current time: 12:50:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,271 routing Current time 12:50:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 16:32:24,271 routing Current time 12:50:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 16:32:24,271 routing Available restaurants: ['Kitchen Glasgow', 'Dinner Break']
+DEBUG 2025-01-13 16:32:24,271 routing Available restaurants: ['Kitchen Glasgow', 'Dinner Break']
+DEBUG 2025-01-13 16:32:24,271 routing Attempting to arrange lunch
+DEBUG 2025-01-13 16:32:24,271 routing Attempting to arrange lunch
+DEBUG 2025-01-13 16:32:24,276 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 16:32:24,276 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 16:32:24,276 routing Arranging restaurant: Kitchen Glasgow
+DEBUG 2025-01-13 16:32:24,276 routing Arranging restaurant: Kitchen Glasgow
+DEBUG 2025-01-13 16:32:24,276 routing Setting as lunch
+DEBUG 2025-01-13 16:32:24,276 routing Setting as lunch
+DEBUG 2025-01-13 16:32:24,276 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 16:32:24,276 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-13 16:32:24,276 routing Iteration 3: Current time: 14:29:57.705040, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,276 routing Iteration 3: Current time: 14:29:57.705040, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,276 routing Iteration 4: Current time: 17:55:46.584760, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,276 routing Iteration 4: Current time: 17:55:46.584760, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,276 routing Current time 17:55:46.584760, Lunch arranged: True, Dinner arranged: False
+DEBUG 2025-01-13 16:32:24,276 routing Current time 17:55:46.584760, Lunch arranged: True, Dinner arranged: False
+DEBUG 2025-01-13 16:32:24,276 routing Available restaurants: ['Dinner Break']
+DEBUG 2025-01-13 16:32:24,276 routing Available restaurants: ['Dinner Break']
+DEBUG 2025-01-13 16:32:24,284 routing Arranging restaurant: Dinner Break
+DEBUG 2025-01-13 16:32:24,284 routing Arranging restaurant: Dinner Break
+DEBUG 2025-01-13 16:32:24,285 routing Setting as dinner
+DEBUG 2025-01-13 16:32:24,285 routing Setting as dinner
+DEBUG 2025-01-13 16:32:24,285 routing Iteration 5: Current time: 19:15:46.584760, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,285 routing Iteration 5: Current time: 19:15:46.584760, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,285 routing Iteration 6: Current time: 19:15:46.584760, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-13 16:32:24,285 routing Iteration 6: Current time: 19:15:46.584760, Remaining places: 0, Available restaurants: 1
+WARNING 2025-01-13 16:32:24,287 routing Reached maximum iterations (6), breaking loop
+WARNING 2025-01-13 16:32:24,287 routing Reached maximum iterations (6), breaking loop
+INFO 2025-01-13 16:32:24,287 schedule_service Day 2 route optimized with score 441.2945435790481
+INFO 2025-01-13 16:32:24,287 schedule_service Day 2 route optimized with score 441.2945435790481
+DEBUG 2025-01-13 16:32:24,287 schedule_service Added restaurant Kitchen Glasgow to used list
+DEBUG 2025-01-13 16:32:24,287 schedule_service Added restaurant Kitchen Glasgow to used list
+INFO 2025-01-13 16:32:24,288 schedule_service Generated schedule for day 2 with 7 events
+INFO 2025-01-13 16:32:24,288 schedule_service Generated schedule for day 2 with 7 events
+INFO 2025-01-13 16:32:24,290 schedule_service Processing day 3
+INFO 2025-01-13 16:32:24,290 schedule_service Processing day 3
+DEBUG 2025-01-13 16:32:24,290 schedule_service Filtered out 1 used restaurants
+DEBUG 2025-01-13 16:32:24,290 schedule_service Filtered out 1 used restaurants
+INFO 2025-01-13 16:32:24,290 schedule_service Day 3 distance matrix shape: (1, 1)
+INFO 2025-01-13 16:32:24,290 schedule_service Day 3 distance matrix shape: (1, 1)
+INFO 2025-01-13 16:32:24,293 schedule_service Optimizing route for day 3
+INFO 2025-01-13 16:32:24,293 schedule_service Optimizing route for day 3
+DEBUG 2025-01-13 16:32:24,293 routing Starting route optimization with 1 places
+DEBUG 2025-01-13 16:32:24,293 routing Starting route optimization with 1 places
+DEBUG 2025-01-13 16:32:24,293 routing Created place indices for 1 places
+DEBUG 2025-01-13 16:32:24,293 routing Created place indices for 1 places
+DEBUG 2025-01-13 16:32:24,293 routing Found 0 restaurants and 1 other places
+DEBUG 2025-01-13 16:32:24,293 routing Found 0 restaurants and 1 other places
+DEBUG 2025-01-13 16:32:24,293 routing Created cluster center
+DEBUG 2025-01-13 16:32:24,293 routing Created cluster center
+DEBUG 2025-01-13 16:32:24,293 routing Created 2 empty restaurants
+DEBUG 2025-01-13 16:32:24,293 routing Created 2 empty restaurants
+DEBUG 2025-01-13 16:32:24,293 routing Starting distance matrix expansion
+DEBUG 2025-01-13 16:32:24,293 routing Starting distance matrix expansion
+DEBUG 2025-01-13 16:32:24,293 routing New matrix size will be 3x3
+DEBUG 2025-01-13 16:32:24,293 routing New matrix size will be 3x3
+DEBUG 2025-01-13 16:32:24,293 routing Copied original matrix
+DEBUG 2025-01-13 16:32:24,293 routing Copied original matrix
+DEBUG 2025-01-13 16:32:24,301 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 16:32:24,301 routing Starting main loop with 1 places and 2 restaurants
+DEBUG 2025-01-13 16:32:24,301 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,301 routing Iteration 1: Current time: 09:00:00, Remaining places: 1, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,301 routing Iteration 2: Current time: 12:36:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,301 routing Iteration 2: Current time: 12:36:00, Remaining places: 0, Available restaurants: 2
+DEBUG 2025-01-13 16:32:24,301 routing Current time 12:36:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 16:32:24,301 routing Current time 12:36:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-13 16:32:24,303 routing Available restaurants: ['Lunch Break', 'Dinner Break']
+DEBUG 2025-01-13 16:32:24,303 routing Available restaurants: ['Lunch Break', 'Dinner Break']
+DEBUG 2025-01-13 16:32:24,304 routing Attempting to arrange lunch
+DEBUG 2025-01-13 16:32:24,304 routing Attempting to arrange lunch
+DEBUG 2025-01-13 16:32:24,304 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 16:32:24,304 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-13 16:32:24,304 routing Arranging restaurant: Lunch Break
+DEBUG 2025-01-13 16:32:24,304 routing Arranging restaurant: Lunch Break
+DEBUG 2025-01-13 16:32:24,304 routing Setting as lunch
+DEBUG 2025-01-13 16:32:24,304 routing Setting as lunch
+WARNING 2025-01-13 16:32:24,307 routing Reached maximum iterations (2), breaking loop
+WARNING 2025-01-13 16:32:24,307 routing Reached maximum iterations (2), breaking loop
+INFO 2025-01-13 16:32:24,307 schedule_service Day 3 route optimized with score 190.88888888888889
+INFO 2025-01-13 16:32:24,307 schedule_service Day 3 route optimized with score 190.88888888888889
+INFO 2025-01-13 16:32:24,307 schedule_service Generated schedule for day 3 with 3 events
+INFO 2025-01-13 16:32:24,307 schedule_service Generated schedule for day 3 with 3 events
+INFO 2025-01-13 16:32:24,309 schedule_service Combined schedule has 18 total events
+INFO 2025-01-13 16:32:24,309 schedule_service Combined schedule has 18 total events
+INFO 2025-01-13 16:32:24,309 schedule_service Schedule metrics calculated
+INFO 2025-01-13 16:32:24,309 schedule_service Schedule metrics calculated
+INFO 2025-01-20 10:32:27,894 autoreload Watching for file changes with StatReloader

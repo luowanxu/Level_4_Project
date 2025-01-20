@@ -1,0 +1,200 @@
+INFO 2025-01-12 12:16:46,590 schedule_service Processing day 0
+INFO 2025-01-12 12:16:46,590 schedule_service Processing day 0
+INFO 2025-01-12 12:16:46,591 schedule_service Day 0 distance matrix shape: (6, 6)
+INFO 2025-01-12 12:16:46,591 schedule_service Day 0 distance matrix shape: (6, 6)
+INFO 2025-01-12 12:16:46,591 schedule_service Optimizing route for day 0
+INFO 2025-01-12 12:16:46,591 schedule_service Optimizing route for day 0
+DEBUG 2025-01-12 12:16:46,591 routing Starting route optimization with 6 places
+DEBUG 2025-01-12 12:16:46,591 routing Starting route optimization with 6 places
+DEBUG 2025-01-12 12:16:46,591 routing Created place indices for 6 places
+DEBUG 2025-01-12 12:16:46,591 routing Created place indices for 6 places
+DEBUG 2025-01-12 12:16:46,591 routing Found 1 restaurants and 5 other places
+DEBUG 2025-01-12 12:16:46,591 routing Found 1 restaurants and 5 other places
+DEBUG 2025-01-12 12:16:46,591 routing Created cluster center
+DEBUG 2025-01-12 12:16:46,591 routing Created cluster center
+DEBUG 2025-01-12 12:16:46,591 routing Created 1 empty restaurants
+DEBUG 2025-01-12 12:16:46,591 routing Created 1 empty restaurants
+DEBUG 2025-01-12 12:16:46,591 routing Starting distance matrix expansion
+DEBUG 2025-01-12 12:16:46,591 routing Starting distance matrix expansion
+DEBUG 2025-01-12 12:16:46,591 routing New matrix size will be 7x7
+DEBUG 2025-01-12 12:16:46,591 routing New matrix size will be 7x7
+DEBUG 2025-01-12 12:16:46,591 routing Copied original matrix
+DEBUG 2025-01-12 12:16:46,591 routing Copied original matrix
+DEBUG 2025-01-12 12:16:46,592 routing Starting main loop with 5 places and 2 restaurants
+DEBUG 2025-01-12 12:16:46,592 routing Starting main loop with 5 places and 2 restaurants
+DEBUG 2025-01-12 12:16:46,592 routing Iteration 1: Current time: 09:00:00, Remaining places: 5, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,592 routing Iteration 1: Current time: 09:00:00, Remaining places: 5, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,592 routing Iteration 2: Current time: 12:15:00, Remaining places: 4, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,592 routing Iteration 2: Current time: 12:15:00, Remaining places: 4, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,592 routing Current time 12:15:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-12 12:16:46,592 routing Current time 12:15:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-12 12:16:46,592 routing Available restaurants: ['NOLA Soul', 'Dinner Break']
+DEBUG 2025-01-12 12:16:46,592 routing Available restaurants: ['NOLA Soul', 'Dinner Break']
+DEBUG 2025-01-12 12:16:46,592 routing Attempting to arrange lunch
+DEBUG 2025-01-12 12:16:46,592 routing Attempting to arrange lunch
+DEBUG 2025-01-12 12:16:46,592 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-12 12:16:46,592 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-12 12:16:46,592 routing Arranging restaurant: NOLA Soul
+DEBUG 2025-01-12 12:16:46,592 routing Arranging restaurant: NOLA Soul
+DEBUG 2025-01-12 12:16:46,592 routing Setting as lunch
+DEBUG 2025-01-12 12:16:46,592 routing Setting as lunch
+DEBUG 2025-01-12 12:16:46,593 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-12 12:16:46,593 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 3: Current time: 14:24:05.036007, Remaining places: 4, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 3: Current time: 14:24:05.036007, Remaining places: 4, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 4: Current time: 17:35:59.283652, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 4: Current time: 17:35:59.283652, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Current time 17:35:59.283652, Lunch arranged: True, Dinner arranged: False
+DEBUG 2025-01-12 12:16:46,593 routing Current time 17:35:59.283652, Lunch arranged: True, Dinner arranged: False
+DEBUG 2025-01-12 12:16:46,593 routing Available restaurants: ['Dinner Break']
+DEBUG 2025-01-12 12:16:46,593 routing Available restaurants: ['Dinner Break']
+DEBUG 2025-01-12 12:16:46,593 routing Arranging restaurant: Dinner Break
+DEBUG 2025-01-12 12:16:46,593 routing Arranging restaurant: Dinner Break
+DEBUG 2025-01-12 12:16:46,593 routing Setting as dinner
+DEBUG 2025-01-12 12:16:46,593 routing Setting as dinner
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 5: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 5: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 6: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 6: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 7: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 7: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 8: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 8: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 9: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 9: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 10: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,593 routing Iteration 10: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,594 routing Iteration 11: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,594 routing Iteration 11: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,594 routing Iteration 12: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,594 routing Iteration 12: Current time: 19:51:37.503856, Remaining places: 3, Available restaurants: 1
+WARNING 2025-01-12 12:16:46,594 routing Reached maximum iterations (12), breaking loop
+WARNING 2025-01-12 12:16:46,594 routing Reached maximum iterations (12), breaking loop
+INFO 2025-01-12 12:16:46,594 schedule_service Day 0 route optimized with score 453.1589747315271
+INFO 2025-01-12 12:16:46,594 schedule_service Day 0 route optimized with score 453.1589747315271
+INFO 2025-01-12 12:16:46,594 schedule_service Generated schedule for day 0 with 7 events
+INFO 2025-01-12 12:16:46,594 schedule_service Generated schedule for day 0 with 7 events
+INFO 2025-01-12 12:16:46,594 schedule_service Processing day 1
+INFO 2025-01-12 12:16:46,594 schedule_service Processing day 1
+INFO 2025-01-12 12:16:46,594 schedule_service Day 1 distance matrix shape: (4, 4)
+INFO 2025-01-12 12:16:46,594 schedule_service Day 1 distance matrix shape: (4, 4)
+INFO 2025-01-12 12:16:46,594 schedule_service Optimizing route for day 1
+INFO 2025-01-12 12:16:46,594 schedule_service Optimizing route for day 1
+DEBUG 2025-01-12 12:16:46,594 routing Starting route optimization with 4 places
+DEBUG 2025-01-12 12:16:46,594 routing Starting route optimization with 4 places
+DEBUG 2025-01-12 12:16:46,595 routing Created place indices for 4 places
+DEBUG 2025-01-12 12:16:46,595 routing Created place indices for 4 places
+DEBUG 2025-01-12 12:16:46,595 routing Found 1 restaurants and 3 other places
+DEBUG 2025-01-12 12:16:46,595 routing Found 1 restaurants and 3 other places
+DEBUG 2025-01-12 12:16:46,595 routing Created cluster center
+DEBUG 2025-01-12 12:16:46,595 routing Created cluster center
+DEBUG 2025-01-12 12:16:46,595 routing Created 1 empty restaurants
+DEBUG 2025-01-12 12:16:46,595 routing Created 1 empty restaurants
+DEBUG 2025-01-12 12:16:46,595 routing Starting distance matrix expansion
+DEBUG 2025-01-12 12:16:46,595 routing Starting distance matrix expansion
+DEBUG 2025-01-12 12:16:46,595 routing New matrix size will be 5x5
+DEBUG 2025-01-12 12:16:46,595 routing New matrix size will be 5x5
+DEBUG 2025-01-12 12:16:46,595 routing Copied original matrix
+DEBUG 2025-01-12 12:16:46,595 routing Copied original matrix
+DEBUG 2025-01-12 12:16:46,595 routing Starting main loop with 3 places and 2 restaurants
+DEBUG 2025-01-12 12:16:46,595 routing Starting main loop with 3 places and 2 restaurants
+DEBUG 2025-01-12 12:16:46,595 routing Iteration 1: Current time: 09:00:00, Remaining places: 3, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,595 routing Iteration 1: Current time: 09:00:00, Remaining places: 3, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,596 routing Iteration 2: Current time: 11:24:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,596 routing Iteration 2: Current time: 11:24:00, Remaining places: 2, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,596 routing Current time 11:24:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-12 12:16:46,596 routing Current time 11:24:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-12 12:16:46,596 routing Available restaurants: ['Zeus Greek Restaurant & Takeaway', 'Dinner Break']
+DEBUG 2025-01-12 12:16:46,596 routing Available restaurants: ['Zeus Greek Restaurant & Takeaway', 'Dinner Break']
+DEBUG 2025-01-12 12:16:46,596 routing Attempting to arrange lunch
+DEBUG 2025-01-12 12:16:46,596 routing Attempting to arrange lunch
+DEBUG 2025-01-12 12:16:46,596 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-12 12:16:46,596 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-12 12:16:46,596 routing Arranging restaurant: Zeus Greek Restaurant & Takeaway
+DEBUG 2025-01-12 12:16:46,596 routing Arranging restaurant: Zeus Greek Restaurant & Takeaway
+DEBUG 2025-01-12 12:16:46,596 routing Setting as lunch
+DEBUG 2025-01-12 12:16:46,596 routing Setting as lunch
+DEBUG 2025-01-12 12:16:46,596 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-12 12:16:46,596 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-12 12:16:46,596 routing Iteration 3: Current time: 12:47:22.961100, Remaining places: 2, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,596 routing Iteration 3: Current time: 12:47:22.961100, Remaining places: 2, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,596 routing Iteration 4: Current time: 14:26:46.562669, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,596 routing Iteration 4: Current time: 14:26:46.562669, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,596 routing Iteration 5: Current time: 15:55:37.520163, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,596 routing Iteration 5: Current time: 15:55:37.520163, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,597 routing Iteration 6: Current time: 15:55:37.520163, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,597 routing Iteration 6: Current time: 15:55:37.520163, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,597 routing Iteration 7: Current time: 15:55:37.520163, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,597 routing Iteration 7: Current time: 15:55:37.520163, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,597 routing Iteration 8: Current time: 15:55:37.520163, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,597 routing Iteration 8: Current time: 15:55:37.520163, Remaining places: 0, Available restaurants: 1
+WARNING 2025-01-12 12:16:46,597 routing Reached maximum iterations (8), breaking loop
+WARNING 2025-01-12 12:16:46,597 routing Reached maximum iterations (8), breaking loop
+INFO 2025-01-12 12:16:46,597 schedule_service Day 1 route optimized with score 408.50023001277106
+INFO 2025-01-12 12:16:46,597 schedule_service Day 1 route optimized with score 408.50023001277106
+INFO 2025-01-12 12:16:46,597 schedule_service Generated schedule for day 1 with 7 events
+INFO 2025-01-12 12:16:46,597 schedule_service Generated schedule for day 1 with 7 events
+INFO 2025-01-12 12:16:46,597 schedule_service Processing day 2
+INFO 2025-01-12 12:16:46,597 schedule_service Processing day 2
+INFO 2025-01-12 12:16:46,598 schedule_service Day 2 distance matrix shape: (6, 6)
+INFO 2025-01-12 12:16:46,598 schedule_service Day 2 distance matrix shape: (6, 6)
+INFO 2025-01-12 12:16:46,598 schedule_service Optimizing route for day 2
+INFO 2025-01-12 12:16:46,598 schedule_service Optimizing route for day 2
+DEBUG 2025-01-12 12:16:46,598 routing Starting route optimization with 6 places
+DEBUG 2025-01-12 12:16:46,598 routing Starting route optimization with 6 places
+DEBUG 2025-01-12 12:16:46,598 routing Created place indices for 6 places
+DEBUG 2025-01-12 12:16:46,598 routing Created place indices for 6 places
+DEBUG 2025-01-12 12:16:46,598 routing Found 2 restaurants and 4 other places
+DEBUG 2025-01-12 12:16:46,598 routing Found 2 restaurants and 4 other places
+DEBUG 2025-01-12 12:16:46,598 routing Created cluster center
+DEBUG 2025-01-12 12:16:46,598 routing Created cluster center
+DEBUG 2025-01-12 12:16:46,598 routing Created 0 empty restaurants
+DEBUG 2025-01-12 12:16:46,598 routing Created 0 empty restaurants
+DEBUG 2025-01-12 12:16:46,598 routing Starting main loop with 4 places and 2 restaurants
+DEBUG 2025-01-12 12:16:46,598 routing Starting main loop with 4 places and 2 restaurants
+DEBUG 2025-01-12 12:16:46,599 routing Iteration 1: Current time: 09:00:00, Remaining places: 4, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,599 routing Iteration 1: Current time: 09:00:00, Remaining places: 4, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,599 routing Iteration 2: Current time: 11:07:00, Remaining places: 3, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,599 routing Iteration 2: Current time: 11:07:00, Remaining places: 3, Available restaurants: 2
+DEBUG 2025-01-12 12:16:46,599 routing Current time 11:07:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-12 12:16:46,599 routing Current time 11:07:00, Lunch arranged: False, Dinner arranged: False
+DEBUG 2025-01-12 12:16:46,599 routing Available restaurants: ['NOLA Soul', 'Table Twenty Eight']
+DEBUG 2025-01-12 12:16:46,599 routing Available restaurants: ['NOLA Soul', 'Table Twenty Eight']
+DEBUG 2025-01-12 12:16:46,599 routing Attempting to arrange lunch
+DEBUG 2025-01-12 12:16:46,599 routing Attempting to arrange lunch
+DEBUG 2025-01-12 12:16:46,599 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-12 12:16:46,599 routing Adding 2 restaurants as lunch candidates
+DEBUG 2025-01-12 12:16:46,599 routing Arranging restaurant: NOLA Soul
+DEBUG 2025-01-12 12:16:46,599 routing Arranging restaurant: NOLA Soul
+DEBUG 2025-01-12 12:16:46,599 routing Setting as lunch
+DEBUG 2025-01-12 12:16:46,599 routing Setting as lunch
+DEBUG 2025-01-12 12:16:46,599 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-12 12:16:46,599 routing Removed restaurant from available list. Count changed from 2 to 1
+DEBUG 2025-01-12 12:16:46,599 routing Iteration 3: Current time: 12:37:53.639357, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,599 routing Iteration 3: Current time: 12:37:53.639357, Remaining places: 3, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,599 routing Iteration 4: Current time: 14:20:50.875847, Remaining places: 2, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,599 routing Iteration 4: Current time: 14:20:50.875847, Remaining places: 2, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,600 routing Iteration 5: Current time: 16:05:39.136629, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,600 routing Iteration 5: Current time: 16:05:39.136629, Remaining places: 1, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,600 routing Iteration 6: Current time: 18:44:50.164450, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,600 routing Iteration 6: Current time: 18:44:50.164450, Remaining places: 0, Available restaurants: 1
+DEBUG 2025-01-12 12:16:46,600 routing Current time 18:44:50.164450, Lunch arranged: True, Dinner arranged: False
+DEBUG 2025-01-12 12:16:46,600 routing Current time 18:44:50.164450, Lunch arranged: True, Dinner arranged: False
+DEBUG 2025-01-12 12:16:46,600 routing Available restaurants: ['Table Twenty Eight']
+DEBUG 2025-01-12 12:16:46,600 routing Available restaurants: ['Table Twenty Eight']
+DEBUG 2025-01-12 12:16:46,600 routing Arranging restaurant: Table Twenty Eight
+DEBUG 2025-01-12 12:16:46,600 routing Arranging restaurant: Table Twenty Eight
+DEBUG 2025-01-12 12:16:46,600 routing Setting as dinner
+DEBUG 2025-01-12 12:16:46,600 routing Setting as dinner
+DEBUG 2025-01-12 12:16:46,600 routing Removed restaurant from available list. Count changed from 1 to 0
+DEBUG 2025-01-12 12:16:46,600 routing Removed restaurant from available list. Count changed from 1 to 0
+INFO 2025-01-12 12:16:46,600 schedule_service Day 2 route optimized with score 662.7398234619145
+INFO 2025-01-12 12:16:46,600 schedule_service Day 2 route optimized with score 662.7398234619145
+INFO 2025-01-12 12:16:46,601 schedule_service Generated schedule for day 2 with 11 events
+INFO 2025-01-12 12:16:46,601 schedule_service Generated schedule for day 2 with 11 events
+INFO 2025-01-12 12:16:46,601 schedule_service Combined schedule has 25 total events
+INFO 2025-01-12 12:16:46,601 schedule_service Combined schedule has 25 total events
+INFO 2025-01-12 12:16:46,601 schedule_service Schedule metrics calculated
+INFO 2025-01-12 12:16:46,601 schedule_service Schedule metrics calculated
+[12/Jan/2025 12:16:46] "POST /api/cluster-places/ HTTP/1.1" 200 20392
+

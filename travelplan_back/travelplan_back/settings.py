@@ -26,10 +26,7 @@ SECRET_KEY = "django-insecure-=4w7bwmyz*t21npae1z$&6+3ygki7!sfjj9=4a_uzxsiqszj0j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "luowan.pythonanywhere.com"
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -149,22 +146,35 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # 添加日志配置
+# settings.py
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',  # 将在项目根目录创建此文件
+            'formatter': 'verbose',
         },
     },
     'root': {
-        'handlers': ['console'],
-        'level': 'INFO',
+        'handlers': ['console', 'file'],
+        'level': 'DEBUG',
     },
     'loggers': {
-        'travelapp': {
-            'handlers': ['console'],
-            'level': 'INFO',
+        'travelplan': {  # 替换为您的应用名称
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
             'propagate': True,
         },
     },

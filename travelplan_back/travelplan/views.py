@@ -15,6 +15,12 @@ logger = logging.getLogger(__name__)
 # API configurations
 GEODB_HOST = "wft-geo-db.p.rapidapi.com"
 GOOGLE_MAPS_HOST = "google-map-places.p.rapidapi.com"
+TRUEWAY_MATRIX_HOST = "trueway-matrix.p.rapidapi.com"
+
+
+from .services import schedule_service  # 从 __init__.py 导入实例
+
+
 
 @csrf_exempt
 def search_city(request):
@@ -253,98 +259,139 @@ def get_city_places(request):
 
 
 
-@csrf_exempt
-def cluster_places(request):
 
 
-    def format_time(hour):
-        """格式化时间为12小时制"""
-        if hour == 0 or hour == 12:
-            return f"12:00 {'AM' if hour == 0 else 'PM'}"
-        elif hour > 12:
-            return f"{hour-12}:00 PM"
-        else:
-            return f"{hour}:00 AM"
+
+
+
+
+
+
+
+async def _fetch_places(places_data, lat, lng, place_type, category, headers):
+    """异步获取地点数据"""
+    try:
+        response = await sync_to_async(requests.get)(
+            f"https://{GOOGLE_MAPS_HOST}/maps/api/place/nearbysearch/json",
+            headers=headers,
+            params={
+                "location": f"{lat},{lng}",
+                "radius": "5000",
+                "type": place_type,
+                "language": "en"
+            }
+        )
         
+        if response.status_code == 200:
+            results = response.json().get('results', [])
+            places_data[category] = [
+                place for place in results
+                if place_type in place.get('types', [])
+            ]
+            logger.info(f"Found {len(places_data[category])} {category}")
+    except Exception as e:
+        logger.error(f"Error fetching {category}: {str(e)}")
 
 
+@csrf_exempt
+async def cluster_places(request):
+    """生成行程endpoint"""
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
             places = data.get('places', [])
             start_date = data.get('startDate')
             end_date = data.get('endDate')
+            transport_mode = data.get('transportMode', 'driving')
             
-            if not places:
-                return JsonResponse({'error': 'No places provided'}, status=400)
-                
-            if not start_date or not end_date:
-                return JsonResponse({'error': 'Date range is required'}, status=400)
-                
-            # 计算天数
-            start = datetime.strptime(start_date, '%Y-%m-%d')
-            end = datetime.strptime(end_date, '%Y-%m-%d')
-            num_days = (end - start).days + 1
-            
-            if len(places) < num_days:
+            if not all([places, start_date, end_date]):
                 return JsonResponse({
-                    'error': f'Cannot create {num_days} days itinerary with only {len(places)} places'
+                    'error': 'Missing required parameters'
                 }, status=400)
 
-            # 提取坐标进行聚类
-            coordinates = np.array([[
-                place['geometry']['location']['lat'],
-                place['geometry']['location']['lng']
-            ] for place in places])
-            
-            # 执行聚类
-            kmeans = KMeans(n_clusters=num_days, random_state=42)
-            clusters = kmeans.fit_predict(coordinates)
-            
-            # 组织结果
-            clustered_places = [[] for _ in range(num_days)]
-            for place, cluster_id in zip(places, clusters):
-                clustered_places[cluster_id].append(place)
-            
-            # 生成时间安排
-            START_HOUR = 9  # 上午9点开始
-            VISIT_DURATION = 2  # 每个地点2小时
-            
-            timeline_events = []
-            for day_index, day_places in enumerate(clustered_places):
-                current_hour = START_HOUR
-                for place_index, place in enumerate(day_places):
-                    if current_hour >= 20:  # 晚上8点后不再安排
-                        continue
-                        
-                    event = {
-                        'id': f'{day_index}-{place_index}',
-                        'title': place['name'],
-                        'startTime': format_time(current_hour),
-                        'endTime': format_time(current_hour + VISIT_DURATION),
-                        'day': day_index,
-                        'position': {
-                            'x': (current_hour - START_HOUR) * 120,  # 120是CELL_WIDTH
-                            'y': day_index * 80  # 80是CELL_HEIGHT
-                        },
-                        'duration': VISIT_DURATION,
-                        'place': place
-                    }
-                    
-                    timeline_events.append(event)
-                    current_hour += VISIT_DURATION
+            # 使用schedule_service生成行程
+            result = await schedule_service.generate_schedule(
+                places=places,
+                start_date=start_date,
+                end_date=end_date,
+                transport_mode=transport_mode
+            )
 
-            return JsonResponse({
-                'success': True,
-                'events': timeline_events,
-                'clusters': clustered_places
-            })
-            
+            if result['success']:
+                return JsonResponse(result)
+            else:
+                return JsonResponse(result, status=500)
+
         except Exception as e:
             logger.error(f"Error in cluster_places: {str(e)}")
             return JsonResponse({
                 'success': False,
                 'error': str(e)
             }, status=500)
-            
+
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+@csrf_exempt
+async def update_schedule(request):
+    """更新行程endpoint（用于手动模式）"""
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            events = data.get('events', [])
+            transport_mode = data.get('transportMode', 'driving')
+
+            if not events:
+                return JsonResponse({
+                    'error': 'No events provided'
+                }, status=400)
+
+            # 使用schedule_service更新行程
+            result = await schedule_service.update_schedule(
+                events=events,
+                transport_mode=transport_mode
+            )
+
+            if result['success']:
+                return JsonResponse(result)
+            else:
+                return JsonResponse(result, status=500)
+
+        except Exception as e:
+            logger.error(f"Error in update_schedule: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            }, status=500)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
+@csrf_exempt
+async def optimize_route(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            events = data.get('events', [])
+            transport_mode = data.get('transportMode', 'driving')
+
+            # 使用与cluster_places相同的逻辑重新生成最优日程
+            result = await schedule_service.generate_schedule(
+                places=[event['place'] for event in events if event.get('type') == 'place'],
+                start_date=data.get('startDate'),  # 需要从前端传入
+                end_date=data.get('endDate'),      # 需要从前端传入
+                transport_mode=transport_mode
+            )
+
+            if result['success']:
+                return JsonResponse(result)
+            else:
+                return JsonResponse(result, status=500)
+
+        except Exception as e:
+            logger.error(f"Error in optimize_route: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            }, status=500)
+
     return JsonResponse({'error': 'Invalid request method'}, status=405)

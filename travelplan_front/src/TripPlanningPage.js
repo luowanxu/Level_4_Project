@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Container,
@@ -16,9 +16,8 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  ToggleButtonGroup,  // 只需要导入一次
-  ToggleButton,       // 只需要导入一次
-  Fade
+  ToggleButtonGroup,
+  ToggleButton,
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import {
@@ -28,28 +27,26 @@ import {
   DirectionsCar,
   DirectionsTransit,
   EditCalendar as EditIcon,
-  Preview as PreviewIcon
+  Preview as PreviewIcon,
 } from '@mui/icons-material';
-import TimelineView from './TimelineView';
+import DraggableTimeline from './DraggableTimeline';
 import TimelinePreview from './TimelinePreview';
+import axios from 'axios';
 
 const TripPlanningPage = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const { selectedPlaces, previousPageData } = location.state || { selectedPlaces: [] };
-    const [events, setEvents] = useState([]);
-    const [viewMode, setViewMode] = useState('edit');
-    
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { selectedPlaces } = location.state || { selectedPlaces: [] };
+  const [events, setEvents] = useState([]);
+  const [viewMode, setViewMode] = useState('edit');
+  const [isManualMode, setIsManualMode] = useState(false);
 
-  // 状态管理
   const [tripName, setTripName] = useState('My Trip');
   const [peopleCount, setPeopleCount] = useState(1);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [transportMode, setTransportMode] = useState('walking');
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-
-  // 编辑对话框临时状态
   const [editValues, setEditValues] = useState({
     tripName,
     peopleCount,
@@ -57,60 +54,99 @@ const TripPlanningPage = () => {
     endDate,
     transportMode,
   });
+  const [scheduleStatus, setScheduleStatus] = useState(null);  // 添加这个状态
 
+  useEffect(() => {
+    const initializeTimeline = async () => {
+      if (!startDate || !endDate || !selectedPlaces?.length) return;
+    
+      try {
+        const response = await axios.post('/api/cluster-places/', {
+          places: selectedPlaces,
+          startDate: startDate.toISOString().split('T')[0],
+          endDate: endDate.toISOString().split('T')[0],
+          transportMode: transportMode
+        });
+    
+        // 更新状态，即使在失败的情况下也要处理 schedule_status
+        if (response.data.schedule_status) {
+          setScheduleStatus(response.data.schedule_status);
+        }
+    
+        if (response.data.success) {
+          setEvents(response.data.events);
+          setIsManualMode(false);
+        }
+      } catch (error) {
+        console.error('Failed to initialize timeline:', error);
+        // 设置一个默认的错误状态
+        setScheduleStatus({
+          is_reasonable: false,
+          warnings: [{
+            type: 'error',
+            message: 'Failed to generate schedule',
+            suggestion: 'Please try adjusting your selection or try again later'
+          }],
+          severity: 'severe'
+        });
+      }
+    };
 
-  const handleEventsUpdate = useCallback((newEvents) => {
-    setEvents(newEvents);
-  }, []);
+    initializeTimeline();
+  }, [startDate, endDate, selectedPlaces, transportMode]);
 
-  // 处理对话框打开
-  const handleEditClick = () => {
-    setEditValues({
-      tripName,
-      peopleCount,
-      startDate,
-      endDate,
-      transportMode,
-    });
-    setIsEditDialogOpen(true);
+  const handleModeChange = async (newManualMode) => {
+    if (!newManualMode) {  // 切换到自动模式
+      try {
+        // 使用与初始化相同的API重新生成日程
+        const response = await axios.post('/api/cluster-places/', {
+          places: selectedPlaces,
+          startDate: startDate.toISOString().split('T')[0],
+          endDate: endDate.toISOString().split('T')[0],
+          transportMode: transportMode
+        });
+  
+        if (response.data.success) {
+          setEvents(response.data.events);
+          if (response.data.schedule_status) {
+            setScheduleStatus(response.data.schedule_status);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to optimize route:', error);
+        setScheduleStatus({
+          is_reasonable: false,
+          warnings: [{
+            type: 'error',
+            message: 'Failed to optimize schedule',
+            suggestion: 'Please try again or remain in manual mode'
+          }],
+          severity: 'warning'
+        });
+      }
+    }
+    setIsManualMode(newManualMode);
   };
 
-  // 处理对话框保存
+  const handleEventsUpdate = (newEvents) => {
+    setEvents(newEvents);
+  };
+
   const handleSave = () => {
     setTripName(editValues.tripName);
     setPeopleCount(editValues.peopleCount);
-    // 确保日期是 Date 对象
-    setStartDate(editValues.startDate ? new Date(editValues.startDate) : null);
-    setEndDate(editValues.endDate ? new Date(editValues.endDate) : null);
+    setStartDate(editValues.startDate);
+    setEndDate(editValues.endDate);
     setTransportMode(editValues.transportMode);
     setIsEditDialogOpen(false);
   };
 
-  // 格式化日期范围显示
-  const getDateRangeText = () => {
-    if (!startDate || !endDate) return 'Dates not set';
-    return `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
-  };
-
-  // 获取交通方式显示文本
-  const getTransportText = () => {
-    const modes = {
-      walking: 'Walking',
-      transit: 'Public Transit',
-      driving: 'Driving',
-    };
-    return modes[transportMode] || '';
-  };
-
   return (
-    <Container maxWidth={false} sx={{ px: 3 }}> {/* 改为 false 以使用更多空间 */}
+    <Container maxWidth={false} sx={{ px: 3 }}>
       <Box sx={{ py: 4 }}>
-        {/* 头部区域 */}
+        {/* Header */}
         <Box display="flex" alignItems="flex-start" mb={4}>
-          <IconButton 
-            onClick={() => navigate(-1)} // 修改这里，使用 navigate(-1)
-            sx={{ mr: 2 }}
-          >
+          <IconButton onClick={() => navigate(-1)} sx={{ mr: 2 }}>
             <ArrowBack />
           </IconButton>
           
@@ -119,92 +155,81 @@ const TripPlanningPage = () => {
               <Typography variant="h4" component="h1" sx={{ flexGrow: 1 }}>
                 {tripName}
               </Typography>
-              <IconButton onClick={handleEditClick} size="small">
+              <IconButton onClick={() => setIsEditDialogOpen(true)} size="small">
                 <Edit />
               </IconButton>
             </Box>
             
             <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-              {peopleCount} {peopleCount === 1 ? 'person' : 'people'} • {getTransportText()}
+              {peopleCount} {peopleCount === 1 ? 'person' : 'people'} • 
+              {transportMode === 'walking' ? ' Walking' :
+               transportMode === 'driving' ? ' Driving' : ' Public Transit'}
             </Typography>
-            <Typography 
-              variant="subtitle1" 
-              color="text.secondary" 
-              sx={{ 
-                mt: 0.5,
-                fontSize: '0.9rem',  // 稍微小一点的字体
-                opacity: 0.9        // 稍微淡一点的颜色
-              }}
-            >
-              {getDateRangeText()}
+            <Typography variant="subtitle1" color="text.secondary">
+              {startDate && endDate ? 
+                `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}` : 
+                'Dates not set'}
             </Typography>
           </Box>
         </Box>
 
-        <Box sx={{ 
-          display: 'flex', 
-          justifyContent: 'center',
-          mb: 3 
-        }}>
+        {/* View Mode Toggle */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
           <ToggleButtonGroup
             value={viewMode}
             exclusive
-            onChange={(e, newMode) => {
-              if (newMode !== null) {
-                setViewMode(newMode);
-              }
-            }}
-            aria-label="view mode"
+            onChange={(e, newMode) => newMode && setViewMode(newMode)}
           >
-            <ToggleButton value="edit" aria-label="edit mode">
+            <ToggleButton value="edit">
               <EditIcon sx={{ mr: 1 }} />
               Edit
             </ToggleButton>
-            <ToggleButton value="preview" aria-label="preview mode">
+            <ToggleButton value="preview">
               <PreviewIcon sx={{ mr: 1 }} />
               Preview
             </ToggleButton>
           </ToggleButtonGroup>
         </Box>
 
-        {/* 主要内容区域 */}
+        {/* Main Content */}
         <Box sx={{ 
-        minHeight: 'calc(100vh - 200px)',
-        bgcolor: 'background.paper',
-        borderRadius: 2,
-        p: 2,
-        overflowX: 'auto'
-      }}>
-        {/* 使用独立的Box组件而不是Fade */}
-        <Box sx={{ display: viewMode === 'edit' ? 'block' : 'none' }}>
-          {startDate && endDate ? (
-            <TimelineView
-              startDate={startDate}
-              endDate={endDate}
-              selectedPlaces={selectedPlaces || []}
-              onEventsUpdate={handleEventsUpdate}
-            />
+          minHeight: 'calc(100vh - 200px)',
+          bgcolor: 'background.paper',
+          borderRadius: 2,
+          p: 2,
+          overflowX: 'auto'
+        }}>
+          {viewMode === 'edit' ? (
+            startDate && endDate ? (
+              <DraggableTimeline
+                startDate={startDate}
+                endDate={endDate}
+                events={events}
+                onEventsUpdate={handleEventsUpdate}
+                transportMode={transportMode}
+                isManualMode={isManualMode}
+                onModeChange={handleModeChange}
+                scheduleStatus={scheduleStatus} // 从后端响应中获取
+              />
+            ) : (
+              <Box sx={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <Typography color="text.secondary">
+                  Please set the date range to start planning
+                </Typography>
+              </Box>
+            )
           ) : (
-            <Box sx={{
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              <Typography color="text.secondary">
-                Please set the date range to start planning
-              </Typography>
-            </Box>
+            <TimelinePreview events={events} />
           )}
-        </Box>
-
-        <Box sx={{ display: viewMode === 'preview' ? 'block' : 'none' }}>
-          <TimelinePreview events={events} />
-        </Box>
         </Box>
       </Box>
 
-      {/* 编辑对话框 */}
+      {/* Edit Dialog */}
       <Dialog 
         open={isEditDialogOpen} 
         onClose={() => setIsEditDialogOpen(false)}
@@ -219,7 +244,10 @@ const TripPlanningPage = () => {
                 fullWidth
                 label="Trip Name"
                 value={editValues.tripName}
-                onChange={(e) => setEditValues(prev => ({ ...prev, tripName: e.target.value }))}
+                onChange={(e) => setEditValues(prev => ({ 
+                  ...prev, 
+                  tripName: e.target.value 
+                }))}
               />
             </Grid>
             
@@ -229,7 +257,10 @@ const TripPlanningPage = () => {
                 <Select
                   value={editValues.peopleCount}
                   label="Number of People"
-                  onChange={(e) => setEditValues(prev => ({ ...prev, peopleCount: e.target.value }))}
+                  onChange={(e) => setEditValues(prev => ({ 
+                    ...prev, 
+                    peopleCount: e.target.value 
+                  }))}
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
                     <MenuItem key={num} value={num}>
@@ -244,7 +275,10 @@ const TripPlanningPage = () => {
               <DatePicker
                 label="Start Date"
                 value={editValues.startDate}
-                onChange={(newValue) => setEditValues(prev => ({ ...prev, startDate: newValue }))}
+                onChange={(newValue) => setEditValues(prev => ({ 
+                  ...prev, 
+                  startDate: newValue 
+                }))}
                 sx={{ width: '100%' }}
               />
             </Grid>
@@ -253,7 +287,10 @@ const TripPlanningPage = () => {
               <DatePicker
                 label="End Date"
                 value={editValues.endDate}
-                onChange={(newValue) => setEditValues(prev => ({ ...prev, endDate: newValue }))}
+                onChange={(newValue) => setEditValues(prev => ({ 
+                  ...prev, 
+                  endDate: newValue 
+                }))}
                 sx={{ width: '100%' }}
               />
             </Grid>
@@ -265,11 +302,10 @@ const TripPlanningPage = () => {
               <ToggleButtonGroup
                 value={editValues.transportMode}
                 exclusive
-                onChange={(e, newMode) => {
-                  if (newMode !== null) {
-                    setEditValues(prev => ({ ...prev, transportMode: newMode }));
-                  }
-                }}
+                onChange={(e, newMode) => newMode && setEditValues(prev => ({ 
+                  ...prev, 
+                  transportMode: newMode 
+                }))}
                 fullWidth
               >
                 <ToggleButton value="walking">

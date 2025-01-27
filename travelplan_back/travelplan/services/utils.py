@@ -67,32 +67,27 @@ def calculate_distance_matrix(
     use_api: bool = False,
     cache: Optional[Dict] = None
 ) -> Tuple[np.ndarray, np.ndarray]:
-    """计算地点间的距离和时间矩阵"""
     try:
         n = len(places)
         distance_matrix = np.zeros((n, n))
         time_matrix = np.zeros((n, n))
         
-        # 计算距离和时间
         for i in range(n):
             for j in range(n):
                 if i != j:
-                    # 计算直线距离（米）
-                    dist = haversine_distance(
-                        places[i]['location']['lat'],
-                        places[i]['location']['lng'],
-                        places[j]['location']['lat'],
-                        places[j]['location']['lng']
-                    )
-                    
-                    # 转换为公里并计算时间
-                    distance_km = dist / 1000
-                    travel_time = calculate_travel_time(distance_km, transport_mode)
-                    
-                    # 存储结果
-                    distance_matrix[i][j] = dist
-                    time_matrix[i][j] = travel_time
-        
+                    # 如果涉及酒店点位，不计算时间
+                    if places[i].get('is_hotel', False) or places[j].get('is_hotel', False):
+                        time_matrix[i][j] = 0
+                    else:
+                        dist = haversine_distance(
+                            places[i]['location']['lat'],
+                            places[i]['location']['lng'],
+                            places[j]['location']['lat'],
+                            places[j]['location']['lng']
+                        )
+                        distance_matrix[i][j] = dist
+                        time_matrix[i][j] = calculate_travel_time(dist / 1000, transport_mode)
+                        
         return distance_matrix, time_matrix
         
     except Exception as e:
@@ -100,9 +95,7 @@ def calculate_distance_matrix(
         raise
 
 def validate_schedule(events: List[Dict]) -> bool:
-    """验证行程是否合法"""
     try:
-        # 按天分组
         events_by_day = {}
         for event in events:
             day = event['day']
@@ -110,27 +103,26 @@ def validate_schedule(events: List[Dict]) -> bool:
                 events_by_day[day] = []
             events_by_day[day].append(event)
         
-        # 检查每一天
         for day, day_events in events_by_day.items():
-            # 按开始时间排序
+            # 过滤掉酒店事件(空时间)再排序
+            time_events = [e for e in day_events if e['startTime'] and e['endTime']]
             sorted_events = sorted(
-                day_events,
+                time_events,
                 key=lambda x: datetime.strptime(x['startTime'], '%I:%M %p')
             )
             
-            # 检查时间冲突
             for i in range(len(sorted_events) - 1):
                 curr_end = datetime.strptime(sorted_events[i]['endTime'], '%I:%M %p')
                 next_start = datetime.strptime(sorted_events[i+1]['startTime'], '%I:%M %p')
                 if curr_end > next_start:
                     return False
             
-            # 检查第一个和最后一个事件的时间
-            first_start = datetime.strptime(sorted_events[0]['startTime'], '%I:%M %p').time()
-            last_end = datetime.strptime(sorted_events[-1]['endTime'], '%I:%M %p').time()
-            
-            if first_start < time(9, 0) or last_end > time(21, 0):
-                return False
+            if sorted_events:  # 只检查有时间的事件
+                first_start = datetime.strptime(sorted_events[0]['startTime'], '%I:%M %p').time()
+                last_end = datetime.strptime(sorted_events[-1]['endTime'], '%I:%M %p').time()
+                
+                if first_start < time(9, 0) or last_end > time(21, 0):
+                    return False
         
         return True
         

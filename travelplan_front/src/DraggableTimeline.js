@@ -205,11 +205,12 @@ const EventDialog = ({ event, open, onClose, onSave, isManualMode }) => {
       <DialogContent sx={{ mt: 2 }}>
         <Grid container spacing={3}>
           {/* 时间信息 */}
-          <Grid item xs={12}>
-            <Paper elevation={0} sx={{ p: 2, bgcolor: 'grey.50' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <AccessTime sx={{ mr: 1, color: 'text.secondary' }} />
-                {isEditing ? (
+          {event.startTime && event.endTime && (
+            <Grid item xs={12}>
+              <Paper elevation={0} sx={{ p: 2, bgcolor: 'grey.50' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <AccessTime sx={{ mr: 1, color: 'text.secondary' }} />
+                  {isEditing ? (
                   <Grid container spacing={2}>
                     <Grid item xs={6}>
                       <TextField
@@ -242,6 +243,7 @@ const EventDialog = ({ event, open, onClose, onSave, isManualMode }) => {
               </Box>
             </Paper>
           </Grid>
+          )}
 
           {/* 地点信息 */}
           {event.place && (
@@ -417,12 +419,15 @@ const DraggableTimeline = ({
                                   }}
                                 >
                                   <Typography variant="h6">{event.title}</Typography>
-                                  <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                                    <AccessTime sx={{ mr: 1 }} />
-                                    <Typography>
-                                      {event.startTime} - {event.endTime}
-                                    </Typography>
-                                  </Box>
+                                  {/* 仅当时间不为空时显示时间信息 */}
+                                  {event.startTime && event.endTime && (
+                                    <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+                                      <AccessTime sx={{ mr: 1 }} />
+                                      <Typography>
+                                        {event.startTime} - {event.endTime}
+                                      </Typography>
+                                    </Box>
+                                  )}
                                   {event.place?.vicinity && (
                                     <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
                                       <Place sx={{ mr: 1 }} />

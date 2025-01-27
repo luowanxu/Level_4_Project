@@ -43,17 +43,18 @@ class ScheduleService:
                 }
     
             # 2. 预处理地点数据
-            processed_places = preprocess_places(places)
-            if not processed_places:
+            # 2. 预处理地点数据
+            processed_places, hotel = preprocess_places(places)
+            if not processed_places or not hotel:
                 return {
                     'success': False,
-                    'error': 'No valid places after preprocessing',
+                    'error': 'No valid places or hotel after preprocessing',
                     'schedule_status': {
                         'is_reasonable': False,
                         'warnings': [{
                             'type': 'error',
-                            'message': 'No valid places found after processing',
-                            'suggestion': 'Please check your place selection'
+                            'message': 'No valid places or missing hotel',
+                            'suggestion': 'Please ensure you have selected one hotel'
                         }],
                         'severity': 'severe'
                     }
@@ -85,8 +86,10 @@ class ScheduleService:
     
             # 4. 继续现有的处理逻辑...
             # 获取距离矩阵
+            # 获取包含酒店的距离矩阵
+            all_places = [hotel] + processed_places + [hotel]
             distance_matrix, time_matrix = calculate_distance_matrix(
-                processed_places,
+                all_places,
                 transport_mode,
                 use_api=False
             )
@@ -135,6 +138,7 @@ class ScheduleService:
                 try:
                     optimized_route, score = optimize_day_route(
                         filtered_cluster,
+                        hotel,
                         day_distance_matrix,
                         transport_mode
                     )
@@ -223,10 +227,21 @@ class ScheduleService:
                 'warnings': [],
                 'severity': 'normal'  # normal/warning/severe
             }
+
+            # 过滤掉酒店事件再进行检查
+            non_hotel_events = [event for event in combined_schedule if event.get('type') == 'place' and not event.get('place', {}).get('is_hotel', False)]
     
             # 1. 检查空天数（只有虚拟餐厅的天数）
-            empty_days = sum(1 for cluster in clusters if 
-                            all(place.get('is_empty', False) for place in cluster))
+            empty_days = sum(1 for cluster in clusters if all(place.get('is_empty', False) for place in cluster))
+        
+            # 统计时过滤掉酒店
+            scheduled_place_ids = set()
+            for event in non_hotel_events:
+                if not event.get('place', {}).get('is_empty', False):
+                    place_id = event.get('place', {}).get('place_id')
+                    if place_id:
+                        scheduled_place_ids.add(place_id)
+
             if empty_days > 0:
                 schedule_status['warnings'].append({
                     'type': 'empty_days',
@@ -263,10 +278,13 @@ class ScheduleService:
                 last_event = next(
                     (event for event in reversed(combined_schedule) 
                     if event.get('type') == 'place' and 
+                    not event.get('place', {}).get('is_hotel', False) and  # 排除酒店
+                    event.get('endTime') and  # 确保有结束时间
                     event.get('day') == clusters.index(day_events)),
                     None
                 )
-                if last_event:
+                
+                if last_event and last_event['endTime']:  # 确保有结束时间
                     end_time = datetime.strptime(last_event['endTime'], '%I:%M %p').time()
                     if end_time > PlaceConstraints.DAY_CONSTRAINTS['end']:
                         days_over_time += 1
@@ -280,14 +298,14 @@ class ScheduleService:
                 schedule_status['severity'] = 'severe'
     
             return schedule_status
-    
+
         except Exception as e:
             logger.error(f"Error in check_schedule_reasonability: {str(e)}")
             return {
                 'is_reasonable': False,
                 'warnings': [{
                     'type': 'error',
-                    'message': 'An error occurred while checking schedule reasonability.',
+                    'message': str(e),
                     'suggestion': 'Please try again or contact support if the problem persists.'
                 }],
                 'severity': 'severe'

@@ -1,7 +1,7 @@
 # services/clustering.py
 from datetime import datetime, time, timedelta
 from math import ceil
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any, Optional, Tuple
 import numpy as np
 from scipy.cluster.hierarchy import linkage, fcluster
 from scipy.spatial.distance import pdist, squareform
@@ -149,18 +149,38 @@ def calculate_time_score(t: time, window: Dict[str, time]) -> float:
     diff = abs(current_minutes - optimal_minutes)
     return 1 - (diff / max_diff)
 
-def preprocess_places(places: List[Dict[Any, Any]]) -> List[Dict]:
-    """预处理地点数据"""
+def preprocess_places(places: List[Dict[Any, Any]]) -> Tuple[List[Dict], Optional[Dict]]:
+    """预处理地点数据，返回(普通地点列表, 酒店地点)"""
     try:
         processed_places = []
+        hotel = None
         
         for place in places:
             if not all(key in place for key in ['geometry', 'types', 'name']):
                 logger.warning(f"Skipping place {place.get('name', 'Unknown')}: Missing required fields")
                 continue
             
-            # 确定地点类型
             types = place.get('types', [])
+            
+            # 识别酒店
+            if 'lodging' in types or 'hotel' in types:
+                if hotel is None:  # 只处理第一个酒店
+                    hotel = {
+                        'place_id': place.get('place_id', 'hotel'),
+                        'id': place.get('place_id', 'hotel'),
+                        'name': place['name'],
+                        'location': {
+                            'lat': place['geometry']['location']['lat'],
+                            'lng': place['geometry']['location']['lng']
+                        },
+                        'type': 'hotel',
+                        'visit_duration': 0,  # 酒店作为起终点不计时间
+                        'is_hotel': True,
+                        'original_data': place
+                    }
+                continue
+            
+            # 其他地点处理保持不变...
             place_type = (
                 'restaurant' if 'restaurant' in types
                 else 'museum' if 'museum' in types
@@ -205,7 +225,7 @@ def preprocess_places(places: List[Dict[Any, Any]]) -> List[Dict]:
         if not processed_places:
             raise ValueError("No valid places after preprocessing")
         
-        return processed_places
+        return processed_places, hotel
         
     except Exception as e:
         logger.error(f"Error in preprocess_places: {str(e)}")

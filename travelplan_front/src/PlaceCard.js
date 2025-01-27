@@ -22,7 +22,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import ParkIcon from '@mui/icons-material/Park';
 import PlaceDetailDialog from './PlaceDetailDialog';
 
-const PlaceCard = ({ place, type, onSelect, isSelected }) => {
+const PlaceCard = ({ place, type, onSelect, isSelected, disableAdd }) => {
   const [detailOpen, setDetailOpen] = useState(false);
 
   const getIconProps = () => {
@@ -83,6 +83,7 @@ const PlaceCard = ({ place, type, onSelect, isSelected }) => {
         <IconButton
           onClick={handleClick}
           className="add-button"
+          disabled={disableAdd}
           sx={{
             position: 'absolute',
             top: 8,
@@ -90,7 +91,11 @@ const PlaceCard = ({ place, type, onSelect, isSelected }) => {
             zIndex: 1,
             backgroundColor: 'white',
             '&:hover': {
-              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              backgroundColor: !disableAdd ? 'rgba(255, 255, 255, 0.9)' : 'white',
+            },
+            '&.Mui-disabled': {
+              backgroundColor: 'rgba(0, 0, 0, 0.12)',
+              color: 'rgba(0, 0, 0, 0.26)'
             }
           }}
         >

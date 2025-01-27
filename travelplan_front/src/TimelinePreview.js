@@ -1,223 +1,255 @@
-// TimelinePreview.js
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import {
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineConnector,
+  TimelineContent,
+  TimelineOppositeContent,
+  TimelineDot
+} from '@mui/lab';
 import {
   Box,
-  Paper,
   Typography,
-  Avatar,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   Chip,
+  Card,
+  CardContent,
+  LinearProgress,
+  IconButton,
   Tooltip,
-  IconButton
 } from '@mui/material';
 import {
-  AccessTime as TimeIcon,
-  Place as PlaceIcon,
-  NavigateNext as NextIcon,
+  ExpandMore,
+  Restaurant,
+  Hotel,
+  Attractions,
+  Map,
+  Share,
+  SaveAlt,
+  DirectionsWalk,
+  DirectionsCar,
+  DirectionsTransit,
 } from '@mui/icons-material';
 
 const TimelinePreview = ({ events }) => {
-    // 按天分组并排序事件
-    const eventsByDay = events.reduce((acc, event) => {
-      const day = event.day;
-      if (!acc[day]) {
-        acc[day] = [];
+  console.log('TimelinePreview transit events:', events.filter(e => e.type === 'transit'));
+  const [expanded, setExpanded] = useState(false);
+  
+  const getEventIcon = (event) => {
+    if (event.type === 'transit') {
+      switch (event.mode) {  // 改为 mode
+        case 'walking':
+          return <DirectionsWalk />;
+        case 'driving':
+          return <DirectionsCar />;
+        case 'transit':
+          return <DirectionsTransit />;
+        default:
+          return <DirectionsWalk />;
       }
-      acc[day].push(event);
-      return acc;
-    }, {});
-
-
-    const getTypeStyles = (place) => {
-        const type = place?.types?.includes('lodging') ? 'hotel' 
-                   : place?.types?.includes('tourist_attraction') ? 'attraction'
-                   : place?.types?.includes('restaurant') ? 'restaurant'
-                   : 'default';
-      
-        switch (type) {
-          case 'restaurant':
-            return {
-              backgroundColor: '#FF9800',
-              hoverColor: '#F57C00',
-              dialogColor: '#FFB74D'
-            };
-          case 'attraction':
-            return {
-              backgroundColor: '#4CAF50',
-              hoverColor: '#388E3C',
-              dialogColor: '#81C784'
-            };
-          case 'hotel':
-            return {
-              backgroundColor: '#2196F3',
-              hoverColor: '#1976D2',
-              dialogColor: '#64B5F6'
-            };
-          default:
-            return {
-              backgroundColor: '#9C27B0',
-              hoverColor: '#7B1FA2',
-              dialogColor: '#BA68C8'
-            };
-        }
-      };
-
-
-
-    Object.keys(eventsByDay).forEach(day => {
-        eventsByDay[day].sort((a, b) => {
-          // 将时间转换为24小时制进行比较
-          const getHour = (timeStr) => {
-            const [time, period] = timeStr.split(' ');
-            let [hour] = time.split(':').map(Number);
-            if (period === 'PM' && hour !== 12) hour += 12;
-            if (period === 'AM' && hour === 12) hour = 0;
-            return hour;
-          };
+    }
     
-          const aHour = getHour(a.startTime);
-          const bHour = getHour(b.startTime);
-          return aHour - bHour;
-        });
+    if (!event.place?.types) return <Attractions />;
+    if (event.place.types.includes('lodging')) return <Hotel />;
+    if (event.place.types.includes('restaurant')) return <Restaurant />;
+    if (event.place.types.includes('tourist_attraction')) return <Attractions />;
+    return <Attractions />;
+  };
+
+  const getEventColor = (event) => {
+    if (event.type === 'transit') return 'grey';  // 改为 'grey' 替代 'default'
+    if (!event.place?.types) return 'secondary';
+    if (event.place.types.includes('lodging')) return 'info';
+    if (event.place.types.includes('restaurant')) return 'warning';
+    if (event.place.types.includes('tourist_attraction')) return 'success';
+    return 'secondary';
+  };
+
+  const handleExportCalendar = async () => {
+    try {
+      const response = await axios.post('/api/export-calendar/', { events }, {
+        responseType: 'blob'
       });
+      
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'trip-schedule.ics');
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error('Failed to export calendar:', error);
+    }
+  };
 
+  const eventsByDay = events.reduce((acc, event) => {
+    const day = event.day;
+    if (!acc[day]) acc[day] = [];
+    acc[day].push(event);
+    return acc;
+  }, {});
 
+  const calculateDayProgress = (events) => {
+    const dayStart = 8;
+    const dayEnd = 22;
+    const totalHours = dayEnd - dayStart;
+    let usedHours = 0;
 
-      return (
-        <Box sx={{ 
-          width: '100%',
-          overflowX: 'auto',
-          py: 4
-        }}>
-          {Object.entries(eventsByDay).map(([day, dayEvents], dayIndex) => (
-        <Box
-          key={day}
-          sx={{
-            mb: 4,
-            position: 'relative'
-          }}
-        >
-          <Typography 
-            variant="h6" 
-            sx={{ 
-              mb: 2,
-              color: 'primary.main',
-              fontWeight: 'bold'
-            }}
-          >
-            Day {Number(day) + 1}
-          </Typography>
+    events.forEach(event => {
+      const [startHour] = event.startTime.split(':');
+      const [endHour] = event.endTime.split(':');
+      usedHours += endHour - startHour;
+    });
 
-          <Box sx={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            position: 'relative',
-            '&::before': {
-              content: '""',
-              position: 'absolute',
-              left: '24px',
-              top: 0,
-              bottom: 0,
-              width: '2px',
-              bgcolor: 'primary.light',
-              zIndex: 0
-            }
-          }}>
-            {dayEvents.map((event, index) => (
-              <Box
-                key={event.id}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  mb: 2,
-                  flex: 1,
-                  position: 'relative'
-                }}
-              >
-                <Avatar
-                  sx={{
-                    bgcolor: 'primary.main',
-                    width: 50,
-                    height: 50,
-                    mr: 2,
-                    zIndex: 1
-                  }}
-                >
-                  {event.startTime.split(':')[0]}
-                </Avatar>
+    return (usedHours / totalHours) * 100;
+  };
 
-                <Paper
-                  elevation={2}
-                  sx={{
-                    p: 2,
-                    flex: 1,
-                    borderRadius: 2,
-                    position: 'relative',
-                    bgcolor: `${getTypeStyles(event.place).backgroundColor}15`, // 添加半透明背景色
-                    borderLeft: `4px solid ${getTypeStyles(event.place).backgroundColor}`, // 添加左侧色条
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      left: -10,
-                      top: 20,
-                      width: 20,
-                      height: 20,
-                      bgcolor: 'background.paper',
-                      transform: 'rotate(45deg)',
-                      zIndex: 0
-                    },
-                    // 添加hover效果
-                    '&:hover': {
-                      bgcolor: `${getTypeStyles(event.place).backgroundColor}25`,
-                      transition: 'background-color 0.3s ease'
-                    }
-                  }}
-                >
-                  <Typography variant="h6" gutterBottom>
-                    {event.title}
-                  </Typography>
-                  
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    <TimeIcon sx={{ fontSize: 16, mr: 1, color: 'text.secondary' }} />
-                    <Typography variant="body2" color="text.secondary">
-                      {event.startTime} - {event.endTime}
-                    </Typography>
-                  </Box>
-
-                  {event.place && event.place.vicinity && (
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <PlaceIcon sx={{ fontSize: 16, mr: 1, color: 'text.secondary' }} />
-                      <Typography variant="body2" color="text.secondary">
-                        {event.place.vicinity}
-                      </Typography>
-                    </Box>
-                  )}
-
-                  {event.place && event.place.rating && (
-                    <Box sx={{ mt: 1 }}>
-                      <Chip 
-                        size="small"
-                        label={`Rating: ${event.place.rating}`}
-                        color="primary"
-                        variant="outlined"
-                      />
-                    </Box>
-                  )}
-                </Paper>
-
-                {index < dayEvents.length - 1 && (
-                  <Box sx={{ 
-                    position: 'absolute',
-                    left: 24,
-                    bottom: -30,
-                    zIndex: 2
-                  }}>
-                    <NextIcon color="primary" />
-                  </Box>
-                )}
-              </Box>
-            ))}
+  const getTransitModeName = (mode) => {
+    switch (mode) {
+      case 'walking':
+        return 'Walking';
+      case 'driving':
+        return 'Driving';
+      case 'transit':
+        return 'Public Transit';
+      default:
+        return 'Transit';
+    }
+  };
+  
+  const renderTransitContent = (event) => (
+    <Card 
+      variant="outlined"
+      sx={{ 
+        bgcolor: 'grey.100',
+        border: '1px dashed grey'
+      }}
+    >
+      <CardContent>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          {getEventIcon(event)}
+          <Box>
+            <Typography variant="subtitle1">
+              {getTransitModeName(event.mode)}  {/* 改为 mode */}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Duration: {Math.round(event.duration)} minutes
+            </Typography>
           </Box>
         </Box>
+      </CardContent>
+    </Card>
+  );
+
+  const renderEventContent = (event) => (
+    <Card 
+      variant="outlined"
+      sx={{ 
+        bgcolor: (theme) => `${theme.palette[getEventColor(event)].light}15`,
+        backdropFilter: 'blur(8px)',
+        border: (theme) => `1px solid ${theme.palette[getEventColor(event)].main}30`
+      }}
+    >
+      <CardContent>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <Typography variant="h6" gutterBottom>
+            {event.title}
+          </Typography>
+        </Box>
+
+        {event.place?.vicinity && (
+          <Typography variant="body2" color="text.secondary" gutterBottom>
+            {event.place.vicinity}
+          </Typography>
+        )}
+
+        {event.place?.rating && (
+          <Box sx={{ mt: 1 }}>
+            <Chip 
+              size="small"
+              label={`Rating: ${event.place.rating}`}
+              color={getEventColor(event)}
+              variant="outlined"
+            />
+          </Box>
+        )}
+      </CardContent>
+    </Card>
+  );
+
+  return (
+    <Box>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+        <Tooltip title="View on Map">
+          <IconButton><Map /></IconButton>
+        </Tooltip>
+        <Tooltip title="Share Itinerary">
+          <IconButton><Share /></IconButton>
+        </Tooltip>
+        <Tooltip title="Save as iCal">
+          <IconButton onClick={handleExportCalendar}><SaveAlt /></IconButton>
+        </Tooltip>
+      </Box>
+
+      {Object.entries(eventsByDay).map(([day, dayEvents]) => (
+        <Accordion 
+          key={day}
+          expanded={expanded === `day${day}`}
+          onChange={() => setExpanded(expanded === `day${day}` ? false : `day${day}`)}
+        >
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Box sx={{ width: '100%' }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+                <Typography variant="h6">Day {Number(day) + 1}</Typography>
+                <Chip 
+                  label={`${dayEvents.filter(event => event.place?.types).length} Activities`}
+                  size="small"
+                  color="primary"
+                />
+              </Box>
+              <LinearProgress 
+                variant="determinate" 
+                value={calculateDayProgress(dayEvents)}
+                sx={{ height: 8, borderRadius: 4 }}
+              />
+            </Box>
+          </AccordionSummary>
+
+          <AccordionDetails>
+            <Timeline position="alternate">
+              {dayEvents.map((event, index) => (
+                <TimelineItem key={event.id}>
+                  <TimelineOppositeContent>
+                    <Typography variant="h6" color="text.secondary">
+                      {event.startTime}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {event.endTime}
+                    </Typography>
+                  </TimelineOppositeContent>
+                  
+                  <TimelineSeparator>
+                    <TimelineDot color={getEventColor(event)}>
+                      {getEventIcon(event)}
+                    </TimelineDot>
+                    {index < dayEvents.length - 1 && <TimelineConnector />}
+                  </TimelineSeparator>
+                  
+                  <TimelineContent>
+                    {event.type === 'transit' ? 
+                      renderTransitContent(event) : 
+                      renderEventContent(event)}
+                  </TimelineContent>
+                </TimelineItem>
+              ))}
+            </Timeline>
+          </AccordionDetails>
+        </Accordion>
       ))}
     </Box>
   );

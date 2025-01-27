@@ -75,10 +75,14 @@ def _calculate_time_score(t: time, window: Dict[str, time]) -> float:
 
 # 在optimize_day_route函数的开始部分
 
-def optimize_day_route(places: List[Dict], distance_matrix: np.ndarray, transport_mode: str) -> Tuple[List[Dict], float]:
+def optimize_day_route(places: List[Dict], hotel: Dict, distance_matrix: np.ndarray, transport_mode: str) -> Tuple[List[Dict], float]:
     try:
         if not places:
             return [], 0.0
+        
+        # 创建包含酒店的完整地点列表
+        all_places = [hotel] + places + [hotel]  # 起点和终点都是酒店
+        all_indices = {p['place_id']: i for i, p in enumerate(all_places)}
             
         logger.debug(f"Starting route optimization with {len(places)} places")
         
@@ -147,6 +151,12 @@ def optimize_day_route(places: List[Dict], distance_matrix: np.ndarray, transpor
             datetime.today(),
             PlaceConstraints.DAY_CONSTRAINTS['end']
         )
+
+        arranged_places.append({
+            'place': hotel,
+            'start_time': current_time.time(),
+            'end_time': current_time.time()  # 酒店不计时间
+        })
 
         # [修改] 主循环
         while current_time < end_time:
@@ -252,6 +262,12 @@ def optimize_day_route(places: List[Dict], distance_matrix: np.ndarray, transpor
             else:
                 # 如果没有合适的地点，时间前进15分钟
                 current_time += timedelta(minutes=15)
+
+        arranged_places.append({
+            'place': hotel,
+            'start_time': current_time.time(),
+            'end_time': current_time.time()
+        })
         
         # 确保安排了所有必要的餐食
         if not lunch_arranged and available_restaurants:
@@ -301,29 +317,55 @@ def generate_day_schedule(
     transport_mode: str,
     day_index: int
 ) -> List[Dict]:
-    """生成每日详细行程"""
     try:
         schedule = []
-        current_time = None  # 用于追踪实际的当前时间
         
+        # 初始化时间为9:00
+        current_time = datetime.combine(
+            datetime.today(),
+            PlaceConstraints.DAY_CONSTRAINTS['start']
+        )
+
         for i, event in enumerate(route):
-            logger.debug(f"Processing event {i} for day {day_index}")
-            logger.debug(f"Event place details: name={event['place'].get('name')}, "
-                        f"is_lunch={event['place'].get('is_lunch', False)}, "
-                        f"is_dinner={event['place'].get('is_dinner', False)}, "
-                        f"is_empty={event['place'].get('is_empty', False)}")
-            # 如果存在交通时间造成的延迟，调整当前事件的开始时间
-            event_start_time = event['start_time']
-            if current_time and current_time > event_start_time:
-                event_start_time = current_time
-                # 相应调整结束时间
-                duration = datetime.combine(datetime.today(), event['end_time']) - \
-                          datetime.combine(datetime.today(), event['start_time'])
-                event_end_time = (datetime.combine(datetime.today(), event_start_time) + duration).time()
-            else:
-                event_end_time = event['end_time']
+            # 酒店特殊处理
+            if event['place'].get('is_hotel', False):
+                schedule_event = {
+                    'id': f"day{day_index}-event{i}",
+                    'title': event['place']['name'],
+                    'startTime': '',
+                    'endTime': '',
+                    'day': day_index,
+                    'place': event['place']['original_data'],
+                    'type': 'place'
+                }
+                schedule.append(schedule_event)
+                
+                # 如果是第一个事件(起始酒店)，添加到第一个地点的交通
+                if i == 0 and i + 1 < len(route):
+                    travel_time = calculate_travel_time(
+                        distance_matrix[i][i + 1] / 1000,
+                        transport_mode
+                    )
+                    
+                    transit_event = {
+                        'id': f"day{day_index}-transit{i}",
+                        'type': 'transit',
+                        'startTime': current_time.strftime('%I:%M %p'),
+                        'endTime': (current_time + timedelta(minutes=travel_time)).strftime('%I:%M %p'),
+                        'duration': travel_time,
+                        'mode': transport_mode,
+                        'day': day_index
+                    }
+                    schedule.append(transit_event)
+                    current_time += timedelta(minutes=travel_time)
+                continue
+
+            # 其他地点的处理...
+            event_start_time = current_time.time()
+            duration = datetime.combine(datetime.today(), event['end_time']) - \
+                      datetime.combine(datetime.today(), event['start_time'])
+            event_end_time = (current_time + duration).time()
             
-            # 创建地点事件
             schedule_event = {
                 'id': f"day{day_index}-event{i}",
                 'title': event['place']['name'],
@@ -333,34 +375,28 @@ def generate_day_schedule(
                 'place': event['place']['original_data'],
                 'type': 'place'
             }
-            logger.debug(f"Created schedule event: {schedule_event['title']}")
             schedule.append(schedule_event)
             
-            # 更新当前时间为事件结束时间
-            current_time = event_end_time
+            current_time = datetime.combine(datetime.today(), event_end_time)
             
             # 添加交通事件（如果不是最后一个地点）
             if i < len(route) - 1:
-                start_time = datetime.combine(datetime.today(), current_time)
                 travel_time = calculate_travel_time(
                     distance_matrix[i][i + 1] / 1000,
                     transport_mode
                 )
-                end_time = start_time + timedelta(minutes=travel_time)
                 
                 transit_event = {
                     'id': f"day{day_index}-transit{i}",
                     'type': 'transit',
-                    'startTime': start_time.strftime('%I:%M %p'),
-                    'endTime': end_time.strftime('%I:%M %p'),
+                    'startTime': current_time.strftime('%I:%M %p'),
+                    'endTime': (current_time + timedelta(minutes=travel_time)).strftime('%I:%M %p'),
                     'duration': travel_time,
                     'mode': transport_mode,
                     'day': day_index
                 }
                 schedule.append(transit_event)
-                
-                # 更新当前时间为交通结束时间
-                current_time = end_time.time()
+                current_time += timedelta(minutes=travel_time)
         
         return schedule
         

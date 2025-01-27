@@ -9,6 +9,9 @@ from django.conf import settings
 from sklearn.cluster import KMeans
 import numpy as np
 from datetime import datetime, timedelta
+from icalendar import Calendar, Event
+from django.http import HttpResponse
+
 
 logger = logging.getLogger(__name__)
 
@@ -395,3 +398,61 @@ async def optimize_route(request):
             }, status=500)
 
     return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+
+
+
+
+@csrf_exempt
+def export_calendar(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            events = data.get('events', [])
+            
+            cal = Calendar()
+            cal.add('prodid', '-//Trip Planner//TripSchedule//EN')
+            cal.add('version', '2.0')
+            
+            # 使用传入的日期作为基准
+            for event in events:
+                if event.get('type') != 'place':  # 只处理地点事件
+                    continue
+                    
+                cal_event = Event()
+                cal_event.add('summary', event['title'])
+                
+                # 使用事件的day属性和时间来构建完整的日期时间
+                day_number = int(event['day'])
+                if event.get('startTime') and event.get('endTime'):
+                    start_time = datetime.strptime(event['startTime'], '%I:%M %p')
+                    end_time = datetime.strptime(event['endTime'], '%I:%M %p')
+                    
+                    base_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+                    event_date = base_date + timedelta(days=day_number)
+                    
+                    start_datetime = event_date.replace(
+                        hour=start_time.hour,
+                        minute=start_time.minute
+                    )
+                    end_datetime = event_date.replace(
+                        hour=end_time.hour,
+                        minute=end_time.minute
+                    )
+                    
+                    cal_event.add('dtstart', start_datetime)
+                    cal_event.add('dtend', end_datetime)
+                
+                    if event.get('place'):
+                        cal_event.add('location', event['place'].get('vicinity', ''))
+                        cal_event.add('description', f"Rating: {event['place'].get('rating', 'N/A')}")
+                    
+                    cal.add_component(cal_event)
+            
+            response = HttpResponse(cal.to_ical(), content_type='text/calendar')
+            response['Content-Disposition'] = 'attachment; filename=trip-schedule.ics'
+            return response
+            
+        except Exception as e:
+            logger.error(f"Error exporting calendar: {str(e)}")
+            return JsonResponse({'error': str(e)}, status=500)

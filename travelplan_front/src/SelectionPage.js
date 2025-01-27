@@ -63,7 +63,8 @@ function TabPanel({ children, value, index, ...other }) {
 const SelectionPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { cityName, region, country, placesData } = location.state || {};
+  const { cityName, region, country, placesData: initialPlacesData, preservedSelectedPlaces } = location.state || {};
+  const [placesData, setPlacesData] = useState(initialPlacesData || { restaurants: [], attractions: [], hotels: [] });
   const theme = useTheme();
   
   
@@ -77,7 +78,7 @@ const SelectionPage = () => {
     types: [],
     openNow: false
   });
-  const [selectedPlaces, setSelectedPlaces] = useState([]);
+  const [selectedPlaces, setSelectedPlaces] = useState(preservedSelectedPlaces || []);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   
 
@@ -133,6 +134,7 @@ const SelectionPage = () => {
         cityName,
         region,
         country,
+        placesData, // 确保这里传递了完整的 placesData
         selectedPlaces,
         // 如果计划页面需要其他数据也可以在这里传递
       } 
@@ -223,6 +225,12 @@ const SelectionPage = () => {
   const hasRestaurants = Array.isArray(placesData?.restaurants) && placesData.restaurants.length > 0;
   const hasAttractions = Array.isArray(placesData?.attractions) && placesData.attractions.length > 0;
   const hasHotels = Array.isArray(placesData?.hotels) && placesData.hotels.length > 0;
+
+
+
+  const hasSelectedHotel = useMemo(() => {
+    return selectedPlaces.some(place => placesData.hotels?.includes(place));
+  }, [selectedPlaces, placesData.hotels]);
 
   return (
     <Box 
@@ -608,9 +616,10 @@ const SelectionPage = () => {
                 <Grid item xs={12} sm={6} md={4} key={index} className="place-card">
                   <PlaceCard 
                     place={place} 
-                    type="hotel"
+                    type="hotel" // 使用当前类型
                     onSelect={handlePlaceSelect}
                     isSelected={selectedPlaces.some(p => p.place_id === place.place_id)}
+                    disableAdd={getCurrentType() === 'hotels' && hasSelectedHotel && !selectedPlaces.some(p => p.place_id === place.place_id)}
                   />
                 </Grid>
               ))}

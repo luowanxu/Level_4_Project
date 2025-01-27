@@ -55,6 +55,8 @@ const TripPlanningPage = () => {
     transportMode,
   });
   const [scheduleStatus, setScheduleStatus] = useState(null);  // 添加这个状态
+  const [isFirstVisit, setIsFirstVisit] = useState(true);
+  const { cityName, region, country } = location.state || {};
 
   useEffect(() => {
     const initializeTimeline = async () => {
@@ -93,7 +95,11 @@ const TripPlanningPage = () => {
     };
 
     initializeTimeline();
-  }, [startDate, endDate, selectedPlaces, transportMode]);
+    if (isFirstVisit) {
+      setIsEditDialogOpen(true);
+      setIsFirstVisit(false);
+    }
+  }, [startDate, endDate, selectedPlaces, transportMode, isFirstVisit]);
 
   const handleModeChange = async (newManualMode) => {
     if (!newManualMode) {  // 切换到自动模式
@@ -141,12 +147,25 @@ const TripPlanningPage = () => {
     setIsEditDialogOpen(false);
   };
 
+  // TripPlanningPage.js
+  const handleBack = () => {
+    navigate('/selection', { 
+      state: { 
+        cityName,
+        region,
+        country,
+        preservedSelectedPlaces: selectedPlaces,
+        placesData: location.state.placesData
+      } 
+    });
+  };
+
   return (
     <Container maxWidth={false} sx={{ px: 3 }}>
       <Box sx={{ py: 4 }}>
         {/* Header */}
         <Box display="flex" alignItems="flex-start" mb={4}>
-          <IconButton onClick={() => navigate(-1)} sx={{ mr: 2 }}>
+          <IconButton onClick={handleBack} sx={{ mr: 2 }}>
             <ArrowBack />
           </IconButton>
           

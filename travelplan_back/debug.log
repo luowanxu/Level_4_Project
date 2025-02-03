@@ -1609,3 +1609,205 @@ INFO 2025-01-20 10:34:00,085 schedule_service Schedule metrics calculated
 INFO 2025-01-20 10:41:23,806 autoreload C:\Users\xuluo\Level_4_Project\Level_4_Project\travelplan_back\travelplan_back\settings.py changed, reloading.
 INFO 2025-01-20 10:41:24,547 autoreload Watching for file changes with StatReloader
 INFO 2025-01-27 13:22:36,259 autoreload Watching for file changes with StatReloader
+DEBUG 2025-01-27 13:22:56,039 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-27 13:22:56,528 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-27 13:22:56,663 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=gla&limit=10&sort=-population HTTP/11" 429 None
+ERROR 2025-01-27 13:22:56,663 views Search failed with status 429: {"message":"Too many requests"}
+ERROR 2025-01-27 13:22:56,663 views Search failed with status 429: {"message":"Too many requests"}
+WARNING 2025-01-27 13:22:56,665 log Too Many Requests: /api/search-city/
+DEBUG 2025-01-27 13:22:56,953 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=gl&limit=10&sort=-population HTTP/11" 200 806
+DEBUG 2025-01-27 13:22:58,591 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-27 13:22:58,876 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=glas&limit=10&sort=-population HTTP/11" 200 781
+DEBUG 2025-01-27 13:23:00,480 connectionpool Starting new HTTPS connection (1): wft-geo-db.p.rapidapi.com:443
+DEBUG 2025-01-27 13:23:00,759 connectionpool https://wft-geo-db.p.rapidapi.com:443 "GET /v1/geo/places?namePrefix=Glasgow%2C+Scotland%2C+United+Kingdom&limit=10&sort=-population HTTP/11" 200 57
+INFO 2025-01-27 13:23:01,556 views Searching places for location: Glasgow, Scotland, United Kingdom
+INFO 2025-01-27 13:23:01,556 views Searching places for location: Glasgow, Scotland, United Kingdom
+DEBUG 2025-01-27 13:23:01,558 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-27 13:23:02,426 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/geocode/json?address=Glasgow%2C%2BScotland%2C%2BUnited%2BKingdom&language=en HTTP/11" 200 2600
+INFO 2025-01-27 13:23:02,428 views Found coordinates: 55.86167039999999, -4.2583345
+INFO 2025-01-27 13:23:02,428 views Found coordinates: 55.86167039999999, -4.2583345
+DEBUG 2025-01-27 13:23:02,431 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-27 13:23:03,095 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/place/nearbysearch/json?location=55.86167039999999%2C-4.2583345&radius=5000&type=restaurant&keyword=restaurant&language=en HTTP/11" 200 42545
+INFO 2025-01-27 13:23:03,113 views Found 20 restaurants after filtering
+INFO 2025-01-27 13:23:03,113 views Found 20 restaurants after filtering
+DEBUG 2025-01-27 13:23:03,118 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-27 13:23:03,445 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/place/nearbysearch/json?location=55.86167039999999%2C-4.2583345&radius=5000&type=tourist_attraction&language=en HTTP/11" 200 42964
+INFO 2025-01-27 13:23:03,466 views Found 16 attractions after filtering
+INFO 2025-01-27 13:23:03,466 views Found 16 attractions after filtering
+DEBUG 2025-01-27 13:23:03,468 connectionpool Starting new HTTPS connection (1): google-map-places.p.rapidapi.com:443
+DEBUG 2025-01-27 13:23:03,886 connectionpool https://google-map-places.p.rapidapi.com:443 "GET /maps/api/place/nearbysearch/json?location=55.86167039999999%2C-4.2583345&radius=5000&type=lodging&language=en HTTP/11" 200 41712
+INFO 2025-01-27 13:23:03,888 views Found 20 hotels after filtering
+INFO 2025-01-27 13:23:03,888 views Found 20 hotels after filtering
+INFO 2025-01-27 13:23:03,889 views Category restaurants has 20 items
+INFO 2025-01-27 13:23:03,889 views Category restaurants has 20 items
+INFO 2025-01-27 13:23:03,890 views Sample types in restaurants: ['restaurant', 'food', 'point_of_interest', 'establishment']
+INFO 2025-01-27 13:23:03,890 views Sample types in restaurants: ['restaurant', 'food', 'point_of_interest', 'establishment']
+INFO 2025-01-27 13:23:03,890 views Category attractions has 16 items
+INFO 2025-01-27 13:23:03,890 views Category attractions has 16 items
+INFO 2025-01-27 13:23:03,891 views Sample types in attractions: ['art_gallery', 'tourist_attraction', 'travel_agency', 'point_of_interest', 'establishment']
+INFO 2025-01-27 13:23:03,891 views Sample types in attractions: ['art_gallery', 'tourist_attraction', 'travel_agency', 'point_of_interest', 'establishment']
+INFO 2025-01-27 13:23:03,892 views Category hotels has 20 items
+INFO 2025-01-27 13:23:03,892 views Category hotels has 20 items
+INFO 2025-01-27 13:23:03,892 views Sample types in hotels: ['lodging', 'point_of_interest', 'establishment']
+INFO 2025-01-27 13:23:03,892 views Sample types in hotels: ['lodging', 'point_of_interest', 'establishment']
+DEBUG 2025-01-27 13:23:55,995 proactor_events Using proactor: IocpProactor
+DEBUG 2025-01-27 13:23:56,013 clustering Created empty restaurant: dinner with name Dinner Break
+DEBUG 2025-01-27 13:23:56,013 clustering Created empty restaurant: dinner with name Dinner Break
+DEBUG 2025-01-27 13:23:56,013 clustering Created empty restaurant: lunch with name Lunch Break
+DEBUG 2025-01-27 13:23:56,013 clustering Created empty restaurant: lunch with name Lunch Break
+DEBUG 2025-01-27 13:23:56,013 clustering Created empty restaurant: dinner with name Dinner Break
+DEBUG 2025-01-27 13:23:56,013 clustering Created empty restaurant: dinner with name Dinner Break
+DEBUG 2025-01-27 13:23:56,014 clustering Created empty restaurant: dinner with name Dinner Break
+DEBUG 2025-01-27 13:23:56,014 clustering Created empty restaurant: dinner with name Dinner Break
+DEBUG 2025-01-27 13:23:56,014 clustering Created empty restaurant: lunch with name Lunch Break
+DEBUG 2025-01-27 13:23:56,014 clustering Created empty restaurant: lunch with name Lunch Break
+DEBUG 2025-01-27 13:23:56,014 clustering Created empty restaurant: dinner with name Dinner Break
+DEBUG 2025-01-27 13:23:56,014 clustering Created empty restaurant: dinner with name Dinner Break
+INFO 2025-01-27 13:23:56,014 schedule_service Created 6 clusters
+INFO 2025-01-27 13:23:56,014 schedule_service Created 6 clusters
+INFO 2025-01-27 13:23:56,014 schedule_service Cluster 0 has 4 places
+INFO 2025-01-27 13:23:56,014 schedule_service Cluster 0 has 4 places
+DEBUG 2025-01-27 13:23:56,014 schedule_service Cluster 0 first place: {'place_id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'name': 'The Glasgow Necropolis', 'location': {'lat': 55.86268669999999, 'lng': -4.2311217}, 'type': 'tourist_attraction', 'visit_duration': 162, 'rating': 4.7, 'user_ratings_total': 1028, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.86268669999999, 'lng': -4.2311217}, 'viewport': {'northeast': {'lat': 55.86416973029149, 'lng': -4.22989765}, 'southwest': {'lat': 55.86147176970849, 'lng': -4.234535849999999}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/cemetery_grave-71.png', 'icon_background_color': '#7B9EB0', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/cemetery_pinlet', 'name': 'The Glasgow Necropolis', 'opening_hours': {'open_now': True}, 'photos': [{'height': 4000, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/104445643094395628989">Glasgow Necropolis</a>'], 'photo_reference': 'AVzFdbnYz9wrcrkmq1YZDzB1kklyuJTXmuNn5bD_YSfVZAUoVAf-OyRa9V4FZPlehQK2Z6LcEl7OaDsElLrNuLQAwpZLGezSd1fQVJ3jIVLt_rGnIT5xNm73x4QqGWlOryET6K1iesFg3MYUzw2sTCKdWkSJRVZwQ2s1AJ4SdLjpD_aTCAAp', 'width': 6000}], 'place_id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'plus_code': {'compound_code': 'VQ79+3H Glasgow, UK', 'global_code': '9C7QVQ79+3H'}, 'rating': 4.7, 'reference': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'scope': 'GOOGLE', 'types': ['cemetery', 'tourist_attraction', 'point_of_interest', 'establishment'], 'user_ratings_total': 1028, 'vicinity': 'Castle Street, Glasgow'}}
+DEBUG 2025-01-27 13:23:56,014 schedule_service Cluster 0 first place: {'place_id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'name': 'The Glasgow Necropolis', 'location': {'lat': 55.86268669999999, 'lng': -4.2311217}, 'type': 'tourist_attraction', 'visit_duration': 162, 'rating': 4.7, 'user_ratings_total': 1028, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.86268669999999, 'lng': -4.2311217}, 'viewport': {'northeast': {'lat': 55.86416973029149, 'lng': -4.22989765}, 'southwest': {'lat': 55.86147176970849, 'lng': -4.234535849999999}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/cemetery_grave-71.png', 'icon_background_color': '#7B9EB0', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/cemetery_pinlet', 'name': 'The Glasgow Necropolis', 'opening_hours': {'open_now': True}, 'photos': [{'height': 4000, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/104445643094395628989">Glasgow Necropolis</a>'], 'photo_reference': 'AVzFdbnYz9wrcrkmq1YZDzB1kklyuJTXmuNn5bD_YSfVZAUoVAf-OyRa9V4FZPlehQK2Z6LcEl7OaDsElLrNuLQAwpZLGezSd1fQVJ3jIVLt_rGnIT5xNm73x4QqGWlOryET6K1iesFg3MYUzw2sTCKdWkSJRVZwQ2s1AJ4SdLjpD_aTCAAp', 'width': 6000}], 'place_id': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'plus_code': {'compound_code': 'VQ79+3H Glasgow, UK', 'global_code': '9C7QVQ79+3H'}, 'rating': 4.7, 'reference': 'ChIJ8SGo-qlGiEgRDWHs4567if0', 'scope': 'GOOGLE', 'types': ['cemetery', 'tourist_attraction', 'point_of_interest', 'establishment'], 'user_ratings_total': 1028, 'vicinity': 'Castle Street, Glasgow'}}
+INFO 2025-01-27 13:23:56,015 schedule_service Cluster 1 has 4 places
+INFO 2025-01-27 13:23:56,015 schedule_service Cluster 1 has 4 places
+DEBUG 2025-01-27 13:23:56,015 schedule_service Cluster 1 first place: {'place_id': 'ChIJPUEqG5hGiEgR6s39TvjzfB0', 'id': 'ChIJPUEqG5hGiEgR6s39TvjzfB0', 'name': 'Glasgow Central Mosque', 'location': {'lat': 55.85235089999999, 'lng': -4.251514799999999}, 'type': 'tourist_attraction', 'visit_duration': 150, 'rating': 4.7, 'user_ratings_total': 1519, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.85235089999999, 'lng': -4.251514799999999}, 'viewport': {'northeast': {'lat': 55.85364663029149, 'lng': -4.250091919708497}, 'southwest': {'lat': 55.85094866970849, 'lng': -4.252789880291501}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/worship_islam-71.png', 'icon_background_color': '#7B9EB0', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/worship_islam_pinlet', 'name': 'Glasgow Central Mosque', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/116914872913555896852">Maggie McBride</a>'], 'photo_reference': 'AVzFdbnfg2tQR1yui5AvzEMxpDhSTgtnkZ-fGQ418T-mjLQnx7jRL4Kv4pl6rWVYY4Cy50Xr67XkPgREn-1LiDLqIJ16diBToN36Yon_EpOi7GMnnYZEgk5zFWEE57Bu4WZxwNXtw5XrANMZw0PDpfhCgZHHSqUaKkhRrnve34PiXRrb7Csn', 'width': 4032}], 'place_id': 'ChIJPUEqG5hGiEgR6s39TvjzfB0', 'plus_code': {'compound_code': 'VP2X+W9 Glasgow, UK', 'global_code': '9C7QVP2X+W9'}, 'rating': 4.7, 'reference': 'ChIJPUEqG5hGiEgR6s39TvjzfB0', 'scope': 'GOOGLE', 'types': ['mosque', 'tourist_attraction', 'place_of_worship', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 1519, 'vicinity': '1 Mosque Avenue, Glasgow'}}
+DEBUG 2025-01-27 13:23:56,015 schedule_service Cluster 1 first place: {'place_id': 'ChIJPUEqG5hGiEgR6s39TvjzfB0', 'id': 'ChIJPUEqG5hGiEgR6s39TvjzfB0', 'name': 'Glasgow Central Mosque', 'location': {'lat': 55.85235089999999, 'lng': -4.251514799999999}, 'type': 'tourist_attraction', 'visit_duration': 150, 'rating': 4.7, 'user_ratings_total': 1519, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.85235089999999, 'lng': -4.251514799999999}, 'viewport': {'northeast': {'lat': 55.85364663029149, 'lng': -4.250091919708497}, 'southwest': {'lat': 55.85094866970849, 'lng': -4.252789880291501}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/worship_islam-71.png', 'icon_background_color': '#7B9EB0', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/worship_islam_pinlet', 'name': 'Glasgow Central Mosque', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/116914872913555896852">Maggie McBride</a>'], 'photo_reference': 'AVzFdbnfg2tQR1yui5AvzEMxpDhSTgtnkZ-fGQ418T-mjLQnx7jRL4Kv4pl6rWVYY4Cy50Xr67XkPgREn-1LiDLqIJ16diBToN36Yon_EpOi7GMnnYZEgk5zFWEE57Bu4WZxwNXtw5XrANMZw0PDpfhCgZHHSqUaKkhRrnve34PiXRrb7Csn', 'width': 4032}], 'place_id': 'ChIJPUEqG5hGiEgR6s39TvjzfB0', 'plus_code': {'compound_code': 'VP2X+W9 Glasgow, UK', 'global_code': '9C7QVP2X+W9'}, 'rating': 4.7, 'reference': 'ChIJPUEqG5hGiEgR6s39TvjzfB0', 'scope': 'GOOGLE', 'types': ['mosque', 'tourist_attraction', 'place_of_worship', 'food', 'point_of_interest', 'establishment'], 'user_ratings_total': 1519, 'vicinity': '1 Mosque Avenue, Glasgow'}}
+INFO 2025-01-27 13:23:56,015 schedule_service Cluster 2 has 3 places
+INFO 2025-01-27 13:23:56,015 schedule_service Cluster 2 has 3 places
+DEBUG 2025-01-27 13:23:56,015 schedule_service Cluster 2 first place: {'place_id': 'ChIJlzhqBCdEiEgRUJF8-zQEpNA', 'id': 'ChIJlzhqBCdEiEgRUJF8-zQEpNA', 'name': 'The Glasgow Art Club', 'location': {'lat': 55.8644529, 'lng': -4.2626757}, 'type': 'tourist_attraction', 'visit_duration': 151, 'rating': 4.6, 'user_ratings_total': 80, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8644529, 'lng': -4.2626757}, 'viewport': {'northeast': {'lat': 55.8658589802915, 'lng': -4.261278219708498}, 'southwest': {'lat': 55.8631610197085, 'lng': -4.263976180291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png', 'icon_background_color': '#7B9EB0', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet', 'name': 'The Glasgow Art Club', 'opening_hours': {'open_now': False}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/100316652474086498826">Sam Obaid</a>'], 'photo_reference': 'AVzFdbnKMlOXWg5au9vpmW1ZiwRWsnG2xnTn78z3xeK2G7J-MxVNb03pGMGQ6TOI4cdrRwi9DMpqRhcBD8ueuEucUQK3PcZSaTr9WemnHPGGNUDb0j5tnEdlyQbryDrT3k7DVMtspQb2TQlOfDAsfyFkC7_PMQES0NgfUmBXdD007vtCuhkD', 'width': 4032}], 'place_id': 'ChIJlzhqBCdEiEgRUJF8-zQEpNA', 'plus_code': {'compound_code': 'VP7P+QW Glasgow, UK', 'global_code': '9C7QVP7P+QW'}, 'rating': 4.6, 'reference': 'ChIJlzhqBCdEiEgRUJF8-zQEpNA', 'scope': 'GOOGLE', 'types': ['art_gallery', 'tourist_attraction', 'point_of_interest', 'establishment'], 'user_ratings_total': 80, 'vicinity': '185 Bath Street, Glasgow'}}
+DEBUG 2025-01-27 13:23:56,015 schedule_service Cluster 2 first place: {'place_id': 'ChIJlzhqBCdEiEgRUJF8-zQEpNA', 'id': 'ChIJlzhqBCdEiEgRUJF8-zQEpNA', 'name': 'The Glasgow Art Club', 'location': {'lat': 55.8644529, 'lng': -4.2626757}, 'type': 'tourist_attraction', 'visit_duration': 151, 'rating': 4.6, 'user_ratings_total': 80, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8644529, 'lng': -4.2626757}, 'viewport': {'northeast': {'lat': 55.8658589802915, 'lng': -4.261278219708498}, 'southwest': {'lat': 55.8631610197085, 'lng': -4.263976180291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png', 'icon_background_color': '#7B9EB0', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet', 'name': 'The Glasgow Art Club', 'opening_hours': {'open_now': False}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/100316652474086498826">Sam Obaid</a>'], 'photo_reference': 'AVzFdbnKMlOXWg5au9vpmW1ZiwRWsnG2xnTn78z3xeK2G7J-MxVNb03pGMGQ6TOI4cdrRwi9DMpqRhcBD8ueuEucUQK3PcZSaTr9WemnHPGGNUDb0j5tnEdlyQbryDrT3k7DVMtspQb2TQlOfDAsfyFkC7_PMQES0NgfUmBXdD007vtCuhkD', 'width': 4032}], 'place_id': 'ChIJlzhqBCdEiEgRUJF8-zQEpNA', 'plus_code': {'compound_code': 'VP7P+QW Glasgow, UK', 'global_code': '9C7QVP7P+QW'}, 'rating': 4.6, 'reference': 'ChIJlzhqBCdEiEgRUJF8-zQEpNA', 'scope': 'GOOGLE', 'types': ['art_gallery', 'tourist_attraction', 'point_of_interest', 'establishment'], 'user_ratings_total': 80, 'vicinity': '185 Bath Street, Glasgow'}}
+INFO 2025-01-27 13:23:56,016 schedule_service Cluster 3 has 4 places
+INFO 2025-01-27 13:23:56,016 schedule_service Cluster 3 has 4 places
+DEBUG 2025-01-27 13:23:56,016 schedule_service Cluster 3 first place: {'place_id': 'ChIJ6ZTla9FFiEgR_p_K8XyyWFI', 'id': 'ChIJ6ZTla9FFiEgR_p_K8XyyWFI', 'name': 'Kelvingrove Art Gallery and Museum', 'location': {'lat': 55.86858909999999, 'lng': -4.290603899999999}, 'type': 'museum', 'visit_duration': 209, 'rating': 4.7, 'user_ratings_total': 21596, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.86858909999999, 'lng': -4.290603899999999}, 'viewport': {'northeast': {'lat': 55.8697475302915, 'lng': -4.287696600000001}, 'southwest': {'lat': 55.8670495697085, 'lng': -4.2929666}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png', 'icon_background_color': '#7B9EB0', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet', 'name': 'Kelvingrove Art Gallery and Museum', 'opening_hours': {'open_now': True}, 'photos': [{'height': 700, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/107247192010596649690">Pavel (ZURRY)</a>'], 'photo_reference': 'AVzFdbnAetMNHQfo6HBJrDPmKFZ3FIhbGgL8yYBf_poNxWo-reJlcRbIHyi--OUBxdZBA7oLDtek79waGarkf_YyQpOEIlN9dpvlOoyicIksHmbUVcwmLikfbMs9i52gCzWt3vJeePAqE55J1xxcsyj7QBbH2lKxBJkmDrCUSC8gbdjeQ8vt', 'width': 1048}], 'place_id': 'ChIJ6ZTla9FFiEgR_p_K8XyyWFI', 'plus_code': {'compound_code': 'VP95+CQ Glasgow, UK', 'global_code': '9C7QVP95+CQ'}, 'rating': 4.7, 'reference': 'ChIJ6ZTla9FFiEgR_p_K8XyyWFI', 'scope': 'GOOGLE', 'types': ['art_gallery', 'tourist_attraction', 'museum', 'point_of_interest', 'establishment'], 'user_ratings_total': 21596, 'vicinity': 'Argyle Street, Glasgow'}}
+DEBUG 2025-01-27 13:23:56,016 schedule_service Cluster 3 first place: {'place_id': 'ChIJ6ZTla9FFiEgR_p_K8XyyWFI', 'id': 'ChIJ6ZTla9FFiEgR_p_K8XyyWFI', 'name': 'Kelvingrove Art Gallery and Museum', 'location': {'lat': 55.86858909999999, 'lng': -4.290603899999999}, 'type': 'museum', 'visit_duration': 209, 'rating': 4.7, 'user_ratings_total': 21596, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.86858909999999, 'lng': -4.290603899999999}, 'viewport': {'northeast': {'lat': 55.8697475302915, 'lng': -4.287696600000001}, 'southwest': {'lat': 55.8670495697085, 'lng': -4.2929666}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png', 'icon_background_color': '#7B9EB0', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet', 'name': 'Kelvingrove Art Gallery and Museum', 'opening_hours': {'open_now': True}, 'photos': [{'height': 700, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/107247192010596649690">Pavel (ZURRY)</a>'], 'photo_reference': 'AVzFdbnAetMNHQfo6HBJrDPmKFZ3FIhbGgL8yYBf_poNxWo-reJlcRbIHyi--OUBxdZBA7oLDtek79waGarkf_YyQpOEIlN9dpvlOoyicIksHmbUVcwmLikfbMs9i52gCzWt3vJeePAqE55J1xxcsyj7QBbH2lKxBJkmDrCUSC8gbdjeQ8vt', 'width': 1048}], 'place_id': 'ChIJ6ZTla9FFiEgR_p_K8XyyWFI', 'plus_code': {'compound_code': 'VP95+CQ Glasgow, UK', 'global_code': '9C7QVP95+CQ'}, 'rating': 4.7, 'reference': 'ChIJ6ZTla9FFiEgR_p_K8XyyWFI', 'scope': 'GOOGLE', 'types': ['art_gallery', 'tourist_attraction', 'museum', 'point_of_interest', 'establishment'], 'user_ratings_total': 21596, 'vicinity': 'Argyle Street, Glasgow'}}
+INFO 2025-01-27 13:23:56,017 schedule_service Cluster 4 has 3 places
+INFO 2025-01-27 13:23:56,017 schedule_service Cluster 4 has 3 places
+DEBUG 2025-01-27 13:23:56,017 schedule_service Cluster 4 first place: {'place_id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'name': 'Glasgow Botanic Gardens', 'location': {'lat': 55.8797045, 'lng': -4.2911777}, 'type': 'park', 'visit_duration': 96, 'rating': 4.7, 'user_ratings_total': 13544, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8797045, 'lng': -4.2911777}, 'viewport': {'northeast': {'lat': 55.8837151, 'lng': -4.284419450000001}, 'southwest': {'lat': 55.87603349999998, 'lng': -4.29686645}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png', 'icon_background_color': '#4DB546', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet', 'name': 'Glasgow Botanic Gardens', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112078754863540275584">Raja Vijaya Saradhi Ch</a>'], 'photo_reference': 'AVzFdbkxVENXxKvDJkXlRuCMuHcLKQLF5HXj7TaDN-Lm07Gq3tt5gSngqxb47pCjxB-gXsg-rc3t3xfmIgwaj_8mS1oTM97BgntuUg4Uir6ufo2jmTUdDlmJ6Be1MM1Tp_dk6gXVi3vOG4NSAWhWA7Q8PERQutC6yJ9PPXAwmWgJ6ZEu13tt', 'width': 4032}], 'place_id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'plus_code': {'compound_code': 'VPH5+VG Glasgow, UK', 'global_code': '9C7QVPH5+VG'}, 'rating': 4.7, 'reference': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'park', 'point_of_interest', 'establishment'], 'user_ratings_total': 13544, 'vicinity': '730 Great Western Road, Glasgow'}}
+DEBUG 2025-01-27 13:23:56,017 schedule_service Cluster 4 first place: {'place_id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'name': 'Glasgow Botanic Gardens', 'location': {'lat': 55.8797045, 'lng': -4.2911777}, 'type': 'park', 'visit_duration': 96, 'rating': 4.7, 'user_ratings_total': 13544, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.8797045, 'lng': -4.2911777}, 'viewport': {'northeast': {'lat': 55.8837151, 'lng': -4.284419450000001}, 'southwest': {'lat': 55.87603349999998, 'lng': -4.29686645}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/park-71.png', 'icon_background_color': '#4DB546', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/tree_pinlet', 'name': 'Glasgow Botanic Gardens', 'opening_hours': {'open_now': True}, 'photos': [{'height': 3024, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112078754863540275584">Raja Vijaya Saradhi Ch</a>'], 'photo_reference': 'AVzFdbkxVENXxKvDJkXlRuCMuHcLKQLF5HXj7TaDN-Lm07Gq3tt5gSngqxb47pCjxB-gXsg-rc3t3xfmIgwaj_8mS1oTM97BgntuUg4Uir6ufo2jmTUdDlmJ6Be1MM1Tp_dk6gXVi3vOG4NSAWhWA7Q8PERQutC6yJ9PPXAwmWgJ6ZEu13tt', 'width': 4032}], 'place_id': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'plus_code': {'compound_code': 'VPH5+VG Glasgow, UK', 'global_code': '9C7QVPH5+VG'}, 'rating': 4.7, 'reference': 'ChIJ8cF-6MtFiEgRwMvh3DDvPDY', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'park', 'point_of_interest', 'establishment'], 'user_ratings_total': 13544, 'vicinity': '730 Great Western Road, Glasgow'}}
+INFO 2025-01-27 13:23:56,017 schedule_service Cluster 5 has 3 places
+INFO 2025-01-27 13:23:56,017 schedule_service Cluster 5 has 3 places
+DEBUG 2025-01-27 13:23:56,018 schedule_service Cluster 5 first place: {'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'name': 'The Burrell Collection', 'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'type': 'museum', 'visit_duration': 198, 'rating': 4.7, 'user_ratings_total': 2326, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'viewport': {'northeast': {'lat': 55.83173768029149, 'lng': -4.306611819708498}, 'southwest': {'lat': 55.8290397197085, 'lng': -4.309309780291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png', 'icon_background_color': '#13B5C7', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet', 'name': 'The Burrell Collection', 'opening_hours': {'open_now': True}, 'photos': [{'height': 4032, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112100337761091720559">Ben You</a>'], 'photo_reference': 'AVzFdbmEFCPASQa7bmZYaZ4Db8kW5P-DG4J3jl4H2avUpYxvSzsNX5XRsNtmQhN5Ob_mA3A1KK__ZJMpeNnivbHS3U7L55TBSvRQT5uJykpGQOL6_TWKtmHGMIClsiFggpqRPyDPgbdj_9MtkUgNez6mF2g9IxcAQr9apTj43YgYjj5ANnme', 'width': 3024}], 'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'plus_code': {'compound_code': 'RMJR+9W Glasgow, UK', 'global_code': '9C7QRMJR+9W'}, 'rating': 4.7, 'reference': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'museum', 'point_of_interest', 'establishment'], 'user_ratings_total': 2326, 'vicinity': 'Pollok Country Park, 2060 Pollokshaws Road, Glasgow'}}
+DEBUG 2025-01-27 13:23:56,018 schedule_service Cluster 5 first place: {'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'name': 'The Burrell Collection', 'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'type': 'museum', 'visit_duration': 198, 'rating': 4.7, 'user_ratings_total': 2326, 'price_level': 2, 'is_restaurant': False, 'original_data': {'business_status': 'OPERATIONAL', 'geometry': {'location': {'lat': 55.83089099999999, 'lng': -4.307628}, 'viewport': {'northeast': {'lat': 55.83173768029149, 'lng': -4.306611819708498}, 'southwest': {'lat': 55.8290397197085, 'lng': -4.309309780291502}}}, 'icon': 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/museum-71.png', 'icon_background_color': '#13B5C7', 'icon_mask_base_uri': 'https://maps.gstatic.com/mapfiles/place_api/icons/v2/museum_pinlet', 'name': 'The Burrell Collection', 'opening_hours': {'open_now': True}, 'photos': [{'height': 4032, 'html_attributions': ['<a href="https://maps.google.com/maps/contrib/112100337761091720559">Ben You</a>'], 'photo_reference': 'AVzFdbmEFCPASQa7bmZYaZ4Db8kW5P-DG4J3jl4H2avUpYxvSzsNX5XRsNtmQhN5Ob_mA3A1KK__ZJMpeNnivbHS3U7L55TBSvRQT5uJykpGQOL6_TWKtmHGMIClsiFggpqRPyDPgbdj_9MtkUgNez6mF2g9IxcAQr9apTj43YgYjj5ANnme', 'width': 3024}], 'place_id': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'plus_code': {'compound_code': 'RMJR+9W Glasgow, UK', 'global_code': '9C7QRMJR+9W'}, 'rating': 4.7, 'reference': 'ChIJn9k4wklGiEgRV4tsh_M4Ga0', 'scope': 'GOOGLE', 'types': ['tourist_attraction', 'museum', 'point_of_interest', 'establishment'], 'user_ratings_total': 2326, 'vicinity': 'Pollok Country Park, 2060 Pollokshaws Road, Glasgow'}}
+INFO 2025-01-27 13:23:56,019 schedule_service Processing day 0
+INFO 2025-01-27 13:23:56,019 schedule_service Processing day 0
+DEBUG 2025-01-27 13:23:56,019 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-27 13:23:56,019 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-27 13:23:56,020 schedule_service Day 0 distance matrix shape: (4, 4)
+INFO 2025-01-27 13:23:56,020 schedule_service Day 0 distance matrix shape: (4, 4)
+INFO 2025-01-27 13:23:56,020 schedule_service Optimizing route for day 0
+INFO 2025-01-27 13:23:56,020 schedule_service Optimizing route for day 0
+DEBUG 2025-01-27 13:23:56,021 routing Starting route optimization with 4 places
+DEBUG 2025-01-27 13:23:56,021 routing Starting route optimization with 4 places
+ERROR 2025-01-27 13:23:56,022 routing Error in calculate_place_score: 'ChIJ87UOPGlGiEgRGz4xza_ycjI'
+ERROR 2025-01-27 13:23:56,022 routing Error in calculate_place_score: 'ChIJ87UOPGlGiEgRGz4xza_ycjI'
+INFO 2025-01-27 13:23:56,023 schedule_service Day 0 route optimized with score 411.75367573248127
+INFO 2025-01-27 13:23:56,023 schedule_service Day 0 route optimized with score 411.75367573248127
+DEBUG 2025-01-27 13:23:56,024 schedule_service Added restaurant Colbeh Restaurant to used list
+DEBUG 2025-01-27 13:23:56,024 schedule_service Added restaurant Colbeh Restaurant to used list
+DEBUG 2025-01-27 13:23:56,024 schedule_service Added restaurant Umami to used list
+DEBUG 2025-01-27 13:23:56,024 schedule_service Added restaurant Umami to used list
+INFO 2025-01-27 13:23:56,024 schedule_service Generated schedule for day 0 with 11 events
+INFO 2025-01-27 13:23:56,024 schedule_service Generated schedule for day 0 with 11 events
+INFO 2025-01-27 13:23:56,025 schedule_service Processing day 1
+INFO 2025-01-27 13:23:56,025 schedule_service Processing day 1
+DEBUG 2025-01-27 13:23:56,025 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-27 13:23:56,025 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-27 13:23:56,025 schedule_service Day 1 distance matrix shape: (4, 4)
+INFO 2025-01-27 13:23:56,025 schedule_service Day 1 distance matrix shape: (4, 4)
+INFO 2025-01-27 13:23:56,025 schedule_service Optimizing route for day 1
+INFO 2025-01-27 13:23:56,025 schedule_service Optimizing route for day 1
+DEBUG 2025-01-27 13:23:56,025 routing Starting route optimization with 4 places
+DEBUG 2025-01-27 13:23:56,025 routing Starting route optimization with 4 places
+ERROR 2025-01-27 13:23:56,025 routing Error in calculate_place_score: 'ChIJ87UOPGlGiEgRGz4xza_ycjI'
+ERROR 2025-01-27 13:23:56,025 routing Error in calculate_place_score: 'ChIJ87UOPGlGiEgRGz4xza_ycjI'
+ERROR 2025-01-27 13:23:56,026 routing Error in calculate_place_score: 'ChIJ87UOPGlGiEgRGz4xza_ycjI'
+ERROR 2025-01-27 13:23:56,026 routing Error in calculate_place_score: 'ChIJ87UOPGlGiEgRGz4xza_ycjI'
+INFO 2025-01-27 13:23:56,026 schedule_service Day 1 route optimized with score 396.99065450237663
+INFO 2025-01-27 13:23:56,026 schedule_service Day 1 route optimized with score 396.99065450237663
+DEBUG 2025-01-27 13:23:56,026 schedule_service Added restaurant Alien Ufo Burger - Coffee Shop - Cafe - Restaurant - Takeaway to used list
+DEBUG 2025-01-27 13:23:56,026 schedule_service Added restaurant Alien Ufo Burger - Coffee Shop - Cafe - Restaurant - Takeaway to used list
+DEBUG 2025-01-27 13:23:56,026 schedule_service Added restaurant NARANJ Restaurant to used list
+DEBUG 2025-01-27 13:23:56,026 schedule_service Added restaurant NARANJ Restaurant to used list
+INFO 2025-01-27 13:23:56,027 schedule_service Generated schedule for day 1 with 11 events
+INFO 2025-01-27 13:23:56,027 schedule_service Generated schedule for day 1 with 11 events
+INFO 2025-01-27 13:23:56,027 schedule_service Processing day 2
+INFO 2025-01-27 13:23:56,027 schedule_service Processing day 2
+DEBUG 2025-01-27 13:23:56,027 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-27 13:23:56,027 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-27 13:23:56,027 schedule_service Day 2 distance matrix shape: (3, 3)
+INFO 2025-01-27 13:23:56,027 schedule_service Day 2 distance matrix shape: (3, 3)
+INFO 2025-01-27 13:23:56,027 schedule_service Optimizing route for day 2
+INFO 2025-01-27 13:23:56,027 schedule_service Optimizing route for day 2
+DEBUG 2025-01-27 13:23:56,028 routing Starting route optimization with 3 places
+DEBUG 2025-01-27 13:23:56,028 routing Starting route optimization with 3 places
+ERROR 2025-01-27 13:23:56,028 routing Error in calculate_place_score: 'ChIJ87UOPGlGiEgRGz4xza_ycjI'
+ERROR 2025-01-27 13:23:56,028 routing Error in calculate_place_score: 'ChIJ87UOPGlGiEgRGz4xza_ycjI'
+INFO 2025-01-27 13:23:56,028 schedule_service Day 2 route optimized with score 243.1765799095456
+INFO 2025-01-27 13:23:56,028 schedule_service Day 2 route optimized with score 243.1765799095456
+DEBUG 2025-01-27 13:23:56,028 schedule_service Added restaurant Family Cafe Eritrean and Ethiopian restaurant to used list
+DEBUG 2025-01-27 13:23:56,028 schedule_service Added restaurant Family Cafe Eritrean and Ethiopian restaurant to used list
+DEBUG 2025-01-27 13:23:56,028 schedule_service Added restaurant Dinner Break to used list
+DEBUG 2025-01-27 13:23:56,028 schedule_service Added restaurant Dinner Break to used list
+INFO 2025-01-27 13:23:56,029 schedule_service Generated schedule for day 2 with 9 events
+INFO 2025-01-27 13:23:56,029 schedule_service Generated schedule for day 2 with 9 events
+INFO 2025-01-27 13:23:56,029 schedule_service Processing day 3
+INFO 2025-01-27 13:23:56,029 schedule_service Processing day 3
+DEBUG 2025-01-27 13:23:56,029 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-27 13:23:56,029 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-27 13:23:56,029 schedule_service Day 3 distance matrix shape: (4, 4)
+INFO 2025-01-27 13:23:56,029 schedule_service Day 3 distance matrix shape: (4, 4)
+INFO 2025-01-27 13:23:56,030 schedule_service Optimizing route for day 3
+INFO 2025-01-27 13:23:56,030 schedule_service Optimizing route for day 3
+DEBUG 2025-01-27 13:23:56,030 routing Starting route optimization with 4 places
+DEBUG 2025-01-27 13:23:56,030 routing Starting route optimization with 4 places
+INFO 2025-01-27 13:23:56,030 schedule_service Day 3 route optimized with score 0.0
+INFO 2025-01-27 13:23:56,030 schedule_service Day 3 route optimized with score 0.0
+DEBUG 2025-01-27 13:23:56,030 schedule_service Added restaurant Lunch Break to used list
+DEBUG 2025-01-27 13:23:56,030 schedule_service Added restaurant Lunch Break to used list
+DEBUG 2025-01-27 13:23:56,030 schedule_service Added restaurant Dinner Break to used list
+DEBUG 2025-01-27 13:23:56,030 schedule_service Added restaurant Dinner Break to used list
+INFO 2025-01-27 13:23:56,031 schedule_service Generated schedule for day 3 with 3 events
+INFO 2025-01-27 13:23:56,031 schedule_service Generated schedule for day 3 with 3 events
+INFO 2025-01-27 13:23:56,031 schedule_service Processing day 4
+INFO 2025-01-27 13:23:56,031 schedule_service Processing day 4
+DEBUG 2025-01-27 13:23:56,031 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-27 13:23:56,031 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-27 13:23:56,031 schedule_service Day 4 distance matrix shape: (3, 3)
+INFO 2025-01-27 13:23:56,031 schedule_service Day 4 distance matrix shape: (3, 3)
+INFO 2025-01-27 13:23:56,031 schedule_service Optimizing route for day 4
+INFO 2025-01-27 13:23:56,031 schedule_service Optimizing route for day 4
+DEBUG 2025-01-27 13:23:56,031 routing Starting route optimization with 3 places
+DEBUG 2025-01-27 13:23:56,031 routing Starting route optimization with 3 places
+ERROR 2025-01-27 13:23:56,032 routing Error in calculate_place_score: 'ChIJ87UOPGlGiEgRGz4xza_ycjI'
+ERROR 2025-01-27 13:23:56,032 routing Error in calculate_place_score: 'ChIJ87UOPGlGiEgRGz4xza_ycjI'
+INFO 2025-01-27 13:23:56,032 schedule_service Day 4 route optimized with score 261.563370417635
+INFO 2025-01-27 13:23:56,032 schedule_service Day 4 route optimized with score 261.563370417635
+DEBUG 2025-01-27 13:23:56,032 schedule_service Added restaurant Nowruz Restaurant to used list
+DEBUG 2025-01-27 13:23:56,032 schedule_service Added restaurant Nowruz Restaurant to used list
+DEBUG 2025-01-27 13:23:56,033 schedule_service Added restaurant Dinner Break to used list
+DEBUG 2025-01-27 13:23:56,033 schedule_service Added restaurant Dinner Break to used list
+INFO 2025-01-27 13:23:56,033 schedule_service Generated schedule for day 4 with 9 events
+INFO 2025-01-27 13:23:56,033 schedule_service Generated schedule for day 4 with 9 events
+INFO 2025-01-27 13:23:56,034 schedule_service Processing day 5
+INFO 2025-01-27 13:23:56,034 schedule_service Processing day 5
+DEBUG 2025-01-27 13:23:56,034 schedule_service Filtered out 0 used restaurants
+DEBUG 2025-01-27 13:23:56,034 schedule_service Filtered out 0 used restaurants
+INFO 2025-01-27 13:23:56,034 schedule_service Day 5 distance matrix shape: (3, 3)
+INFO 2025-01-27 13:23:56,034 schedule_service Day 5 distance matrix shape: (3, 3)
+INFO 2025-01-27 13:23:56,034 schedule_service Optimizing route for day 5
+INFO 2025-01-27 13:23:56,034 schedule_service Optimizing route for day 5
+DEBUG 2025-01-27 13:23:56,034 routing Starting route optimization with 3 places
+DEBUG 2025-01-27 13:23:56,034 routing Starting route optimization with 3 places
+INFO 2025-01-27 13:23:56,035 schedule_service Day 5 route optimized with score 0.0
+INFO 2025-01-27 13:23:56,035 schedule_service Day 5 route optimized with score 0.0
+DEBUG 2025-01-27 13:23:56,035 schedule_service Added restaurant Lunch Break to used list
+DEBUG 2025-01-27 13:23:56,035 schedule_service Added restaurant Lunch Break to used list
+DEBUG 2025-01-27 13:23:56,035 schedule_service Added restaurant Dinner Break to used list
+DEBUG 2025-01-27 13:23:56,035 schedule_service Added restaurant Dinner Break to used list
+INFO 2025-01-27 13:23:56,036 schedule_service Generated schedule for day 5 with 3 events
+INFO 2025-01-27 13:23:56,036 schedule_service Generated schedule for day 5 with 3 events
+INFO 2025-01-27 13:23:56,036 schedule_service Combined schedule has 46 total events
+INFO 2025-01-27 13:23:56,036 schedule_service Combined schedule has 46 total events
+INFO 2025-01-27 13:23:56,037 schedule_service Schedule metrics calculated
+INFO 2025-01-27 13:23:56,037 schedule_service Schedule metrics calculated

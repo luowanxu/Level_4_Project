@@ -1,0 +1,821 @@
+{
+  "success": "True",
+  "evaluation_time": "2025-02-08 23:27:32",
+  "parameters": {
+    "num_places": 13,
+    "start_date": "2025-02-08",
+    "end_date": "2025-02-14",
+    "transport_mode": "driving",
+    "num_random_solutions": 50
+  },
+  "algorithm_solution": {
+    "scores": {
+      "distance": 30.096085900361448,
+      "time_window": 75.0,
+      "distribution": 51.05274948137195,
+      "clustering": 94.0956592928426,
+      "total": 60.55850752495135
+    },
+    "schedule": [
+      {
+        "id": "day0-event0",
+        "title": "Hotel in 48.852491, 2.349696",
+        "startTime": "",
+        "endTime": "",
+        "day": 0,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.852491,
+              "lng": 2.349696
+            }
+          },
+          "place_id": "hotel_48.852491_2.349696",
+          "name": "Hotel in 48.852491, 2.349696",
+          "types": [
+            "lodging",
+            "hotel"
+          ],
+          "rating": 4.3,
+          "user_ratings_total": 2249,
+          "vicinity": "City Center",
+          "formatted_address": "City Center",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 2
+        },
+        "type": "place"
+      },
+      {
+        "id": "day0-transit0",
+        "type": "transit",
+        "startTime": "08:55 AM",
+        "endTime": "09:00 AM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 0
+      },
+      {
+        "id": "day0-event1",
+        "title": "Attraction at 48.855588, 2.337526",
+        "startTime": "09:00 AM",
+        "endTime": "10:31 AM",
+        "day": 0,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.855588,
+              "lng": 2.337526
+            }
+          },
+          "place_id": "attr_48.855588_2.337526",
+          "name": "Attraction at 48.855588, 2.337526",
+          "types": [
+            "park",
+            "point_of_interest"
+          ],
+          "rating": 3.9,
+          "user_ratings_total": 34831,
+          "vicinity": "Tourist Area",
+          "formatted_address": "Tourist Area",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 1
+        },
+        "type": "place"
+      },
+      {
+        "id": "day0-transit1",
+        "type": "transit",
+        "startTime": "10:31 AM",
+        "endTime": "10:36 AM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 0
+      },
+      {
+        "id": "day0-event2",
+        "title": "Restaurant at 48.850615, 2.344136",
+        "startTime": "11:06 AM",
+        "endTime": "12:20 PM",
+        "day": 0,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.850615,
+              "lng": 2.344136
+            }
+          },
+          "place_id": "rest_48.850615_2.344136",
+          "name": "Restaurant at 48.850615, 2.344136",
+          "types": [
+            "restaurant",
+            "food",
+            "point_of_interest"
+          ],
+          "rating": 4.9,
+          "user_ratings_total": 606,
+          "vicinity": "Dining Area",
+          "formatted_address": "Dining Area",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 1
+        },
+        "type": "place"
+      },
+      {
+        "id": "day0-transit2",
+        "type": "transit",
+        "startTime": "12:20 PM",
+        "endTime": "12:25 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 0
+      },
+      {
+        "id": "day0-event3",
+        "title": "Attraction at 48.855227, 2.339251",
+        "startTime": "12:25 PM",
+        "endTime": "03:49 PM",
+        "day": 0,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.855227,
+              "lng": 2.339251
+            }
+          },
+          "place_id": "attr_48.855227_2.339251",
+          "name": "Attraction at 48.855227, 2.339251",
+          "types": [
+            "museum",
+            "tourist_attraction"
+          ],
+          "rating": 4.2,
+          "user_ratings_total": 22118,
+          "vicinity": "Tourist Area",
+          "formatted_address": "Tourist Area",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 2
+        },
+        "type": "place"
+      },
+      {
+        "id": "day0-transit3",
+        "type": "transit",
+        "startTime": "03:49 PM",
+        "endTime": "03:54 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 0
+      },
+      {
+        "id": "day0-event4",
+        "title": "Dinner Break",
+        "startTime": "05:09 PM",
+        "endTime": "06:24 PM",
+        "day": 0,
+        "place": {
+          "name": "Dinner Break",
+          "types": [
+            "restaurant"
+          ],
+          "rating": 0
+        },
+        "type": "place"
+      },
+      {
+        "id": "day0-transit4",
+        "type": "transit",
+        "startTime": "06:24 PM",
+        "endTime": "06:29 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 0
+      },
+      {
+        "id": "day0-event5",
+        "title": "Hotel in 48.852491, 2.349696",
+        "startTime": "",
+        "endTime": "",
+        "day": 0,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.852491,
+              "lng": 2.349696
+            }
+          },
+          "place_id": "hotel_48.852491_2.349696",
+          "name": "Hotel in 48.852491, 2.349696",
+          "types": [
+            "lodging",
+            "hotel"
+          ],
+          "rating": 4.3,
+          "user_ratings_total": 2249,
+          "vicinity": "City Center",
+          "formatted_address": "City Center",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 2
+        },
+        "type": "place"
+      },
+      {
+        "id": "day1-event0",
+        "title": "Hotel in 48.852491, 2.349696",
+        "startTime": "",
+        "endTime": "",
+        "day": 1,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.852491,
+              "lng": 2.349696
+            }
+          },
+          "place_id": "hotel_48.852491_2.349696",
+          "name": "Hotel in 48.852491, 2.349696",
+          "types": [
+            "lodging",
+            "hotel"
+          ],
+          "rating": 4.3,
+          "user_ratings_total": 2249,
+          "vicinity": "City Center",
+          "formatted_address": "City Center",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 2
+        },
+        "type": "place"
+      },
+      {
+        "id": "day1-transit0",
+        "type": "transit",
+        "startTime": "12:25 PM",
+        "endTime": "12:30 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 1
+      },
+      {
+        "id": "day1-event1",
+        "title": "Restaurant at 48.858401, 2.343467",
+        "startTime": "12:30 PM",
+        "endTime": "01:31 PM",
+        "day": 1,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.858401,
+              "lng": 2.343467
+            }
+          },
+          "place_id": "rest_48.858401_2.343467",
+          "name": "Restaurant at 48.858401, 2.343467",
+          "types": [
+            "restaurant",
+            "food",
+            "point_of_interest"
+          ],
+          "rating": 4.6,
+          "user_ratings_total": 1443,
+          "vicinity": "Dining Area",
+          "formatted_address": "Dining Area",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 4
+        },
+        "type": "place"
+      },
+      {
+        "id": "day1-transit1",
+        "type": "transit",
+        "startTime": "01:31 PM",
+        "endTime": "01:36 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 1
+      },
+      {
+        "id": "day1-event2",
+        "title": "Attraction at 48.848357, 2.336822",
+        "startTime": "01:36 PM",
+        "endTime": "03:59 PM",
+        "day": 1,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.848357,
+              "lng": 2.336822
+            }
+          },
+          "place_id": "attr_48.848357_2.336822",
+          "name": "Attraction at 48.848357, 2.336822",
+          "types": [
+            "museum",
+            "tourist_attraction"
+          ],
+          "rating": 3.6,
+          "user_ratings_total": 47282,
+          "vicinity": "Tourist Area",
+          "formatted_address": "Tourist Area",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 2
+        },
+        "type": "place"
+      },
+      {
+        "id": "day1-transit2",
+        "type": "transit",
+        "startTime": "03:59 PM",
+        "endTime": "04:04 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 1
+      },
+      {
+        "id": "day1-event3",
+        "title": "Restaurant at 48.855623, 2.345418",
+        "startTime": "05:04 PM",
+        "endTime": "06:12 PM",
+        "day": 1,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.855623,
+              "lng": 2.345418
+            }
+          },
+          "place_id": "rest_48.855623_2.345418",
+          "name": "Restaurant at 48.855623, 2.345418",
+          "types": [
+            "restaurant",
+            "food",
+            "point_of_interest"
+          ],
+          "rating": 4.5,
+          "user_ratings_total": 661,
+          "vicinity": "Dining Area",
+          "formatted_address": "Dining Area",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 1
+        },
+        "type": "place"
+      },
+      {
+        "id": "day1-transit3",
+        "type": "transit",
+        "startTime": "06:12 PM",
+        "endTime": "06:17 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 1
+      },
+      {
+        "id": "day1-event4",
+        "title": "Hotel in 48.852491, 2.349696",
+        "startTime": "",
+        "endTime": "",
+        "day": 1,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.852491,
+              "lng": 2.349696
+            }
+          },
+          "place_id": "hotel_48.852491_2.349696",
+          "name": "Hotel in 48.852491, 2.349696",
+          "types": [
+            "lodging",
+            "hotel"
+          ],
+          "rating": 4.3,
+          "user_ratings_total": 2249,
+          "vicinity": "City Center",
+          "formatted_address": "City Center",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 2
+        },
+        "type": "place"
+      },
+      {
+        "id": "day2-event0",
+        "title": "Hotel in 48.852491, 2.349696",
+        "startTime": "",
+        "endTime": "",
+        "day": 2,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.852491,
+              "lng": 2.349696
+            }
+          },
+          "place_id": "hotel_48.852491_2.349696",
+          "name": "Hotel in 48.852491, 2.349696",
+          "types": [
+            "lodging",
+            "hotel"
+          ],
+          "rating": 4.3,
+          "user_ratings_total": 2249,
+          "vicinity": "City Center",
+          "formatted_address": "City Center",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 2
+        },
+        "type": "place"
+      },
+      {
+        "id": "day2-transit0",
+        "type": "transit",
+        "startTime": "08:55 AM",
+        "endTime": "09:00 AM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 2
+      },
+      {
+        "id": "day2-event1",
+        "title": "Attraction at 48.846108, 2.345897",
+        "startTime": "09:00 AM",
+        "endTime": "10:51 AM",
+        "day": 2,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.846108,
+              "lng": 2.345897
+            }
+          },
+          "place_id": "attr_48.846108_2.345897",
+          "name": "Attraction at 48.846108, 2.345897",
+          "types": [
+            "park",
+            "point_of_interest"
+          ],
+          "rating": 4.2,
+          "user_ratings_total": 22027,
+          "vicinity": "Tourist Area",
+          "formatted_address": "Tourist Area",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 3
+        },
+        "type": "place"
+      },
+      {
+        "id": "day2-transit1",
+        "type": "transit",
+        "startTime": "10:51 AM",
+        "endTime": "10:56 AM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 2
+      },
+      {
+        "id": "day2-event2",
+        "title": "Restaurant at 48.85199, 2.351469",
+        "startTime": "11:11 AM",
+        "endTime": "12:32 PM",
+        "day": 2,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.85199,
+              "lng": 2.351469
+            }
+          },
+          "place_id": "rest_48.85199_2.351469",
+          "name": "Restaurant at 48.85199, 2.351469",
+          "types": [
+            "restaurant",
+            "food",
+            "point_of_interest"
+          ],
+          "rating": 3.7,
+          "user_ratings_total": 280,
+          "vicinity": "Dining Area",
+          "formatted_address": "Dining Area",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 1
+        },
+        "type": "place"
+      },
+      {
+        "id": "day2-transit2",
+        "type": "transit",
+        "startTime": "12:32 PM",
+        "endTime": "12:37 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 2
+      },
+      {
+        "id": "day2-event3",
+        "title": "Dinner Break",
+        "startTime": "05:07 PM",
+        "endTime": "06:22 PM",
+        "day": 2,
+        "place": {
+          "name": "Dinner Break",
+          "types": [
+            "restaurant"
+          ],
+          "rating": 0
+        },
+        "type": "place"
+      },
+      {
+        "id": "day2-transit3",
+        "type": "transit",
+        "startTime": "06:22 PM",
+        "endTime": "06:27 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 2
+      },
+      {
+        "id": "day2-event4",
+        "title": "Hotel in 48.852491, 2.349696",
+        "startTime": "",
+        "endTime": "",
+        "day": 2,
+        "place": {
+          "geometry": {
+            "location": {
+              "lat": 48.852491,
+              "lng": 2.349696
+            }
+          },
+          "place_id": "hotel_48.852491_2.349696",
+          "name": "Hotel in 48.852491, 2.349696",
+          "types": [
+            "lodging",
+            "hotel"
+          ],
+          "rating": 4.3,
+          "user_ratings_total": 2249,
+          "vicinity": "City Center",
+          "formatted_address": "City Center",
+          "opening_hours": {
+            "open_now": "True"
+          },
+          "price_level": 2
+        },
+        "type": "place"
+      },
+      {
+        "id": "day3-event0",
+        "title": "Lunch Break",
+        "startTime": "12:30 PM",
+        "endTime": "01:45 PM",
+        "day": 3,
+        "place": {
+          "name": "Lunch Break",
+          "types": [
+            "restaurant"
+          ],
+          "rating": 0
+        },
+        "type": "place"
+      },
+      {
+        "id": "day3-transit0",
+        "type": "transit",
+        "startTime": "01:45 PM",
+        "endTime": "01:50 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 3
+      },
+      {
+        "id": "day3-event1",
+        "title": "Dinner Break",
+        "startTime": "06:30 PM",
+        "endTime": "07:45 PM",
+        "day": 3,
+        "place": {
+          "name": "Dinner Break",
+          "types": [
+            "restaurant"
+          ],
+          "rating": 0
+        },
+        "type": "place"
+      },
+      {
+        "id": "day4-event0",
+        "title": "Lunch Break",
+        "startTime": "12:30 PM",
+        "endTime": "01:45 PM",
+        "day": 4,
+        "place": {
+          "name": "Lunch Break",
+          "types": [
+            "restaurant"
+          ],
+          "rating": 0
+        },
+        "type": "place"
+      },
+      {
+        "id": "day4-transit0",
+        "type": "transit",
+        "startTime": "01:45 PM",
+        "endTime": "01:50 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 4
+      },
+      {
+        "id": "day4-event1",
+        "title": "Dinner Break",
+        "startTime": "06:30 PM",
+        "endTime": "07:45 PM",
+        "day": 4,
+        "place": {
+          "name": "Dinner Break",
+          "types": [
+            "restaurant"
+          ],
+          "rating": 0
+        },
+        "type": "place"
+      },
+      {
+        "id": "day5-event0",
+        "title": "Lunch Break",
+        "startTime": "12:30 PM",
+        "endTime": "01:45 PM",
+        "day": 5,
+        "place": {
+          "name": "Lunch Break",
+          "types": [
+            "restaurant"
+          ],
+          "rating": 0
+        },
+        "type": "place"
+      },
+      {
+        "id": "day5-transit0",
+        "type": "transit",
+        "startTime": "01:45 PM",
+        "endTime": "01:50 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 5
+      },
+      {
+        "id": "day5-event1",
+        "title": "Dinner Break",
+        "startTime": "06:30 PM",
+        "endTime": "07:45 PM",
+        "day": 5,
+        "place": {
+          "name": "Dinner Break",
+          "types": [
+            "restaurant"
+          ],
+          "rating": 0
+        },
+        "type": "place"
+      },
+      {
+        "id": "day6-event0",
+        "title": "Lunch Break",
+        "startTime": "12:30 PM",
+        "endTime": "01:45 PM",
+        "day": 6,
+        "place": {
+          "name": "Lunch Break",
+          "types": [
+            "restaurant"
+          ],
+          "rating": 0
+        },
+        "type": "place"
+      },
+      {
+        "id": "day6-transit0",
+        "type": "transit",
+        "startTime": "01:45 PM",
+        "endTime": "01:50 PM",
+        "duration": 5,
+        "mode": "driving",
+        "day": 6
+      },
+      {
+        "id": "day6-event1",
+        "title": "Dinner Break",
+        "startTime": "06:30 PM",
+        "endTime": "07:45 PM",
+        "day": 6,
+        "place": {
+          "name": "Dinner Break",
+          "types": [
+            "restaurant"
+          ],
+          "rating": 0
+        },
+        "type": "place"
+      }
+    ]
+  },
+  "random_solutions": {
+    "statistics": {
+      "distance": {
+        "mean": 49.62906025100116,
+        "std_dev": 3.463038111094224,
+        "min": 41.86225829421133,
+        "max": 58.73932264908861
+      },
+      "time_window": {
+        "mean": 39.44444444444444,
+        "std_dev": 3.3671751485073704,
+        "min": 27.77777777777778,
+        "max": 44.44444444444444
+      },
+      "distribution": {
+        "mean": 81.30379135051146,
+        "std_dev": 4.842693458287354,
+        "min": 69.82560974666607,
+        "max": 93.1958618256023
+      },
+      "clustering": {
+        "mean": 85.37278896652694,
+        "std_dev": 1.3825224634178563,
+        "min": 82.62792310952956,
+        "max": 89.89673504808705
+      },
+      "total": {
+        "mean": 60.05736747204136,
+        "std_dev": 1.5724767167836387,
+        "min": 53.817933916276644,
+        "max": 63.48092376759655
+      }
+    },
+    "percentiles": {
+      "distance": {
+        "p25": 47.30927883874595,
+        "p50": 49.68830902994809,
+        "p75": 51.85562813152737
+      },
+      "time_window": {
+        "p25": 38.88888888888889,
+        "p50": 38.88888888888889,
+        "p75": 41.66666666666667
+      },
+      "distribution": {
+        "p25": 78.12775590552275,
+        "p50": 80.75499102701248,
+        "p75": 83.8029114032075
+      },
+      "clustering": {
+        "p25": 84.3497496341903,
+        "p50": 85.29680186106654,
+        "p75": 86.11518165566702
+      },
+      "total": {
+        "p25": 59.35395941248938,
+        "p50": 60.08390266418518,
+        "p75": 60.843498746148015
+      }
+    }
+  },
+  "comparative_analysis": {
+    "ranking_percentile": {
+      "distance": 0.0,
+      "time_window": 100.0,
+      "distribution": 0.0,
+      "clustering": 100.0,
+      "total": 62.0
+    },
+    "statistical_significance": {
+      "distance": {
+        "z_score": -5.640415647769995,
+        "is_significant": 

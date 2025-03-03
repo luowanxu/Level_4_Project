@@ -1,0 +1,732 @@
+{
+  "overview": {
+    "total_scenarios": 65,
+    "expected_scenarios": 108,
+    "missing_scenarios": {
+      "total": 43,
+      "by_city": {
+        "Tokyo": 10,
+        "Paris": 11,
+        "London": 11,
+        "New York": 11
+      },
+      "by_size": {
+        "large": 19,
+        "small": 12,
+        "medium": 12
+      },
+      "by_duration": {
+        "medium": 7,
+        "short": 36
+      },
+      "by_mode": {
+        "walking": 14,
+        "driving": 14,
+        "transit": 15
+      },
+      "full_list": [
+        "London_large_medium_driving",
+        "London_large_medium_transit",
+        "London_large_short_driving",
+        "London_large_short_transit",
+        "London_large_short_walking",
+        "London_medium_short_driving",
+        "London_medium_short_transit",
+        "London_medium_short_walking",
+        "London_small_short_driving",
+        "London_small_short_transit",
+        "London_small_short_walking",
+        "New York_large_medium_transit",
+        "New York_large_medium_walking",
+        "New York_large_short_driving",
+        "New York_large_short_transit",
+        "New York_large_short_walking",
+        "New York_medium_short_driving",
+        "New York_medium_short_transit",
+        "New York_medium_short_walking",
+        "New York_small_short_driving",
+        "New York_small_short_transit",
+        "New York_small_short_walking",
+        "Paris_large_medium_driving",
+        "Paris_large_medium_transit",
+        "Paris_large_short_driving",
+        "Paris_large_short_transit",
+        "Paris_large_short_walking",
+        "Paris_medium_short_driving",
+        "Paris_medium_short_transit",
+        "Paris_medium_short_walking",
+        "Paris_small_short_driving",
+        "Paris_small_short_transit",
+        "Paris_small_short_walking",
+        "Tokyo_large_medium_walking",
+        "Tokyo_large_short_driving",
+        "Tokyo_large_short_transit",
+        "Tokyo_large_short_walking",
+        "Tokyo_medium_short_driving",
+        "Tokyo_medium_short_transit",
+        "Tokyo_medium_short_walking",
+        "Tokyo_small_short_driving",
+        "Tokyo_small_short_transit",
+        "Tokyo_small_short_walking"
+      ]
+    },
+    "better_than_random": 53,
+    "significantly_better": 34,
+    "average_score": 62.26182525922728
+  },
+  "transport_mode_analysis": {
+    "driving": 62.296113854179524,
+    "transit": 61.70692559611756,
+    "walking": 62.75721361542521
+  },
+  "failed_cases": [
+    {
+      "scenario": "Paris_medium_medium_walking",
+      "config": {
+        "num_places": 13,
+        "duration_days": 3,
+        "transport_mode": "walking"
+      },
+      "scores": {
+        "distance": 33.04985108162963,
+        "time_window": 60.0,
+        "distribution": 92.92893218813452,
+        "clustering": 58.683953619142926,
+        "total": 58.23753248594438
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 47.86841110452404,
+          "std_dev": 3.9462949205288904,
+          "min": 41.093102309499805,
+          "max": 58.709354038275066
+        },
+        "time_window": {
+          "mean": 57.300000000000004,
+          "std_dev": 5.171546959970843,
+          "min": 45.0,
+          "max": 65.0
+        },
+        "distribution": {
+          "mean": 82.52430464434947,
+          "std_dev": 8.366604646004577,
+          "min": 62.58342613226059,
+          "max": 92.92893218813452
+        },
+        "clustering": {
+          "mean": 67.26213894632325,
+          "std_dev": 2.919552015168822,
+          "min": 61.64655313635665,
+          "max": 74.23356722727071
+        },
+        "total": {
+          "mean": 61.507812049491754,
+          "std_dev": 3.4164259204024203,
+          "min": 54.62380748271801,
+          "max": 69.75502166390723
+        }
+      },
+      "percentiles": {
+        "distance": 0.0,
+        "time_window": 50.0,
+        "distribution": 72.0,
+        "clustering": 0.0,
+        "total": 18.0
+      }
+    },
+    {
+      "scenario": "Paris_medium_medium_driving",
+      "config": {
+        "num_places": 13,
+        "duration_days": 4,
+        "transport_mode": "driving"
+      },
+      "scores": {
+        "distance": 43.497366633608,
+        "time_window": 54.166666666666664,
+        "distribution": 83.33333333333334,
+        "clustering": 68.58297930342849,
+        "total": 59.682472517434775
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 51.116603807083706,
+          "std_dev": 3.588356049484596,
+          "min": 43.002326143710754,
+          "max": 58.98208095278488
+        },
+        "time_window": {
+          "mean": 51.833333333333336,
+          "std_dev": 5.841830545897761,
+          "min": 37.5,
+          "max": 62.5
+        },
+        "distribution": {
+          "mean": 83.19883052795633,
+          "std_dev": 5.679320998197579,
+          "min": 64.64466094067262,
+          "max": 88.21488698022421
+        },
+        "clustering": {
+          "mean": 72.72332441647048,
+          "std_dev": 2.144457345711392,
+          "min": 68.4087785141472,
+          "max": 77.54730614391514
+        },
+        "total": {
+          "mean": 62.06941213101047,
+          "std_dev": 2.9525928210632038,
+          "min": 54.606913884960484,
+          "max": 66.9855942273408
+        }
+      },
+      "percentiles": {
+        "distance": 2.0,
+        "time_window": 44.0,
+        "distribution": 46.0,
+        "clustering": 2.0,
+        "total": 20.0
+      }
+    },
+    {
+      "scenario": "Paris_large_long_walking",
+      "config": {
+        "num_places": 22,
+        "duration_days": 7,
+        "transport_mode": "walking"
+      },
+      "scores": {
+        "distance": 29.4090213768342,
+        "time_window": 66.66666666666666,
+        "distribution": 61.19318643980092,
+        "clustering": 80.65784510406853,
+        "total": 57.19291272182415
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 49.78773194121318,
+          "std_dev": 2.8562119119456786,
+          "min": 43.16589709933189,
+          "max": 54.62501117980916
+        },
+        "time_window": {
+          "mean": 52.74418604651163,
+          "std_dev": 3.236091870268683,
+          "min": 44.18604651162791,
+          "max": 58.139534883720934
+        },
+        "distribution": {
+          "mean": 78.82473869936999,
+          "std_dev": 6.8459405208211574,
+          "min": 56.9924604444025,
+          "max": 89.59968382558237
+        },
+        "clustering": {
+          "mean": 76.97923700976207,
+          "std_dev": 1.6056554851271825,
+          "min": 73.58602647896511,
+          "max": 80.38506175124301
+        },
+        "total": {
+          "mean": 61.92037053814386,
+          "std_dev": 2.0613929957244914,
+          "min": 56.28731232513822,
+          "max": 65.39328444053565
+        }
+      },
+      "percentiles": {
+        "distance": 0.0,
+        "time_window": 100.0,
+        "distribution": 2.0,
+        "clustering": 100.0,
+        "total": 4.0
+      }
+    },
+    {
+      "scenario": "Paris_large_long_transit",
+      "config": {
+        "num_places": 22,
+        "duration_days": 6,
+        "transport_mode": "transit"
+      },
+      "scores": {
+        "distance": 30.757103301527046,
+        "time_window": 62.857142857142854,
+        "distribution": 69.62815482075814,
+        "clustering": 75.12645087828975,
+        "total": 57.03519498741055
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 49.109697707855645,
+          "std_dev": 3.2025215712140978,
+          "min": 43.52970228390601,
+          "max": 56.97898478451966
+        },
+        "time_window": {
+          "mean": 52.46153846153846,
+          "std_dev": 3.8838204435719472,
+          "min": 43.58974358974359,
+          "max": 58.97435897435898
+        },
+        "distribution": {
+          "mean": 77.98600728633463,
+          "std_dev": 6.759172525167445,
+          "min": 65.88683411371777,
+          "max": 92.3076923076923
+        },
+        "clustering": {
+          "mean": 74.75111499042268,
+          "std_dev": 1.836642889689091,
+          "min": 71.2059727433542,
+          "max": 81.44543253816178
+        },
+        "total": {
+          "mean": 61.01879530616969,
+          "std_dev": 2.4488878431747247,
+          "min": 56.39245683428763,
+          "max": 65.59442594944196
+        }
+      },
+      "percentiles": {
+        "distance": 0.0,
+        "time_window": 100.0,
+        "distribution": 10.0,
+        "clustering": 62.0,
+        "total": 2.0
+      }
+    },
+    {
+      "scenario": "Paris_large_long_driving",
+      "config": {
+        "num_places": 22,
+        "duration_days": 7,
+        "transport_mode": "driving"
+      },
+      "scores": {
+        "distance": 42.6527796714244,
+        "time_window": 63.1578947368421,
+        "distribution": 70.69597703773674,
+        "clustering": 72.7643674973976,
+        "total": 60.43527122950681
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 50.18628930174259,
+          "std_dev": 3.0579002934838933,
+          "min": 44.335882815704565,
+          "max": 55.75073798246998
+        },
+        "time_window": {
+          "mean": 51.06976744186046,
+          "std_dev": 3.985603389892046,
+          "min": 41.86046511627907,
+          "max": 58.139534883720934
+        },
+        "distribution": {
+          "mean": 77.4647257523924,
+          "std_dev": 5.840303627353931,
+          "min": 65.82107335651379,
+          "max": 89.59968382558237
+        },
+        "clustering": {
+          "mean": 75.53193944816981,
+          "std_dev": 2.039609432183322,
+          "min": 71.81584233414864,
+          "max": 80.4505916491055
+        },
+        "total": {
+          "mean": 60.97615006319336,
+          "std_dev": 2.1316762395517506,
+          "min": 55.69768638047771,
+          "max": 64.76904558363219
+        }
+      },
+      "percentiles": {
+        "distance": 0.0,
+        "time_window": 100.0,
+        "distribution": 14.000000000000002,
+        "clustering": 10.0,
+        "total": 38.0
+      }
+    },
+    {
+      "scenario": "London_medium_medium_transit",
+      "config": {
+        "num_places": 13,
+        "duration_days": 4,
+        "transport_mode": "transit"
+      },
+      "scores": {
+        "distance": 48.11345970072469,
+        "time_window": 60.0,
+        "distribution": 62.58342613226059,
+        "clustering": 78.67412480968167,
+        "total": 60.68554809860586
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 49.54044268551397,
+          "std_dev": 4.3918548089277545,
+          "min": 35.404846626807384,
+          "max": 58.140973941885264
+        },
+        "time_window": {
+          "mean": 50.916666666666664,
+          "std_dev": 5.276509574328645,
+          "min": 33.33333333333333,
+          "max": 58.333333333333336
+        },
+        "distribution": {
+          "mean": 80.5252131838775,
+          "std_dev": 9.138603339550578,
+          "min": 59.17517095361371,
+          "max": 100.0
+        },
+        "clustering": {
+          "mean": 72.27407208648195,
+          "std_dev": 2.336401567073851,
+          "min": 67.3821170333027,
+          "max": 76.811473889067
+        },
+        "total": {
+          "mean": 60.69698985972608,
+          "std_dev": 3.0450204945498376,
+          "min": 53.137444069416134,
+          "max": 65.91827535863317
+        }
+      },
+      "percentiles": {
+        "distance": 28.000000000000004,
+        "time_window": 100.0,
+        "distribution": 6.0,
+        "clustering": 100.0,
+        "total": 42.0
+      }
+    },
+    {
+      "scenario": "London_medium_long_walking",
+      "config": {
+        "num_places": 13,
+        "duration_days": 6,
+        "transport_mode": "walking"
+      },
+      "scores": {
+        "distance": 36.50266922440761,
+        "time_window": 72.72727272727273,
+        "distribution": 53.6452771491565,
+        "clustering": 87.07153664179249,
+        "total": 60.9123453436939
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 51.12051363306467,
+          "std_dev": 2.9869607523842365,
+          "min": 43.807568090025484,
+          "max": 56.953725686579126
+        },
+        "time_window": {
+          "mean": 43.375,
+          "std_dev": 3.661802974001764,
+          "min": 37.5,
+          "max": 50.0
+        },
+        "distribution": {
+          "mean": 80.73847245196315,
+          "std_dev": 6.193092475032443,
+          "min": 66.34271995540935,
+          "max": 91.16116523516816
+        },
+        "clustering": {
+          "mean": 84.11376205766705,
+          "std_dev": 1.3766215038192406,
+          "min": 81.97285863367719,
+          "max": 86.896007875899
+        },
+        "total": {
+          "mean": 61.319100991845445,
+          "std_dev": 1.624215994428259,
+          "min": 57.60906126394971,
+          "max": 64.5443388448384
+        }
+      },
+      "percentiles": {
+        "distance": 0.0,
+        "time_window": 100.0,
+        "distribution": 0.0,
+        "clustering": 100.0,
+        "total": 42.0
+      }
+    },
+    {
+      "scenario": "Tokyo_medium_medium_transit",
+      "config": {
+        "num_places": 13,
+        "duration_days": 5,
+        "transport_mode": "transit"
+      },
+      "scores": {
+        "distance": 39.09619923078459,
+        "time_window": 61.904761904761905,
+        "distribution": 56.356421952801526,
+        "clustering": 84.07302275950951,
+        "total": 58.38617728312616
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 47.336662218939715,
+          "std_dev": 4.358085665336786,
+          "min": 35.625368264323434,
+          "max": 55.734872297264715
+        },
+        "time_window": {
+          "mean": 47.714285714285715,
+          "std_dev": 3.6621139683523185,
+          "min": 39.285714285714285,
+          "max": 53.57142857142857
+        },
+        "distribution": {
+          "mean": 82.08968436259568,
+          "std_dev": 5.8738811790289835,
+          "min": 66.8799339446582,
+          "max": 91.25182234720293
+        },
+        "clustering": {
+          "mean": 77.22204736118705,
+          "std_dev": 1.9476661362473753,
+          "min": 72.54000810952508,
+          "max": 81.11272776087972
+        },
+        "total": {
+          "mean": 60.37763072472418,
+          "std_dev": 1.8113407601988196,
+          "min": 53.9792041766119,
+          "max": 63.66557948546562
+        }
+      },
+      "percentiles": {
+        "distance": 6.0,
+        "time_window": 100.0,
+        "distribution": 0.0,
+        "clustering": 100.0,
+        "total": 10.0
+      }
+    },
+    {
+      "scenario": "Tokyo_medium_long_transit",
+      "config": {
+        "num_places": 13,
+        "duration_days": 7,
+        "transport_mode": "transit"
+      },
+      "scores": {
+        "distance": 24.78080936814854,
+        "time_window": 70.83333333333334,
+        "distribution": 51.05274948137195,
+        "clustering": 87.30502006708933,
+        "total": 56.35579672013682
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 44.14933993818231,
+          "std_dev": 2.9239004023057626,
+          "min": 38.33850002208343,
+          "max": 49.122810344175036
+        },
+        "time_window": {
+          "mean": 39.0,
+          "std_dev": 2.8593465928018786,
+          "min": 33.33333333333333,
+          "max": 44.44444444444444
+        },
+        "distribution": {
+          "mean": 80.00235772881858,
+          "std_dev": 4.771998021630892,
+          "min": 69.82560974666607,
+          "max": 87.57740012500118
+        },
+        "clustering": {
+          "mean": 79.48813012785362,
+          "std_dev": 1.7347737568288533,
+          "min": 75.12836875079066,
+          "max": 83.15378123013643
+        },
+        "total": {
+          "mean": 56.842899552789135,
+          "std_dev": 1.5735234256653003,
+          "min": 52.470887307838794,
+          "max": 60.56349812098486
+        }
+      },
+      "percentiles": {
+        "distance": 0.0,
+        "time_window": 100.0,
+        "distribution": 0.0,
+        "clustering": 100.0,
+        "total": 36.0
+      }
+    },
+    {
+      "scenario": "New York_medium_medium_transit",
+      "config": {
+        "num_places": 13,
+        "duration_days": 4,
+        "transport_mode": "transit"
+      },
+      "scores": {
+        "distance": 37.37106619048321,
+        "time_window": 63.1578947368421,
+        "distribution": 65.48716566156843,
+        "clustering": 78.11144832952931,
+        "total": 58.878411076417144
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 48.32384957135576,
+          "std_dev": 3.3200829378574186,
+          "min": 41.45066693771536,
+          "max": 55.46362948475036
+        },
+        "time_window": {
+          "mean": 52.083333333333336,
+          "std_dev": 3.880477622144434,
+          "min": 37.5,
+          "max": 58.333333333333336
+        },
+        "distribution": {
+          "mean": 80.88870794170423,
+          "std_dev": 7.437011709710625,
+          "min": 60.91320200147141,
+          "max": 100.0
+        },
+        "clustering": {
+          "mean": 76.27058906737449,
+          "std_dev": 2.4695888976801594,
+          "min": 71.30324103023895,
+          "max": 81.77243463840719
+        },
+        "total": {
+          "mean": 61.55401427322247,
+          "std_dev": 2.4434478629653746,
+          "min": 56.9983864632587,
+          "max": 66.33160794770987
+        }
+      },
+      "percentiles": {
+        "distance": 0.0,
+        "time_window": 100.0,
+        "distribution": 4.0,
+        "clustering": 70.0,
+        "total": 14.000000000000002
+      }
+    },
+    {
+      "scenario": "New York_medium_long_driving",
+      "config": {
+        "num_places": 13,
+        "duration_days": 8,
+        "transport_mode": "driving"
+      },
+      "scores": {
+        "distance": 31.225135173923135,
+        "time_window": 70.0,
+        "distribution": 52.39047714304766,
+        "clustering": 88.80761234696644,
+        "total": 58.60715845017977
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 46.82554542504972,
+          "std_dev": 3.0647627050952875,
+          "min": 41.16541555540058,
+          "max": 52.9469172059965
+        },
+        "time_window": {
+          "mean": 36.5,
+          "std_dev": 3.606966049415028,
+          "min": 25.0,
+          "max": 42.5
+        },
+        "distribution": {
+          "mean": 81.45737801572814,
+          "std_dev": 4.966332563473596,
+          "min": 66.83375209644599,
+          "max": 90.0
+        },
+        "clustering": {
+          "mean": 85.601872636528,
+          "std_dev": 1.232294957011283,
+          "min": 82.74530633434014,
+          "max": 88.30772716712966
+        },
+        "total": {
+          "mean": 58.409513757966145,
+          "std_dev": 1.915298826522523,
+          "min": 53.37656023345366,
+          "max": 61.410868323198486
+        }
+      },
+      "percentiles": {
+        "distance": 0.0,
+        "time_window": 100.0,
+        "distribution": 0.0,
+        "clustering": 100.0,
+        "total": 46.0
+      }
+    },
+    {
+      "scenario": "New York_large_long_driving",
+      "config": {
+        "num_places": 22,
+        "duration_days": 8,
+        "transport_mode": "driving"
+      },
+      "scores": {
+        "distance": 38.575065702197854,
+        "time_window": 65.85365853658537,
+        "distribution": 61.66772281584949,
+        "clustering": 81.34806184702333,
+        "total": 59.93177420420953
+      },
+      "random_stats": {
+        "distance": {
+          "mean": 48.45046195100938,
+          "std_dev": 3.4627187966497224,
+          "min": 39.871898691197714,
+          "max": 55.22692242496569
+        },
+        "time_window": {
+          "mean": 49.659574468085104,
+          "std_dev": 2.8059173016034693,
+          "min": 44.680851063829785,
+          "max": 55.319148936170215
+        },
+        "distribution": {
+          "mean": 79.8179178185977,
+          "std_dev": 5.1149687842979406,
+          "min": 68.80238659869111,
+          "max": 89.79610314188783
+        },
+        "clustering": {
+          "mean": 74.81745744750766,
+          "std_dev": 1.7297654766370396,
+          "min": 70.88166967852479,
+          "max": 78.51938090264699
+        },
+        "total": {
+          "mean": 60.36008597894942,
+          "std_dev": 1.9304148773601104,
+          "min": 56.38203000709548,
+          "max": 63.920825920506914
+        }
+      },
+      "percentiles": {
+        "distance": 0.0,
+        "time_window": 100.0,
+        "distribution": 0.0,
+        "clustering": 100.0,
+        "total": 40.0
+      }
+    }
+  ]
+}

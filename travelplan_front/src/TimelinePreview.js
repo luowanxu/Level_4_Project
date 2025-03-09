@@ -34,14 +34,16 @@ import {
   DirectionsCar,
   DirectionsTransit,
 } from '@mui/icons-material';
+import FixedMapDialog from './FixedMapDialog'; // 导入修复版的地图对话框
 
 const TimelinePreview = ({ events }) => {
   console.log('TimelinePreview transit events:', events.filter(e => e.type === 'transit'));
   const [expanded, setExpanded] = useState(false);
+  const [mapOpen, setMapOpen] = useState(false); // 控制地图对话框状态
   
   const getEventIcon = (event) => {
     if (event.type === 'transit') {
-      switch (event.mode) {  // 改为 mode
+      switch (event.mode) {
         case 'walking':
           return <DirectionsWalk />;
         case 'driving':
@@ -61,7 +63,7 @@ const TimelinePreview = ({ events }) => {
   };
 
   const getEventColor = (event) => {
-    if (event.type === 'transit') return 'grey';  // 改为 'grey' 替代 'default'
+    if (event.type === 'transit') return 'grey';
     if (!event.place?.types) return 'secondary';
     if (event.place.types.includes('lodging')) return 'info';
     if (event.place.types.includes('restaurant')) return 'warning';
@@ -85,6 +87,19 @@ const TimelinePreview = ({ events }) => {
     } catch (error) {
       console.error('Failed to export calendar:', error);
     }
+  };
+
+  // 打开和关闭地图对话框
+  const handleOpenMap = () => {
+    console.log("Opening map dialog");
+    console.log("Total events:", events.length);
+    console.log("Place events:", events.filter(e => e.type !== 'transit').length);
+    console.log("Sample place event:", events.find(e => e.type !== 'transit'));
+    setMapOpen(true);
+  };
+
+  const handleCloseMap = () => {
+    setMapOpen(false);
   };
 
   const eventsByDay = events.reduce((acc, event) => {
@@ -135,7 +150,7 @@ const TimelinePreview = ({ events }) => {
           {getEventIcon(event)}
           <Box>
             <Typography variant="subtitle1">
-              {getTransitModeName(event.mode)}  {/* 改为 mode */}
+              {getTransitModeName(event.mode)}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Duration: {Math.round(event.duration)} minutes
@@ -186,7 +201,7 @@ const TimelinePreview = ({ events }) => {
     <Box>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
         <Tooltip title="View on Map">
-          <IconButton><Map /></IconButton>
+          <IconButton onClick={handleOpenMap}><Map /></IconButton>
         </Tooltip>
         <Tooltip title="Share Itinerary">
           <IconButton><Share /></IconButton>
@@ -195,6 +210,14 @@ const TimelinePreview = ({ events }) => {
           <IconButton onClick={handleExportCalendar}><SaveAlt /></IconButton>
         </Tooltip>
       </Box>
+
+      {/* 使用修复版的地图对话框组件 */}
+      <FixedMapDialog
+        open={mapOpen}
+        handleClose={handleCloseMap}
+        events={events}
+        eventsByDay={eventsByDay}
+      />
 
       {Object.entries(eventsByDay).map(([day, dayEvents]) => (
         <Accordion 

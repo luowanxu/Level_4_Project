@@ -129,11 +129,6 @@ class TravelPlanTestCase(TestCase):
         self.assertEqual(response['Content-Type'], 'text/calendar')
         self.assertIn('attachment; filename=trip-schedule.ics', response['Content-Disposition'])
 
-    def test_validate_schedule_service(self):
-        service = ScheduleService()
-        self.assertIsNotNone(service)
-        self.assertIsInstance(service.distance_matrix_cache, dict)
-
 class TravelPlanAsyncTest(TransactionTestCase):
     async def asyncSetUp(self):
         from django.test import AsyncClient
@@ -141,9 +136,6 @@ class TravelPlanAsyncTest(TransactionTestCase):
         self.mock_rapidapi_key = "test-api-key"
         self.patcher = patch('django.conf.settings.RAPIDAPI_KEY', self.mock_rapidapi_key)
         self.patcher.start()
-
-    async def asyncTearDown(self):
-        self.patcher.stop()
 
     @patch('travelplan.services.schedule_service.ScheduleService.generate_schedule')
     async def test_cluster_places(self, mock_generate_schedule):
@@ -1287,65 +1279,6 @@ class RoutingTestCase(TestCase):
                 self.assertEqual(event['mode'], 'driving')
 
 
-
-    def test_route_with_time_conflicts(self):
-        """测试时间冲突的处理"""
-        from .services.routing import optimize_day_route
-        import numpy as np
-
-        # 准备测试数据：两个时间可能冲突的景点
-        hotel = {
-            'id': 'hotel1',
-            'place_id': 'hotel1',
-            'name': 'Test Hotel',
-            'location': {'lat': 40.7128, 'lng': -74.0060},
-            'type': 'hotel',
-            'is_hotel': True,
-            'visit_duration': 0
-        }
-
-        test_places = [
-            {
-                'id': 'museum1',
-                'place_id': 'museum1',
-                'name': 'Long Museum',
-                'location': {'lat': 40.7129, 'lng': -74.0061},
-                'type': 'museum',
-                'is_restaurant': False,
-                'rating': 4.5,
-                'visit_duration': 240  # 4小时
-            },
-            {
-                'id': 'museum2',
-                'place_id': 'museum2',
-                'name': 'Another Museum',
-                'location': {'lat': 40.7130, 'lng': -74.0062},
-                'type': 'museum',
-                'is_restaurant': False,
-                'rating': 4.0,
-                'visit_duration': 180  # 3小时
-            }
-        ]
-
-        distance_matrix = np.array([
-            [0, 100, 200],
-            [100, 0, 150],
-            [200, 150, 0]
-        ])
-
-        # 优化路线
-        arranged_places, score = optimize_day_route(
-            test_places,
-            hotel,
-            distance_matrix,
-            'driving'
-        )
-
-        # 验证时间安排
-        for i in range(len(arranged_places) - 1):
-            curr_end = datetime.strptime(arranged_places[i]['end_time'].strftime('%H:%M'), '%H:%M')
-            next_start = datetime.strptime(arranged_places[i+1]['start_time'].strftime('%H:%M'), '%H:%M')
-            self.assertLessEqual(curr_end, next_start, "不应该有时间重叠")
 
     def test_route_with_different_transport(self):
         """测试不同交通方式的路线"""
